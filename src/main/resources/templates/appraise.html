@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <title>我的评价</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/order.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/font-class.css"/>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head ding">
+    <div class="wrapper clearfix">
+        <div class="clearfix" id="top">
+            <a href="index.html" style="text-decoration: none;">
+				<span class="iconfont icon-shuji"
+                      style="font-size: 29px;color: orangered;font-weight: 600;">
+                    网上图书超市</span>
+                <span style="font-size: 16px;color: black;font-weight: bold;font-family: 宋体;">
+                    我的评价</span>
+            </a>
+            <div class="fr clearfix" id="top1">
+                <form action="#" method="get" class="fl">
+                    <input type="text" placeholder="搜索图书"/>
+                    <input type="button"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------idea------------------------------>
+<div class="address mt">
+    <div class="wrapper clearfix">
+        <a href="index.html" class="fl">首页</a>
+        <span>/</span>
+        <a href="personal.html">个人中心</a>
+        <span>/</span>
+        <a href="appraise.html" class="on">待评价商品</a>
+    </div>
+</div>
+
+
+<!------------------------------Bott------------------------------>
+<div class="Bott">
+    <div class="wrapper clearfix">
+        <div class="zuo fl">
+            <h3>
+                <a href="#"><img src="../static/img/personal/nan.png"/></a>
+                <p class="clearfix">
+                    <span class="nickname">陈育钦</span>
+                </p>
+            </h3>
+            <div>
+                <h4>个人中心</h4>
+                <ul>
+                    <li><a href="personal.html">我的中心</a></li>
+                    <li><a href="address.html">地址管理</a></li>
+                </ul>
+                <h4>我的交易</h4>
+                <ul>
+                    <li><a href="cart.html">我的购物车</a></li>
+                    <li><a href="order.html">我的订单</a></li>
+                    <li class="on"><a href="appraise.html">我的评价</a></li>
+                </ul>
+                <h4>账户管理</h4>
+                <ul>
+                    <li><a href="personalInfo.html">个人信息</a></li>
+                    <li><a href="change_pwd.html">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="you fl">
+            <div class="my clearfix">
+                <h2 class="fl">图书评价</h2>
+            </div>
+            <div class="dlist">
+                <ul class="clearfix" id="pro">
+                    <li class="on"><a href="javascript:void(0)">待评价图书</a></li>
+                    <li><a href="javascript:void(0)">已评价图书</a></li>
+                    <li><a href="javascript:void(0)">评价失效图书</a></li>
+                </ul>
+            </div>
+            <div class="sx clearfix">
+                <div class="clearfix">
+                    <dl class="fl">
+                        <dt><a href="#"><img src="../static/img/cart/book.png"/></a></dt>
+                        <dd><a href="#">家用创意壁挂 釉下彩复古</a></dd>
+                        <dd>¥199.00</dd>
+                        <dd>16000人评价</dd>
+                        <dd><a href="javascript:void(0)">评价</a></dd>
+                    </dl>
+                    <dl class="fl">
+                        <dt><a href="#"><img src="../static/img/cart/book.png"/></a></dt>
+                        <dd><a href="#">家用创意壁挂 釉下彩复古</a></dd>
+                        <dd>¥199.00</dd>
+                        <dd>16000人评价</dd>
+                        <dd><a href="javascript:void(0)">评价</a></dd>
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <dl class="fl">
+                        <dt><a href="javascript:void(0)"><img src="../static/img/cart/book.png"/></a></dt>
+                        <dd><a href="javascript:void(0)">家用创意壁挂 釉下彩复古</a></dd>
+                        <dd>¥199.00</dd>
+                        <dd>16000人评价</dd>
+                        <dd><a href="javascript:void(0)">查看评价</a></dd>
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <dl class="fl">
+                        <dt><a href="javascript:void(0)"><img src="../static/img/cart/book.png"/></a></dt>
+                        <dd><a href="javascript:void(0)">家用创意壁挂 釉下彩复古</a></dd>
+                        <dd>¥199.00</dd>
+                        <dd>16000人评价</dd>
+                        <dd><a href="javascript:void(0)">暂不能评价</a></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--遮罩-->
+<div class="mask"></div>
+<!--评价弹框-->
+<div class="pj">
+    <div class="clearfix">
+        <a href="javascript:void(0)" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a>
+    </div>
+    <h3>&nbsp;图书评价</h3>
+    <form action="javascript:void(0)" method="get">
+        <div class="clearfix">
+            <p>我对本书的评分是：</p>
+            <p class="star3">
+                <span class="level" onclick="fun()" id="level">
+                    <span class="level2" style="width: 0%;"></span>
+                </span>
+                <span class="desc">10分 极力推荐</span>
+            </p>
+        </div>
+        <textarea cols="50" rows="5" id="textareaid"
+                  placeholder="这本书的内容、作者、文笔...给你留下了怎样的印象？是否值得推荐给其他书友？写下你的书评吧~"></textarea>
+        <div class="bc">
+            <input type="button" value="保存"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
+<!--查看评价-->
+<div class="chak">
+    <div class="clearfix">
+        <a href="#" class="fr gb">
+            <img src="../static/img/appraise/icon4.png"/>
+        </a>
+    </div>
+    <h3>&nbsp查看评价</h3>
+    <form action="javascript:void(0)" method="get">
+        <div class="clearfix">
+            <div class="clearfix">
+                <p>我对本书的评分是：</p>
+                <p class="star3">
+                <span class="level" onclick="fun()">
+                    <span class="level2" style="width: 100%;"></span>
+                </span>
+                    <span class="desc">10分 极力推荐</span>
+                </p>
+            </div>
+        </div>
+        <textarea name="" rows="" cols="" disabled>挺好的挺好的挺好的~五分好评</textarea>
+    </form>
+</div>
+
+
+<!--返回顶部-->
+<div class="gotop">
+    <a href="index.html">
+        <dl>
+            <dt><span class="iconfont icon-shouye" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>返回<br/>首页</dd>
+        </dl>
+    </a>
+    <a href="cart.html">
+        <dl>
+            <dt><span class="iconfont icon-gouwuche" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>去购<br/>物车</dd>
+        </dl>
+    </a>
+    <a href="personal.html">
+        <dl>
+            <dt><span class="iconfont icon-app_icons--" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>个人<br/>中心</dd>
+        </dl>
+    </a>
+    <a href="#" class="toptop" style="display: none">
+        <dl>
+            <dt><span class="iconfont icon-jiantoushang" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>返回<br/>顶部</dd>
+        </dl>
+    </a>
+</div>
+<!--footer-->
+<div class="slogan">
+    <span><strong>让阅读成为一种生活习惯！</strong></span>
+</div>
+<script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function fun() {
+        var level=document.getElementById('level');
+
+        var off = level.getBoundingClientRect().left;
+
+
+        var bindEvent = function(dom, eventName, listener){
+            if(dom.attachEvent) {
+                dom.attachEvent('on'+eventName, listener);
+            } else {
+                dom.addEventListener(eventName, listener);
+            }
+        }
+
+        bindEvent(level, 'click', function(e){
+            var offsetX = e.clientX - level.clientLeft;
+            var width = (offsetX - off) / 130 * 100 + "%";
+            $(".level2").css("width", width)
+        });
+    }
+</script>
+</body>
+</html>

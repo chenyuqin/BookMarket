@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>销量排行榜</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/rank.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font-class.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/global.css"/>
+    <script type="text/javascript" src="../static/css/layui/layui.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div class="topbar">
+        <div class="wrap">
+            <div class="topbar-left">
+                <a href="index.html"><span class="iconfont icon-shouye"> 首页</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <span style="color: #000;">您的定位：
+                    <span class="iconfont icon-dingwei"></span>
+                    <span class="glyphicon glyphicon-map-marker" id="location"></span>
+                </span>
+            </div>
+            <div class="topbar-right">
+                <a href="ml" id="login">
+                    <span class="iconfont icon-denglu"> 登录</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href=".html" id="register">
+                    <span class="iconfont icon-zhuce"> 注册</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href="#" id="dd">
+                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
+                    <span class="layui-badge layui-bg-orange">0</span>
+                </a>
+                <div class="loading" id="load" style="display:none">暂无消息！</div>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href=".html" id="gerenzhongxin">
+                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="wrap2">
+        <div class="logo">
+            <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
+                    网上图书超市</span>
+        </div>
+        <div class="search">
+            <form>
+                <input class="iconfont search-btn " type="submit" value="&#xe778;">
+                <input class="search-text" type="text" placeholder="搜索图书">
+            </form>
+        </div>
+        <!--购物车部分-->
+        <div class="cart">
+            <a href="l">
+                <span class="iconfont icon-gouwuche"> 购物车</span>
+                <span class="cart_counts">0</span>
+            </a>
+        </div>
+        <!--订单部分-->
+        <div class="order">
+            <a href="ml">我的订单</a>
+        </div>
+    </div>
+</div>
+<div class="clear2"></div>
+<!-- 导航条 -->
+<div>
+    <nav class="nav-top">
+        <ul class="nav-top-ul">
+            <li><a href="javascript:void(0)">销量排行榜</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<div class="content content-nav-base commodity-content">
+    <div class="commod-cont-wrap">
+        <div class="commod-cont w1200 layui-clear">
+            <div class="left-nav">
+                <div class="title">分类排行</div>
+                <div class="list-box">
+                    <dl>
+                        <dt>教育</dt>
+                        <dd><a href="javascript:;">教材</a></dd>
+                        <dd><a href="javascript:;">外语</a></dd>
+                        <dd><a href="javascript:;">考试</a></dd>
+                        <dd><a href="javascript:;">中小学教辅</a></dd>
+                        <dd><a href="javascript:;">工具书</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>小说</dt>
+                        <dd><a href="javascript:;">中国当代小说</a></dd>
+                        <dd><a href="javascript:;">中国近现代小说</a></dd>
+                        <dd><a href="javascript:;">中国古典小说</a></dd>
+                        <dd><a href="javascript:;">四大名著</a></dd>
+                        <dd><a href="javascript:;">外国小说</a></dd>
+                        <dd><a href="javascript:;">侦探/悬疑/推理</a></dd>
+                        <dd><a href="javascript:;">惊悚/恐怖</a></dd>
+                        <dd><a href="javascript:;">魔幻</a></dd>
+                        <dd><a href="javascript:;">科幻</a></dd>
+                        <dd><a href="javascript:;">武侠</a></dd>
+                        <dd><a href="javascript:;">军事</a></dd>
+                        <dd><a href="javascript:;">情感</a></dd>
+                        <dd><a href="javascript:;">社会</a></dd>
+                        <dd><a href="javascript:;">都市</a></dd>
+                        <dd><a href="javascript:;">乡土</a></dd>
+                        <dd><a href="javascript:;">职场</a></dd>
+                        <dd><a href="javascript:;">财经</a></dd>
+                        <dd><a href="javascript:;">官场</a></dd>
+                        <dd><a href="javascript:;">历史</a></dd>
+                        <dd><a href="javascript:;">影视小说</a></dd>
+                        <dd><a href="javascript:;">作品集</a></dd>
+                        <dd><a href="javascript:;">世界名著</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>文艺</dt>
+                        <dd><a href="javascript:;">文学</a></dd>
+                        <dd><a href="javascript:;">传记</a></dd>
+                        <dd><a href="javascript:;">艺术</a></dd>
+                        <dd><a href="javascript:;">摄影</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>青春文学/动漫·幽默</dt>
+                    </dl>
+                    <dl>
+                        <dt>童书</dt>
+                    </dl>
+                    <dl>
+                        <dt>人文社科</dt>
+                    </dl>
+                    <dl>
+                        <dt>经管</dt>
+                    </dl>
+                    <dl>
+                        <dt>成功/励志</dt>
+                    </dl>
+                    <dl>
+                        <dt>生活</dt>
+                    </dl>
+                    <dl>
+                        <dt>科技</dt>
+                    </dl>
+                    <dl>
+                        <dt>英文原版书 港台图书</dt>
+                    </dl>
+                </div>
+            </div>
+            <div class="right-cont-wrap">
+                <div class="right-cont">
+                    <div class="own">
+                        <span>图书排行榜</span> >
+                        <span><a href="javascript:;">全部</a></span>
+                    </div>
+                    <div class="cont-list layui-clear" id="list-cont">
+                        <div class="item">
+                            <p class="rank_num">1.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">2.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">3.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">4.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">5.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">6.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">7.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">8.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">9.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">10.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">11.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="rank_num">12.</p>
+                            <div class="img">
+                                <a href="javascript:;">
+                                    <img src="../static/img/list4_big1.jpg"/>
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <a class="book_name" href="javascript:;">世界那么大，我想去看看</a>
+                                <p class="star">
+                                    <span class="level">
+                                        <span style="width: 65%;"></span>
+                                    </span>
+                                    <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                                    <span>100%推荐</span>
+                                </p>
+                                <p class="author">
+                                    <a>J.K.罗琳</a> 著； <a>苏农</a>，<a>马爱农</a>，<a>马爱新</a> 译
+                                </p>
+                                <p class="publish">2018-10-10 <a>电子工业出版社</a></p>
+                                <p class="price">
+                                    <span class="pri">￥53.50</span>
+                                    <span class="pri_del"><del>￥107.00</del></span>
+                                    <span class="pri_acc">(7.9折)</span>
+                                </p>
+                                <p>
+                                    <input type="button" class="add_to_cart" value="加入购物车"/>
+                                    <input type="button" class="collect" value="收藏"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 模版引擎导入 -->
+                <!-- <script type="text/html" id="demo">
+                  {{# layui.each(d.menu.milk.content,function(index,item){}}
+                    <div class="item">
+                      <div class="img">
+                        <a href="javascript:;"><img src="{{item.img}}"></a>
+                      </div>
+                      <div class="text">
+                        <p class="title"></p>
+                        <p class="price">
+                          <span class="pri">{{item.pri}}</span>
+                          <span class="nub">{{item.nub}}</span>
+                        </p>
+                      </div>
+                    </div>
+                  {{# }); }}
+                </script> -->
+                <div id="demo0" style="text-align: center;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+
+    layui.config({
+        base: '../js/util/' //你存放新模块的目录，注意，不是layui的模块目录
+    }).use(['mm', 'laypage', 'jquery'], function () {
+        var laypage = layui.laypage, $ = layui.$,
+            mm = layui.mm;
+        laypage.render({
+            elem: 'demo0'
+            , count: 100 //数据总数
+        });
+        // 模版引擎导入
+        //  var html = demo.innerHTML;
+        //  var listCont = document.getElementById('list-cont');
+        //  // console.log(layui.router("#/about.html"))
+        // mm.request({
+        //     url: '../json/commodity.json',
+        //     success : function(res){
+        //       console.log(res)
+        //       listCont.innerHTML = mm.renderHtml(html,res)
+        //     },
+        //     error: function(res){
+        //       console.log(res);
+        //     }
+        //   })
+
+        $('.list-box dt').addClass('active').siblings('dd').hide();
+        $('.list-box dt').attr('off', true);
+
+        $('.sort a').on('click', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+        $('.list-box dt').on('click', function () {
+            if ($(this).attr('off')) {
+                $(this).removeClass('active').siblings('dd').show()
+                $(this).attr('off', '')
+            } else {
+                $(this).addClass('active').siblings('dd').hide()
+                $(this).attr('off', true)
+            }
+        })
+
+    });
+</script>
+</body>
+</html>

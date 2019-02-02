@@ -1,0 +1,105 @@
+.forCon {
+    width: 800px;
+    margin: 80px auto;
+}
+
+.forCon > p {
+    height: 50px;
+    line-height: 50px;
+}
+
+.forCon ul {
+    border-bottom: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0 50px;
+    text-align: center;
+}
+
+.forCon ul li {
+    text-align: center;
+    font-size: 16px;
+}
+
+.forCon ul li.on {
+    border-bottom: 1px solid #000;
+}
+
+.forCon ul li span {
+    font-size: 26px;
+}
+
+.forCon form {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.forCon form label {
+    margin-left: 0px;
+    font-size: 15px;
+}
+
+.forCon form input {
+    height: 38px;
+    width: 250px;
+    border-radius: 3px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    border: 1px solid darkslategray;
+    padding-left: 10px;
+}
+
+.forCon form img {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    width: 84px;
+    height: 37px;
+}
+
+.forCon form input[type="text"] {
+    border: 1px solid #DBDBDB;
+    width: 250px;
+    padding-left: 10px;
+}
+
+.forCon form input[type="button"] {
+    width: 120px;
+    color: #fff;
+    background: #ddd;
+    cursor: pointer;
+    margin-left: 70px;
+    margin-top: 30px;
+}
+
+.forCon form input[type="button"]:hover {
+    background-color: rgb(193, 0, 0);
+}
+
+/*****步骤2*****/
+form p.tip {
+    color: #777;
+}
+
+form p:first-child span {
+    color: #c10000;
+    font-size: 20px;
+}
+
+form.two input[type="button"] {
+    background: #c10000;
+}
+
+form.three label {
+    font-size: 15px;
+    display: inline-block;
+    width: 100px;
+}
+
+form.three input[type="button"] {
+    margin-left: 70px;
+    background: #c10000;
+}
+
+form.two, form.three {
+    display: none;
+}

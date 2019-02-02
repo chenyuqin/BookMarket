@@ -1,0 +1,285 @@
+@charset "UTF-8";
+/*----------公共样式-------*/
+body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select, td, figure {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    font: 12px "宋体";
+    word-wrap: break-word;
+}
+
+a, u, s, del {
+    color: #666;
+    text-decoration: none;
+}
+
+i, em, b {
+    font-style: normal;
+    font-weight: 100;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset, a img, .bor0 {
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+/*clear清除浮动和防止margin-top向上传递*/
+.clear {
+    zoom: 1;
+    /*只有ie能识别*/
+}
+
+.clear:before {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.head {
+    width: 1200px;
+    margin: 12px auto 10px;
+    height: 45px;
+    line-height: 60px;
+}
+
+.head img {
+    float: left;
+    margin-left: 7px;
+}
+
+.head a {
+    color: #787878;
+}
+
+.login_bd {
+    background-color: #EDEDED;
+    height: 600px;
+}
+
+
+.set_area {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wrap {
+    border: 1px solid #eef2f4;
+    background: #fff;
+    padding: 15px 25px 15px 15px;
+    float: right;
+    width: 320px;
+    color: #6e6e6e;
+    margin: 90px auto 0;
+    position: relative;
+    box-shadow: 0 1px 2px #eee;
+}
+
+.wrap a {
+    color: #1a66b3;
+}
+
+.wrap a:hover {
+    color: #1a66b3;
+}
+
+.wrap input {
+    outline: none;
+}
+
+.infro {
+    width: 311px;
+    float: right;
+}
+
+.password_login {
+    font-size: 18px;
+    line-height: inherit;
+    color: #3c3c3c;
+    font-family: 'Microsoft Yahei';
+    margin-top: 5px;
+}
+
+.username, .password, .code {
+    border: 1px solid #e6e6e6;
+    height: 36px;
+    width: 310px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.username > span, .password > span, .code > span {
+    width: 30px;
+    margin-right: 10px;
+    height: 36px;
+    float: left;
+    background: url("../img/login/icon.png") 10px -110px no-repeat;
+}
+
+.username > input, .password > input, .code > input {
+    font-size: 14px;
+    line-height: 34px;
+    color: #000;
+    float: left;
+    height: 34px;
+    border: 0;
+    font-family: "Microsoft Yahei";
+    padding: 0;
+}
+
+.username.focus, .password.focus, .code.focus {
+    border-color: #969696;
+}
+
+.username.blur, .password.blur, .code.blur {
+    border-color: #e6e6e6;
+    color: #a0a0a0;
+}
+
+.username {
+    margin-top: 20px;
+    position: relative;
+}
+
+.username.error {
+    background-position: -14px -110px;
+}
+
+.password > span {
+    background-position: 10px -150px;
+}
+
+.password.error {
+    background-position: -14px -150px;
+}
+
+.code {
+    width: 126px;
+    float: left;
+}
+
+.code span {
+    background-position: 10px -189px;
+}
+
+.code.error {
+    background-position: -16px -189px;
+}
+
+.code input {
+    width: 86px;
+    float: left;
+}
+
+.code_wrap {
+    height: 38px;
+}
+
+.tips {
+    height: 30px;
+    line-height: 30px;
+    padding-top: 0px;
+    padding-left: 10px;
+}
+
+.tips span {
+    display: none;
+}
+
+.code_pic {
+    width: 86px;
+    height: 38px;
+    float: left;
+    margin: 0 15px 0 5px;
+}
+
+.code_pic img {
+    width: 86px;
+    height: 38px;
+}
+
+.code_wrap a {
+    line-height: 38px;
+}
+
+.auto_login {
+    height: 27px;
+    line-height: 22px;
+    padding-top: 7px;
+    width: 310px;
+    overflow: hidden;
+}
+
+.auto_login a {
+    float: right;
+}
+
+.auto_login input {
+    vertical-align: middle;
+    margin-top: -1px;
+}
+
+.btn a {
+    font-size: 20px;
+    line-height: 44px;
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    font-family: "Microsoft Yahei";
+    background: #ff2832;
+}
+
+.btn a:hover {
+    background: #f01923;
+    color: darkgray;
+}
+
+.register {
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    padding-top: 6px;
+}
+
+.register_btn {
+    float: right;
+    color: #6e6e6e;
+}
+
+.register_btn:hover {
+    color: blue;
+}
+
+.slogan {
+    color: #000;
+    margin: 10px auto 10px;
+    font-size: 22px;
+    font-family: 华文中宋;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+}

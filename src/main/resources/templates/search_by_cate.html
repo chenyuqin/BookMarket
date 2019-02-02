@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书分类搜索</title>
+    <link rel="stylesheet" href="../static/css/layui/css/layui.css">
+    <link href="../static/css/global.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/search_by_cate.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/font-class.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="header">
+    <div class="topbar">
+        <div class="wrap">
+            <div class="topbar-left">
+                <a href="index.html"><span class="iconfont icon-shouye"> 首页</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <span style="color: #000;">您的定位：
+                    <span class="iconfont icon-dingwei"></span>
+                    <span class="glyphicon glyphicon-map-marker" id="location"></span>
+                </span>
+            </div>
+            <div class="topbar-right">
+                <a href="ml" id="login">
+                    <span class="iconfont icon-denglu"> 登录</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href=".html" id="register">
+                    <span class="iconfont icon-zhuce"> 注册</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href="#" id="dd">
+                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
+                    <span class="layui-badge layui-bg-orange">0</span>
+                </a>
+                <div class="loading" id="load" style="display:none">暂无消息！</div>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href=".html" id="gerenzhongxin">
+                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="wrap2">
+        <div class="logo">
+            <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
+                    网上图书超市</span>
+        </div>
+        <div class="search">
+            <form>
+                <input class="iconfont search-btn " type="submit" value="&#xe778;">
+                <input class="search-text" type="text" placeholder="搜索图书">
+            </form>
+        </div>
+        <!--购物车部分-->
+        <div class="cart">
+            <a href="l">
+                <span class="iconfont icon-gouwuche"> 购物车</span>
+                <span class="cart_counts">0</span>
+            </a>
+        </div>
+        <!--订单部分-->
+        <div class="order">
+            <a href="ml">我的订单</a>
+        </div>
+    </div>
+</div>
+<div class="clear2"></div>
+<!-- 导航条 -->
+<div>
+    <nav class="nav-top">
+        <ul class="nav-top-ul">
+            <li><a href="javascript:void(0)">图书分类检索</a></li>
+        </ul>
+    </nav>
+</div>
+<!--主页内容-->
+<div id="content" class="wrap clear">
+    <div class="leftCont fl">
+        <!-- 筛选条件列表 -->
+        <div class="address wrap clear">
+            <div class="addressTo fl clear title">
+                <span class="fl"><a href="">全部</a> ></span>
+                <span class="fl"><a href="">图书</a> ></span>
+                <span class="fl choose2">
+                    <a href="" style="text-decoration: none">教材
+                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="productNum fr">
+                <span>共</span>
+                <b>5937</b>
+                <span>件商品</span>
+            </div>
+        </div>
+        <div class="screen wrap">
+            <dl class="screenList clear category">
+                <div class="listTitle fl">
+                    <dt>分类</dt>
+                </div>
+                <div class="listWrap fl clear cate">
+                    <dd><a class="textbook">研究生/本科/专科教材</a></dd>
+                    <dd><a class="textbook">高职高专教材</a></dd>
+                    <dd><a class="textbook">中职教材</a></dd>
+                    <dd><a class="textbook">成人教育教材</a></dd>
+                    <dd><a class="textbook">职业技术培训教材</a></dd>
+                    <dd><a class="textbook">公共课</a></dd>
+                    <dd><a class="textbook">经济管理类</a></dd>
+                    <dd><a class="textbook">工学类</a></dd>
+                    <dd><a class="textbook">文法类</a></dd>
+                    <dd><a class="textbook">医学类</a></dd>
+                    <dd><a class="textbook">理学类</a></dd>
+                    <dd><a class="textbook">农学</a></dd>
+                </div>
+                <div class="opencate">
+                    <span>更多</span><i class="iconfont icon-zhankai"></i>
+                </div>
+            </dl>
+            <dl class="screenList clear all_publish">
+                <div class="listTitle fl">
+                    <dt>出版社</dt>
+                </div>
+                <div class="listWrap fl clear publish">
+                    <dd><a class="pub">机械工业出版社</a></dd>
+                    <dd><a class="pub">中国轻工业出版社</a></dd>
+                    <dd><a class="pub">人民邮电出版社</a></dd>
+                    <dd><a class="pub">北京联合出版公司</a></dd>
+                    <dd><a class="pub">中国人民大学出版社</a></dd>
+                    <dd><a class="pub">中国法制出版社</a></dd>
+                    <dd><a class="pub">世界图书出版公司</a></dd>
+                    <dd><a class="pub">台海出版社</a></dd>
+                    <dd><a class="pub">中国华侨出版社</a></dd>
+                    <dd><a class="pub">中国友谊出版社</a></dd>
+                    <dd><a class="pub">湖南文艺出版社</a></dd>
+                    <dd><a class="pub">民主与建设出版社</a></dd>
+                    <dd><a class="pub">电子工业出版社</a></dd>
+                    <dd><a class="pub">北京大学出版社</a></dd>
+                    <dd><a class="pub">中央编译出版社</a></dd>
+                    <dd><a class="pub">古吴轩出版社</a></dd>
+                    <dd><a class="pub">化学工业出版社</a></dd>
+                    <dd><a class="pub">江苏文艺出版社</a></dd>
+                    <dd><a class="pub">浙江人民出版社</a></dd>
+                    <dd><a class="pub">中国纺织出版社</a></dd>
+                    <dd><a class="pub">江西人民出版社</a></dd>
+                    <dd><a class="pub">天津人民出版社</a></dd>
+                    <dd><a class="pub">北京理工大学出版社</a></dd>
+                    <dd><a class="pub">译林出版社</a></dd>
+                    <dd><a class="pub">科学出版社</a></dd>
+                    <dd><a class="pub">新世界出版社</a></dd>
+                    <dd><a class="pub">中国商业出版社</a></dd>
+                    <dd><a class="pub">浙江文艺出版社</a></dd>
+                    <dd><a class="pub">广西师范大学出版社</a></dd>
+                    <dd><a class="pub">人民教育出版社</a></dd>
+                    <dd><a class="pub">天地出版社</a></dd>
+                    <dd><a class="pub">文汇出版社</a></dd>
+                    <dd><a class="pub">广东人民出版社</a></dd>
+                    <dd><a class="pub">中国青年出版社</a></dd>
+                    <dd><a class="pub">现代出版社</a></dd>
+                    <dd><a class="pub">群言出版社</a></dd>
+                    <dd><a class="pub">人民文学出版社</a></dd>
+                    <dd><a class="pub">武汉出版社</a></dd>
+                    <dd><a class="pub">华文出版社</a></dd>
+                    <dd><a class="pub">上海三联书店</a></dd>
+                </div>
+                <div class="openpublish">
+                    <span>更多</span><i class="iconfont icon-zhankai"></i>
+                </div>
+            </dl>
+
+            <dl class="screenList clear all_author">
+                <div class="listTitle fl">
+                    <dt>作者</dt>
+                </div>
+                <div class="listWrap fl clear author">
+                    <dd><a class="aut">乐嘉</a></dd>
+                    <dd><a class="aut">弗洛伊德</a></dd>
+                    <dd><a class="aut">古斯塔夫·勒庞</a></dd>
+                    <dd><a class="aut">阿尔弗雷德·阿德勒</a></dd>
+                    <dd><a class="aut">阿德勒</a></dd>
+                    <dd><a class="aut">西格蒙德·弗洛伊德</a></dd>
+                    <dd><a class="aut">高铭</a></dd>
+                    <dd><a class="aut">武志红</a></dd>
+                    <dd><a class="aut">卡伦·霍妮</a></dd>
+                    <dd><a class="aut">陈璐</a></dd>
+                    <dd><a class="aut">伯特·海灵格</a></dd>
+                    <dd><a class="aut">马浩天</a></dd>
+                    <dd><a class="aut">李中莹</a></dd>
+                    <dd><a class="aut">华生</a></dd>
+                    <dd><a class="aut">菲利普·津巴多</a></dd>
+                    <dd><a class="aut">赫尔曼·黑塞</a></dd>
+                    <dd><a class="aut">河合隼雄</a></dd>
+                    <dd><a class="aut">陈玮</a></dd>
+                    <dd><a class="aut">林崇德</a></dd>
+                    <dd><a class="aut">杨珊珊</a></dd>
+                    <dd><a class="aut">曾奇峰</a></dd>
+                    <dd><a class="aut">加藤谛三</a></dd>
+                    <dd><a class="aut">戴维·迈尔斯</a></dd>
+                    <dd><a class="aut">周梵</a></dd>
+                    <dd><a class="aut">王莉</a></dd>
+                    <dd><a class="aut">王岑卉</a></dd>
+                    <dd><a class="aut">克里斯托夫·安德烈</a></dd>
+                    <dd><a class="aut">约翰·鲍尔比</a></dd>
+                    <dd><a class="aut">马克·沃林恩</a></dd>
+                    <dd><a class="aut">斯坦诺维奇</a></dd>
+                    <dd><a class="aut">史密斯</a></dd>
+                    <dd><a class="aut">伊尔斯·桑德</a></dd>
+                    <dd><a class="aut">斯坦威</a></dd>
+                    <dd><a class="aut">李世强</a></dd>
+                    <dd><a class="aut">乐国安</a></dd>
+                    <dd><a class="aut">侯玉波</a></dd>
+                    <dd><a class="aut">马克·刘易斯</a></dd>
+                    <dd><a class="aut">李雪</a></dd>
+                    <dd><a class="aut">邓明</a></dd>
+                    <dd><a class="aut">郑立峰</a></dd>
+                    <dd><a class="aut">卡罗尔·德韦克</a></dd>
+                    <dd><a class="aut">弗朗索瓦勒洛尔</a></dd>
+                    <dd><a class="aut">詹姆斯·法隆</a></dd>
+                    <dd><a class="aut">牛津</a></dd>
+                    <dd><a class="aut">马斯洛</a></dd>
+                    <dd><a class="aut">刘肖岑</a></dd>
+                    <dd><a class="aut">窦东微</a></dd>
+                    <dd><a class="aut">乌沙莫</a></dd>
+                    <dd><a class="aut">郑钢</a></dd>
+                    <dd><a class="aut">张智勇</a></dd>
+                    <dd><a class="aut">张亚</a></dd>
+                    <dd><a class="aut">杨蔚</a></dd>
+                    <dd><a class="aut">亚瑟·乔拉米卡利</a></dd>
+                    <dd><a class="aut">温旻</a></dd>
+                    <dd><a class="aut">鲁道夫</a></dd>
+                    <dd><a class="aut">林倩苇</a></dd>
+                    <dd><a class="aut">李松蔚</a></dd>
+                    <dd><a class="aut">耿沫</a></dd>
+                    <dd><a class="aut">格雷姆·考恩</a></dd>
+                    <dd><a class="aut">尼采</a></dd>
+                    <dd><a class="aut">马特.海格</a></dd>
+                    <dd><a class="aut">赵燕飞</a></dd>
+                    <dd><a class="aut">叔本华</a></dd>
+                    <dd><a class="aut">罗杰·霍克</a></dd>
+                    <dd><a class="aut">卢克·迪特里希</a></dd>
+                    <dd><a class="aut">李章勇</a></dd>
+                    <dd><a class="aut">李玫瑾</a></dd>
+                    <dd><a class="aut">科恩</a></dd>
+                    <dd><a class="aut">黄志坚</a></dd>
+                    <dd><a class="aut">付琳</a></dd>
+                    <dd><a class="aut">董强</a></dd>
+                    <dd><a class="aut">楚祎楠</a></dd>
+                    <dd><a class="aut">程志良</a></dd>
+                    <dd><a class="aut">陈玉慧</a></dd>
+                    <dd><a class="aut">周慕姿</a></dd>
+                    <dd><a class="aut">郑毓岑</a></dd>
+                    <dd><a class="aut">杨嘉玲</a></dd>
+                    <dd><a class="aut">王资</a></dd>
+                    <dd><a class="aut">米歇尔·马特里西阿尼</a></dd>
+                    <dd><a class="aut">梅丽莎·摩尔</a></dd>
+                    <dd><a class="aut">罗莉</a></dd>
+                    <dd><a class="aut">李甦</a></dd>
+                    <dd><a class="aut">科迪莉亚·法恩</a></dd>
+                    <dd><a class="aut">顾淑馨字</a></dd>
+                    <dd><a class="aut">高天羽</a></dd>
+                    <dd><a class="aut">弗朗索瓦.勒洛尔</a></dd>
+                    <dd><a class="aut">方一雲</a></dd>
+                    <dd><a class="aut">法伯</a></dd>
+                </div>
+                <div class="openauthor">
+                    <span>更多</span><i class="iconfont icon-zhankai"></i>
+                </div>
+            </dl>
+
+            <dl class="screenList clear all_price">
+                <div class="listTitle fl">
+                    <dt>价格</dt>
+                </div>
+                <div class="listWrap fl clear price">
+                    <dd><a class="pri">0-19</a></dd>
+                    <dd><a class="pri">19-29</a></dd>
+                    <dd><a class="pri">29-49</a></dd>
+                    <dd><a class="pri">49以上</a></dd>
+                </div>
+            </dl>
+            <dl class="screenList clear all_appraise">
+                <div class="listTitle fl">
+                    <dt>客户评分</dt>
+                </div>
+                <div class="listWrap fl clear appraise">
+                    <dd><a class="appr">5星</a></dd>
+                    <dd><a class="appr">4星以上</a></dd>
+                    <dd><a class="appr">3星以上</a></dd>
+                    <dd><a class="appr">2星以上</a></dd>
+                    <dd><a class="appr">1星以上</a></dd>
+                </div>
+            </dl>
+            <dl class="screenList clear all_count">
+                <div class="listTitle fl">
+                    <dt>折扣</dt>
+                </div>
+                <div class="listWrap fl clear count">
+                    <dd><a class="cou">3折以下</a></dd>
+                    <dd><a class="cou">3-5折</a></dd>
+                    <dd><a class="cou">5-7折</a></dd>
+                    <dd><a class="cou">7折以上</a></dd>
+                </div>
+            </dl>
+            <dl class="screenList screenCon clear">
+                <div class="listTitle fl">
+                    <dt>筛选条件</dt>
+                </div>
+                <div class="listWrap fl clear select">
+                    <!--<div class="addressToCont fl">-->
+                    <!--<h3>省(直辖市)<i class="addIcon"></i></h3>-->
+                    <!--</div>-->
+                    <!--<div class="addressToCont fl">-->
+                    <!--<h3>市(自治州)<i class="addIcon"></i></h3>-->
+                    <!--</div>-->
+                    <!--<div class="addressToCont fl">-->
+                    <!--<h3>社区(街道)<i class="addIcon"></i></h3>-->
+                    <!--</div>-->
+                </div>
+            </dl>
+        </div>
+        <!-- /筛选条件列表 -->
+        <!-- 配送地址 -->
+        <div class="sort_box wrap clear">
+            <div class="sort_box_one">
+                <ul>
+                    <li><a>综合排序</a></li>
+                    <li><a>销量 <i class="iconfont icon-xiangxia" style="font-size: 11px;"></i></a></li>
+                    <li><a>好评 <i class="iconfont icon-xiangxia" style="font-size: 11px;"></i></a></li>
+                    <li><a>出版时间 <i class="iconfont icon-xiangxia" style="font-size: 11px;"></i></a></li>
+                    <li><a>价格 <i class="iconfont icon-tiaozheng" style="font-size: 11px;"></i></a></li>
+                    <li>
+                        <div class="interval fl">
+                            <div class="inner" id="prices">
+                                <input type="text" title="最低价" class="price_text" name="low_price">
+                                <span>-</span>
+                                <input type="text" title="最高价" class="price_text" name="high_price">
+                                <div>
+                                    <input type="button" class="button btn_yes" value="确定">
+                                    <input type="button" class="button btn_clear" value="清除">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="checkbox">
+                        <input type="checkbox" class="btn"/>
+                        <a href="#" class="">只看有货</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fanye">
+                <span class="iconfont icon-fanye-zuo" style="color: gray;"></span>
+                <span class="zuo">1</span>
+                <span>/</span>
+                <span class="you">2</span>
+                <span class="iconfont icon-fanye-you" style="color: orangered;"></span>
+            </div>
+        </div>
+        <!-- /配送地址 -->
+        <!-- 商品列表区域 -->
+        <div class="productListWrap clear">
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="productItem">
+                <div class="imgBox">
+                    <a href="book_detail.html" target="_blank">
+                        <img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">
+                    </a>
+                </div>
+                <div class="infoCont">
+                    <div class="saleRow">
+                        <div class="col fl">
+                            <span class="price">
+                                <span class="priceSign">¥</span>
+                                <span class="priceNum">23</span>
+                            </span>
+                        </div>
+                        <div class="col end fr">
+                            <span class="weekSale">定价：
+                                <span class="num"><del>35.00</del></span>
+                                <span class="num">(6.57折)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="titleRow">
+                        <p>
+                            <a class="productTitle" title="" href="book_detail.html" target="_blank">
+                                天才在左，疯子在右
+                            </a>
+                        </p>
+                        <p class="keyword">
+                            心理学最畅销书籍
+                        </p>
+                        <p class="star">
+                            <span class="level">
+                                <span style="width: 65%;"></span>
+                            </span>
+                            <a href="#" target="_blank" name="itemlist-review">93805条评论</a>
+                        </p>
+                    </div>
+                    <!--</div>-->
+                    <div class="infoRow seller">
+                        <div class="addToCart">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车
+                            </a>
+                        </div>
+                        <div class="collect">
+                            <a href="#" target="_blank">
+                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /商品列表区域 -->
+        <!-- 分页码 -->
+        <div class="page wrap">
+            <p class="pageList">
+                <a href="">上一页</a>
+                <a href="">下一页</a>
+            </p>
+            <p class="pageList">
+                <span>共</span>
+                <span>200</span>
+                <span>页</span>
+                <span>到 第</span>
+                <input type="text"/>
+                <span>页</span>
+                <input type="submit" value="确定"/>
+            </p>
+        </div>
+    </div>
+</div>
+<hr>
+<!--footer-->
+<div class="slogan">
+    <span><strong>让阅读成为一种生活习惯！</strong></span>
+</div>
+</body>
+<script src="../static/js/jquery-2.1.1.min.js"></script>
+<script src="../static/css/layui/layui.js"></script>
+<script src="../static/js/search_by_cate.js"></script>
+<script>
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#home-carousel'
+            , width: '100%' //设置容器宽度
+            , height: '485px'
+            , arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+
+        });
+    });
+    // 定位
+    $.ajax({
+        url: 'http://restapi.amap.com/v3/ip',
+        data: {key: '049d254de7046935c431b8db38ce95b3'},
+        success: function (arg) {
+            $('#location').text(arg.city);
+        },
+        error: function (arg) {
+            $('#location').text(arg.info);
+        }
+    });
+
+
+</script>
+</html>

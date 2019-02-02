@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网上图书超市——为您提供更好的购书体验</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/register.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/font-class.css"/>
+</head>
+<body>
+<!--头部代码-->
+<header class="head">
+    <a href="index.html" style="text-decoration: none;">
+				<span class="iconfont icon-shuji"
+                      style="font-size: 33px;color: orangered;font-weight: 600;">
+                    网上图书超市</span>
+        <span style="font-size: 16px;color: black;font-weight: bold;">
+                    注册</span>
+    </a>
+</header>
+<!--中间表单注册区-->
+<form action="#" method="post" id="myform">
+    <div id="bd">
+        <div class="shadow_box">
+            <div class="register_box">
+                <!--上面切换tab栏-->
+                <div class="register_tab">
+                    <a href="javascript:;" class="register_new register_a">新用户注册</a>
+                </div>
+                <!--注册内容-->
+                <div class="register_body">
+                    <!--表单注册区-->
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td>用户名</td>
+                            <td class='tt'>
+                                <input type="text" id='username' name='username' class='isV'  autocomplete="off"/>
+                                <span></span>
+                                <i></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>邮箱</td>
+                            <td class='tt'>
+                                <input type="email" id='email' name='email' class='isV' autocomplete="off"/>
+                                <span></span>
+                                <i></i>
+                            </td>
+                        </tr>
+                        <!--<tr>-->
+                        <!--<td>手机号码</td>-->
+                        <!--<td class='tt'>-->
+                        <!--<input type="text" id='tel' name='tel' class='isV'/>-->
+                        <!--<span>手机号可用于登录、找回密码、接收订单通知等服务</span>-->
+                        <!--<i></i>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <tr>
+                            <td>登录密码</td>
+                            <td class='tt'>
+                                <input type="password" id='password' name='password'/>
+                                <span>请输入密码</span>
+                                <i></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>确认密码</td>
+                            <td class='tt'>
+                                <input type="password" id='rePwd' name='rePwd'/>
+                                <span>请再次输入密码</span>
+                                <i></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>验证码</td>
+                            <td class='tt'>
+                                <input type="text" id='yzm' class="yzm" style="width: 120px;"/>
+                                <img src="/verification/getCode" id="verificationCode"/>
+                                <a href="javascript:;" id='changeImg' onclick="getCode()">换一张</a>
+                                <span>请输入验证码，不区分大小写</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" id='mysubmit' onclick="register()">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!--尾部公用区-->
+<div id="footer" class="slogan">
+    <span><strong>让阅读成为一种生活习惯！</strong></span>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="../static/js/register.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

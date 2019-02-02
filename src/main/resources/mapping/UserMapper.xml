@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.mapper.UserMapper">
+    <select id="checkUsername" parameterType="String" resultType="Integer">
+    select count(*) from user where name=#{username};
+  </select>
+
+    <select id="checkEmail" parameterType="String" resultType="Integer">
+    select count(*) from user where email=#{email};
+  </select>
+
+    <insert id="saveUser" parameterType="User">
+    insert into user (name, sex, birthday,
+      hobby, settle, email,
+      password, activeCode,
+      introdution)
+    values (#{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR},
+      #{hobby,jdbcType=VARCHAR}, #{settle,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{activeCode,jdbcType=VARCHAR},
+      #{introdution,jdbcType=LONGVARCHAR})
+  </insert>
+
+    <select id="checkByEmailAndCode" resultType="Integer">
+    select count(*) from user where email=#{email,jdbcType=VARCHAR} and activeCode=#{activeCode,jdbcType=VARCHAR};
+  </select>
+
+    <update id="updateStatusTo1" parameterType="String">
+    update user set status=1 where email=#{email,jdbcType=VARCHAR};
+  </update>
+
+    <select id="checkByNameAndPassword" resultType="java.util.Map">
+    select id,name,count(*) as count,status from user where name=#{name,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR};
+  </select>
+
+    <select id="checkByEmailAndPassword" resultType="java.util.Map">
+    select id,name,count(*) as count,status from user where email=#{email,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR};
+  </select>
+
+  <select id="findEmailByName" resultType="String">
+    select email from user where name=#{name,jdbcType=VARCHAR};
+  </select>
+
+  <update id="updatePasswordByToken" parameterType="String">
+    update user set password=#{password,jdbcType=VARCHAR} where activeCode=#{activeCode,jdbcType=VARCHAR};
+  </update>
+</mapper>

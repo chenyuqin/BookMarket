@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <title>forget</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/proList.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/forget_pwd.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/font-class.css"/>
+</head>
+<body>
+<!----------------------------------------order------------------>
+<div class="order cart">
+    <!-----------------logo------------------->
+    <div class="logo">
+        <a href="index.html">
+            <span class="iconfont icon-shuji" style="font-size: 33px;color: orangered;font-weight: 600;">
+                    网上图书超市</span>
+        </a>
+        <span style="font-size: 16px;color: black;font-weight: 600;font-family: 宋体">
+                    忘记密码</span>
+    </div>
+    <div class="forCon">
+        <p style="font-size: 15px;font-weight: 600">安全设置-找回密码</p>
+        <ul>
+            <li class="on"><span>01/</span>输入登录名</li>
+            <li><span>02/</span>验证信息</li>
+            <li><span>03/</span>重置密码</li>
+        </ul>
+        <div class="formCon">
+            <!--步骤1-->
+            <form action="#" method="post" class="one">
+                <label>请输入用户名</label><br/>
+                <input type="text" value="" placeholder="用户名" id="name"><br>
+                <label>请输入验证码</label><br/>
+                <input type="text" value="" placeholder="验证码" id="yzm"><br>
+                <img src="/verification/getCode" id="codeImg"><br>
+                <input type="button" value="下一步" class="next">
+            </form>
+            <!--步骤2-->
+            <form action="#" method="post" class="two">
+                <p>电子邮箱：<span id="email"></span></p>
+                <p class="tip">验证邮件已发往你的电子邮箱，请点击邮件中的链接完成验证</p>
+                <input type="button" value="去邮箱验证" class="next1">
+            </form>
+            <!--步骤3-->
+            <form action="#" method="post" class="three" style="padding-left: 140px;padding-top: 10px;">
+                <label>新密码：</label><br/>
+                <input type="password" value="" id="password"><br/>
+                <label>确认密码：</label><br/>
+                <input type="password" value="" id="re_password"><br/>
+                <input type="button" value="完成" id="done">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/pro.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

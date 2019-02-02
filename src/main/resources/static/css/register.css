@@ -1,0 +1,341 @@
+@charset "UTF-8";
+.tools .top .top_nav .menu_btn.hover, .tools .top .top_area .area_a.hover {
+    background-color: #fff;
+    padding-top: 3px;
+    border: 1px solid #e6e6e6;
+    border-bottom: 0;
+    position: relative;
+}
+
+.D_tab_bang .bang_con .book_top li .img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.tab_box .head li {
+    border: 1px solid #e6e6e6;
+    border-width: 1px 0 0 1px;
+    overflow: hidden;
+}
+
+body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select, td, figure {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 12px "宋体";
+    word-wrap: break-word;
+}
+
+html {
+    font-family: "Microsoft Yahei";
+}
+
+.head {
+    width: 1200px;
+    margin: 5px auto 5px;
+    height: 60px;
+    line-height: 60px;
+}
+
+a, u, s, del {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+i, em, b {
+    font-style: normal;
+    font-weight: 100;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset, a img, .bor0 {
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.ind2 {
+    text-indent: 2em;
+}
+
+.cu {
+    cursor: pointer;
+}
+
+.valign:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 0px;
+    height: 100%;
+}
+
+.over {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.clear:before {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+form {
+    background: url("../img/register/reg-bg.jpg") no-repeat 0 -230px;
+}
+
+#bd {
+    margin: 0 auto;
+    width: 960px;
+    padding-top: 20px;
+}
+
+#bd .shadow_box {
+    background-color: #ebeeef;
+    width: 950px;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+#bd .shadow_box .register_box {
+    background: #fff;
+    position: relative;
+    top: -10px;
+    right: -10px;
+    width: 950px;
+    font-family: 'Microsoft YaHei';
+    box-shadow: -1px 1px 1px #e8ebec;
+}
+
+#bd .register_tab {
+    height: 74px;
+    border-bottom: solid 1px #eceef2;
+    padding-right: 15px;
+    margin: 0 10px;
+}
+
+#bd .register_tab .dd_more {
+    float: right;
+    color: #646464;
+    line-height: 22px;
+    margin-top: 0px;
+}
+
+#bd .register_tab .dd_more .home {
+    padding-left: 16px;
+    margin-right: 15px;
+    background: 0 2px no-repeat;
+}
+
+#bd .register_tab .dd_more a {
+    text-decoration: none;
+    color: #646464;
+}
+
+#bd .register_tab .dd_more a:hover {
+    color: red;
+}
+
+#bd .register_tab .register_a {
+    background-color: white;
+    top: 28px;
+    border-bottom: none;
+}
+
+#bd .register_tab .register_new {
+    width: 135px;
+    height: 46px;
+    background-color: #f5f5f5;
+    display: inline-block;
+    position: relative;
+    left: 20px;
+    border: 1px solid #eceef2;
+    top: 27px;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    color: #464646;
+    margin-left: 6px;
+}
+
+#bd .register_tab .register_new:hover {
+    text-decoration: none;
+}
+
+#bd .help_trigger {
+    position: fixed;
+    cursor: pointer;
+    z-index: 10001;
+    top: 106px;
+    left: 1114px;
+}
+
+#bd .help_trigger a {
+    background: no-repeat 0 0;
+    display: block;
+    height: 120px;
+    width: 34px;
+}
+
+#bd .register_body {
+    padding: 45px 0 25px;
+    position: relative;
+}
+
+#bd .register_body .tip {
+    line-height: 24px;
+    color: #828282;
+    padding-left: 22px;
+    background: 3px 5px no-repeat #fef7f5;
+    width: 670px;
+    border: 1px solid #fedbd1;
+    margin: -30px auto 30px;
+}
+
+#bd .register_body .tip a {
+    color: #1a66b3;
+    text-decoration: none;
+}
+
+#bd .register_body table {
+    width: 450px;
+    margin: 0 auto;
+}
+
+#bd .register_body table td {
+    text-align: right;
+    font: 18px/30px "";
+    color: #333;
+    padding: 0 0 30px;
+    position: relative;
+}
+
+#bd .register_body table td input {
+    border: 1px solid #e6e6e6;
+    font-family: 'Microsoft YaHei';
+    height: 18px;
+    width: 290px;
+    margin-right: 10px;
+    padding: 9px 10px;
+    line-height: 18px;
+    outline: 0 none;
+    border-radius: 2px;
+    color: #333;
+}
+
+#bd .register_body table td input:focus {
+    border-color: #646464;
+}
+
+#bd .register_body table span {
+    font: 14px/24px "";
+    display: none;
+    line-height: 14px;
+    padding: 0 4px;
+    margin-right: 5px;
+    position: absolute;
+    left: 20px;
+    bottom: 8px;
+}
+
+#bd .register_body table .tt {
+    height: 50px;
+    text-align: center;
+    position: relative;
+}
+
+#bd .register_body table .tt span {
+    color: dimgray;
+    font-family: Serif;
+}
+
+#bd .register_body table .tt img {
+    width: 84px;
+    height: 37px;
+}
+
+#bd .register_body table a {
+    margin-left: 20px;
+    color: #1a66b3;
+    line-height: 38px;
+}
+
+#bd .register_body i {
+    display: none;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 488px;
+    top: 20px;
+    background: no-repeat;
+}
+
+#bd .register_body i.ok {
+    display: block;
+    background-position: 0 -40px;
+}
+
+#bd .register_body i.error {
+    display: block;
+    background-position: 0 -20px;
+}
+
+#bd .register_body #mysubmit {
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+    border: 0;
+    width: 178px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #ff2832;
+    color: #fff;
+    border-radius: 22px;
+    outline: none;
+}
+
+#bd .register_body #mysubmit:hover {
+    background-color: #f01923;
+}
+
+.slogan {
+    color: #000;
+    margin: 10px auto 10px;
+    font-size: 22px;
+    font-family: 华文中宋;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+}

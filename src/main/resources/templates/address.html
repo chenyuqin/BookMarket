@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <title>我的地址</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/personal.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/font-class.css"/>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head ding">
+    <div class="wrapper clearfix">
+        <div class="clearfix" id="top">
+            <a href="index.html" style="text-decoration: none;">
+				<span class="iconfont icon-shuji"
+                      style="font-size: 29px;color: orangered;font-weight: 600;">
+                    网上图书超市</span>
+                <span style="font-size: 16px;color: black;font-weight: bold;font-family: 宋体;">
+                    地址管理</span>
+            </a>
+            <div class="fr clearfix" id="top1">
+                <form action="#" method="get" class="fl">
+                    <input type="text" placeholder="搜索图书"/>
+                    <input type="button"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------idea------------------------------>
+<div class="address mt">
+    <div class="wrapper clearfix">
+        <a href="index.html" class="fl">首页</a>
+        <span>/</span>
+        <a href="personal.html">个人中心</a>
+        <span>/</span>
+        <a href="address.html" class="on">地址管理</a>
+    </div>
+</div>
+
+<!------------------------------Bott------------------------------>
+<div class="Bott">
+    <div class="wrapper clearfix">
+        <div class="zuo fl">
+            <h3>
+                <a href="#"><img src="../static/img/personal/nan.png"/></a>
+                <p class="clearfix">
+                    <span class="nickname">陈育钦</span>
+                </p>
+            </h3>
+            <div>
+                <h4>个人中心</h4>
+                <ul>
+                    <li><a href="personal.html">我的中心</a></li>
+                    <li class="on"><a href="address.html">地址管理</a></li>
+                </ul>
+                <h4>我的交易</h4>
+                <ul>
+                    <li><a href="cart.html">我的购物车</a></li>
+                    <li><a href="order.html">我的订单</a></li>
+                    <li><a href="appraise.html">我的评价</a></li>
+                </ul>
+                <h4>账户管理</h4>
+                <ul>
+                    <li><a href="personalInfo.html">个人信息</a></li>
+                    <li><a href="change_pwd.html">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="you fl">
+            <h2>收货地址</h2>
+            <div class="add">
+                <div>
+                    <a href="#" id="addxad">
+                        <img src="../static/img/address/tianjia.png"/>
+                    </a>
+                    <span>添加新地址</span>
+                </div>
+                <div class="myAddress">
+                    <p>陈育钦</p>
+                    <p>1573****666</p>
+                    <p>河北省 唐山市 路北区</p>
+                    <p>唐山市大学生公寓村（063000）</p>
+                </div>
+                <div class="myAddress">
+                    <p>陈育钦①</p>
+                    <p>1573****666</p>
+                    <p>河北省 唐山市 路北区</p>
+                    <p>唐山市大学生公寓村（063000）</p>
+                </div>
+                <div class="myAddress">
+                    <p>陈育钦②</p>
+                    <p>1573****666</p>
+                    <p>河北省 唐山市 路北区</p>
+                    <p>唐山市大学生公寓村（063000）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑弹框-->
+<!--遮罩-->
+<div class="mask"></div>
+<div class="adddz">
+    <form action="#" method="get">
+        <input type="text" placeholder="姓名"/>
+        <input type="text" placeholder="手机号"/>
+        <div class="city">
+            <!--省份选择-->
+            <input type="hidden" value="" id="addr-show">
+            <select id="prov" onchange="showCity(this)">
+                <option>请选择省份</option>
+            </select>
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)">
+                <option>请选择城市</option>
+            </select>
+
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)">
+                <option>请选择县/区</option>
+            </select>
+        </div>
+        <textarea name="" rows="" cols="" placeholder="详细地址"></textarea>
+        <input type="text" placeholder="邮政编码"/>
+        <div class="bc">
+            <input type="button" value="保存" class="met1"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
+<div class="readd">
+    <form action="#" method="get">
+        <input type="text" value="六六六"/>
+        <input type="text" value="157****0022"/>
+        <div class="city">
+            <input type="hidden" value="" id="c_addr-show">
+            <select id="c_prov" onchange="c_showCity(this)">
+                <option>河北省</option>
+            </select>
+            <!--城市选择-->
+            <select id="c_city" onchange="c_showCountry(this)">
+                <option>唐山市</option>
+            </select>
+
+            <!--县区选择-->
+            <select id="c_country" onchange="c_selecCountry(this)">
+                <option>路北区</option>
+            </select>
+        </div>
+        <textarea name="" rows="" cols="" placeholder="详细地址">高新产业园</textarea>
+        <input type="text" placeholder="邮政编码" value="063000"/>
+        <div class="bc">
+            <input type="button" value="保存" class="met2"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
+<!--返回顶部-->
+<div class="gotop">
+    <a href="cart.html">
+        <dl>
+            <dt><span class="iconfont icon-gouwuche" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>去购<br/>物车</dd>
+        </dl>
+    </a>
+    <a href="personal.html">
+        <dl>
+            <dt><span class="iconfont icon-app_icons--" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>个人<br/>中心</dd>
+        </dl>
+    </a>
+    <a href="#" class="toptop" style="display: none">
+        <dl>
+            <dt><span class="iconfont icon-jiantoushang" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
+            <dd>返回<br/>顶部</dd>
+        </dl>
+    </a>
+</div>
+
+
+<!--footer-->
+<div class="slogan">
+    <span><strong>让阅读成为一种生活习惯！</strong></span>
+</div>
+
+<script src="../static/js/city.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/method01.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>
