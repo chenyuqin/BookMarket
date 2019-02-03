@@ -3,6 +3,7 @@ package com.book.controller;
 import com.book.VO.LoginVO;
 import com.book.common.CheckCodeGen;
 import com.book.common.JsonResult;
+import com.book.common.JwtUtils;
 import com.book.common.MD5Util;
 import com.book.entity.User;
 import com.book.service.LoginService;
@@ -14,13 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("login/")
@@ -30,6 +27,9 @@ public class LoginController {
     LoginService loginService;
 
     private JSON json;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
@@ -55,23 +55,11 @@ public class LoginController {
             if ((Integer) result.get("status") == 0) {
                 json = JSONSerializer.toJSON(new JsonResult<User>(1, "请先激活邮箱！", null));
             } else {
-                json = JSONSerializer.toJSON(new JsonResult<User>(0, "成功登录！", null));
-                //写入客户端cookie
-                Cookie cookie = null;
-                String userToken = null;
-                try {
-                    userToken = UUID.randomUUID().toString();
-                    cookie = new Cookie("token",
-                            result.get("id") + "#" + URLEncoder.encode(result.get("name").toString() + "#" + userToken, "utf-8"));
-                    cookie.setMaxAge(-1);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
                 //服务端在session保留凭证
-                request.getSession().setAttribute("userId", result.get("id"));
-                request.getSession().setAttribute("userToken", userToken);
+                String token = jwtUtils.createJWT((Integer) result.get("id"), result.get("name").toString(), 7 * 24);
+                result.put("token", token);
+                request.getSession().setAttribute("token", token);
+                json = JSONSerializer.toJSON(new JsonResult<>(0, "成功登录！", result));
             }
         }
         return json.toString();

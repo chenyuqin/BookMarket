@@ -61,6 +61,16 @@ function login() {
     var password = $('.pass').val();	//密码
     var yzm = $('.codes').val();	//验证码
     var type = $("input[name=supertype]:checked").val();
+    if (type == 1) {
+        //正则匹配邮箱
+        var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if (!myReg.test(name_or_email)) {
+            alert("请输入正确的邮箱地址！");
+            getCode();
+            $(".user").focus();
+            return false;
+        }
+    }
     $.ajax({
         url: 'login/login',
         type: 'Post',
@@ -75,6 +85,9 @@ function login() {
                 getCode();
                 $('.user').focus();
             } else {
+                sessionStorage.setItem('id',result.data.id);
+                sessionStorage.setItem('name',result.data.name);
+                sessionStorage.setItem('token',result.data.token);
                 window.location.href="http://localhost:8088/index.html";
             }
         }
