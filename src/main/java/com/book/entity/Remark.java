@@ -12,9 +12,9 @@ public class Remark {
 
     private Date remarkTime;
 
-    private String remarkText;
-
     private Integer user_id;
 
     private Integer book_id;
+
+    private String remarkText;
 }

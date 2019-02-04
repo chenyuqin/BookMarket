@@ -26,7 +26,21 @@ $(document).ready(function () {
         $("#load").css('display', 'none');
     });
 
-    var cookie = $.cookie('token');
+    var inner_html = "";
+    $.ajax({
+        url: 'index/notice',
+        type: 'Get',
+        data: {},
+        dataType: 'JSON',
+        success: function(result){
+            $.each(result,function(index, item){
+                inner_html = inner_html +
+                    "<li><a href=\"" + item.url + "\" title=\"" + item.title + "\">" + item.title + "</a></li>"
+                ;
+            });
+            $('#notice').html(inner_html);
+        }
+    });
 });
 
 (function ($) {

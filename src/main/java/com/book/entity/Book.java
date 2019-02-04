@@ -32,6 +32,8 @@ public class Book {
 
     private String discount;
 
+    private String stock;
+
     private String image1;
 
     private String image2;
@@ -49,4 +51,14 @@ public class Book {
     private String suit;
 
     private String ISBN;
+
+    private String detail;
+
+    private String contentSummary;
+
+    private String authorSummary;
+
+    private String catalog;
+
+    private Date groundingTime;
 }

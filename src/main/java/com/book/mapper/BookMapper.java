@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookMapper {
-    Book getBook();
+    Book getBookById(Integer id);
+
+    Integer getCount();
 }

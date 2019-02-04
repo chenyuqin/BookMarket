@@ -17,5 +17,4 @@ public class Order {
     private Integer user_id;
 
     private Integer address_id;
-
 }

@@ -843,7 +843,7 @@
                     <span class="li">
                         科技<span class="iconfont icon-jiantouyou"></span>
                     </span>
-                    <div class="main2" style="top:35px;">
+                    <div class="main2" style="top:8px;">
                         <ul>
                             <li>
                                 <h3><a href="javascript:void(0)">科普读物</a></h3>
@@ -901,7 +901,7 @@
                                 <h3><a href="javascript:void(0)">计算机/网络</a></h3>
                                 <ul class="sub-class">
                                     <li><a href="javascript:void(0)">计算机理论
-                                          </a></li>
+                                    </a></li>
                                     <li><a href="javascript:void(0)">硬件 外部设备 维修</a></li>
                                     <li><a href="javascript:void(0)">操作系统/系统开发</a></li>
                                     <li><a href="javascript:void(0)">数据库</a></li>
@@ -966,22 +966,14 @@
                                     <li><a href="javascript:void(0)">电工技术</a></li>
                                     <li><a href="javascript:void(0)">电子 通信</a></li>
                                     <li><a href="javascript:void(0)">化学工业</a></li>
-                                    <li><a href="javascript:void(0)">冶金工业</a></li>
-                                    <li><a href="javascript:void(0)">矿业工程</a></li>
-                                    <li><a href="javascript:void(0)">石油/天然气工业</a></li>
                                     <li><a href="javascript:void(0)">金属学与金属工艺</a></li>
-                                    <li><a href="javascript:void(0)">武器工业</a></li>
                                     <li><a href="javascript:void(0)">能源与动力工程</a></li>
-                                    <li><a href="javascript:void(0)">原子能技术</a></li>
                                     <li><a href="javascript:void(0)">轻工业/手工业</a></li>
-                                    <li><a href="javascript:void(0)">水利工程</a></li>
                                     <li><a href="javascript:void(0)">汽车与交通运输</a></li>
                                     <li><a href="javascript:void(0)">航空/航天</a></li>
                                     <li><a href="javascript:void(0)">环境科学</a></li>
                                     <li><a href="javascript:void(0)">安全科学</a></li>
                                     <li><a href="javascript:void(0)">工具书/标准</a></li>
-                                    <li><a href="javascript:void(0)">原版书</a></li>
-                                    <li><a href="javascript:void(0)">英文原版书-工业技术</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -1042,22 +1034,8 @@
         </aside>
         <div class="home-carousel">
             <div class="layui-carousel" id="home-carousel" lay-filter="test1">
-                <div carousel-item>
-                    <div>
-                        <img src="../static/img/index/home-carousel1.jpg"/>
-                    </div>
-                    <div>
-                        <img src="../static/img/index/home-carouse2.jpg"/>
-                    </div>
-                    <div>
-                        <img src="../static/img/index/home-carouse3.jpg"/>
-                    </div>
-                    <div>
-                        <img src="../static/img/index/home-carouse4.jpg"/>
-                    </div>
-                    <div>
-                        <img src="../static/img/index/home-carouse5.jpg"/>
-                    </div>
+                <div carousel-item id="imgCarousel">
+
                 </div>
             </div>
         </div>
@@ -1065,16 +1043,8 @@
             <!--最新动态-->
             <div class="new-state">
                 <h2>最新动态</h2>
-                <ul>
-                    <li><a href="javascript:void(0)">杨绛先生104岁生日快乐</a></li>
-                    <li><a href="javascript:void(0)">阅享频道：沈从文给家人的83封信</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
-                    <li><a href="javascript:void(0)">小时代：我用十年青春，赴你最后之约</a></li>
+                <ul id="notice">
+
                 </ul>
             </div>
             <!--猜你喜欢-->
@@ -1659,13 +1629,35 @@
     layui.use('carousel', function () {
         var carousel = layui.carousel;
         //建造实例
-        carousel.render({
+        var ins = carousel.render({
             elem: '#home-carousel'
             , width: '100%' //设置容器宽度
             , height: '485px'
             , arrow: 'always' //始终显示箭头
-            //,anim: 'updown' //切换动画方式
+        });
 
+        var inner_html = "";
+        $.ajax({
+            url: 'index/slideshow',
+            type: 'Get',
+            data: {},
+            dataType: 'JSON',
+            success: function (result) {
+                $.each(result, function (index, item) {
+                    inner_html = inner_html +
+                        "<div>\n" +
+                        "                        <a href=\"" + item.url + "\" target=\"_blank\"><img src=\"" + item.img + "\"/></a>\n" +
+                        "                    </div>"
+                    ;
+                });
+                $('#imgCarousel').html(inner_html);
+                ins.reload({
+                    elem: '#home-carousel',
+                    width: '100%', //设置容器宽度
+                    height: '485px',
+                    arrow: 'always', //始终显示箭头
+                });
+            }
         });
     });
     // 定位

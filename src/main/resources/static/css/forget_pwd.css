@@ -39,40 +39,49 @@
     font-size: 15px;
 }
 
-.forCon form input {
+.forCon .one input[type="text"] {
     height: 38px;
     width: 250px;
     border-radius: 3px;
     margin-top: 7px;
     margin-bottom: 15px;
-    border: 1px solid darkslategray;
+    border: 1px solid #DBDBDB;
     padding-left: 10px;
 }
 
-.forCon form img {
+.forCon .one input[type="text"]:focus {
+    border: 1px solid black;
+}
+
+.forCon .one img {
     margin-top: 0px;
     margin-bottom: 15px;
     width: 84px;
     height: 37px;
 }
 
-.forCon form input[type="text"] {
-    border: 1px solid #DBDBDB;
-    width: 250px;
-    padding-left: 10px;
-}
+/*.forCon form input[type="text"] {*/
+/*border: 1px solid #DBDBDB;*/
+/*width: 250px;*/
+/*padding-left: 10px;*/
+/*}*/
 
 .forCon form input[type="button"] {
     width: 120px;
+    height: 38px;
     color: #fff;
-    background: #ddd;
+    background: rgb(193, 0, 0);
+    opacity: 0.9;
     cursor: pointer;
     margin-left: 70px;
     margin-top: 30px;
+
+    border-radius: 3px;
+    border: 1px solid #DBDBDB;
 }
 
 .forCon form input[type="button"]:hover {
-    background-color: rgb(193, 0, 0);
+    opacity: 1;
 }
 
 /*****步骤2*****/
@@ -102,4 +111,18 @@ form.three input[type="button"] {
 
 form.two, form.three {
     display: none;
+}
+
+.forCon .three input[type="password"] {
+    height: 38px;
+    width: 250px;
+    border-radius: 3px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    border: 1px solid #DBDBDB;
+    padding-left: 10px;
+}
+
+.forCon .three input[type="password"]:focus {
+    border: 1px solid black;
 }

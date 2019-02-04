@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.book.mapper.BookMapper" >
-  <select id="getBook" resultType="com.book.entity.Book">
-    select * from book where id=10000;
+  <sql id="Base_List" >
+    id, name, publishTime, biggestCate, biggerCate, bigCate, describe, author, publisher,
+    star, price, prePrice, discount, stock, image1, image2, image3, image4, image5, paper,
+    packing, suit, ISBN, detail, contentSummary, authorSummary, catalog, groundingTime
+  </sql>
+  <select id="getBookById" resultType="com.book.entity.Book">
+    select
+      <include refid="Base_List" />
+    from book where id=#{id,jdbcType=INTEGER};
+  </select>
+
+  <select id="getCount" resultType="Integer">
+    select count(1) from book;
   </select>
 </mapper>

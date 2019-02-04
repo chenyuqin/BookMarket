@@ -49,7 +49,7 @@ public class LoginController {
 
         //用户不存在
         if ((Long) result.get("count") == 0) {
-            json = JSONSerializer.toJSON(new JsonResult<User>(1, "用户名或者错误！", null));
+            json = JSONSerializer.toJSON(new JsonResult<User>(1, "用户名或者密码错误！", null));
         } else {
             //未激活邮箱
             if ((Integer) result.get("status") == 0) {
