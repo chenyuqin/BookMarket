@@ -52,10 +52,10 @@ $(document).ready(function () {
         success: function(result){
             $('#guessYouLike').append(
                 "<div class=\"book-png\">\n" +
-                "                    <a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\"><img src=\"" + result.image1 + "\"/></a>\n" +
+                "                    <a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" target=\"_blank\"><img src=\"" + result.image1 + "\"/></a>\n" +
                 "                </div>\n" +
                 "                <div class=\"page-box\">\n" +
-                "                    <p><a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" title=\"" + result.name + "\">" + result.name + "</a></p>\n" +
+                "                    <p><a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" title=\"" + result.name + "\" target=\"_blank\">" + result.name + "</a></p>\n" +
                 "                    <p title=\"" + result.author + "\" style=\"opacity:0.8;\">" + result.author + "</p>\n" +
                 "                </div>"
             );
@@ -121,7 +121,7 @@ $(document).ready(function () {
                         "                                </p>\n" +
                         "                                <p class=\"star\">\n" +
                         "                                    <span class=\"level\">\n" +
-                        "                                        <span style=\"width: \" + item.star + \";\"></span>\n" +
+                        "                                        <span style=\"width:" + item.star + "\";\"></span>\n" +
                         "                                    </span>\n" +
                         "                                    <a href=\"#\" target=\"_blank\" name=\"itemlist-review\">" + item.remark + "条评论</a>\n" +
                         "                                </p>\n" +
@@ -166,7 +166,7 @@ $(document).ready(function () {
                         "                                </p>\n" +
                         "                                <p class=\"star\">\n" +
                         "                                    <span class=\"level\">\n" +
-                        "                                        <span style=\"width: \" + item.star + \";\"></span>\n" +
+                        "                                        <span style=\"width:" + item.star + "\";\"></span>\n" +
                         "                                    </span>\n" +
                         "                                    <a href=\"#\" target=\"_blank\" name=\"itemlist-review\">" + item.remark + "条评论</a>\n" +
                         "                                </p>\n" +
