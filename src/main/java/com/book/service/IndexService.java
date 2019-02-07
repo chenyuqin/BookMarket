@@ -1,16 +1,11 @@
-package com.book.mapper;
+package com.book.service;
 
 import com.book.DTO.NewBookSaleDto;
 import com.book.entity.Book;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface BookMapper {
-    Book getBookById(Integer id);
-
-    Integer getCount();
+public interface IndexService {
 
     List<NewBookSaleDto> getTenNewBook();
 

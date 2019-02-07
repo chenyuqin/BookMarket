@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.book.mapper.BookMapper" >
-  <sql id="Base_List" >
-    id, name, publishTime, biggestCate, biggerCate, bigCate, describe, author, publisher,
-    star, price, prePrice, discount, stock, image1, image2, image3, image4, image5, paper,
-    packing, suit, ISBN, detail, contentSummary, authorSummary, catalog, groundingTime
+<mapper namespace="com.book.mapper.BookMapper">
+    <sql id="Base_List">
+    id, `name`, publishTime, category, biggestCate, biggerCate, bigCate, `describe`, author,
+    publisher, star, price, prePrice, discount, stock, sales, remark, image1, image2,
+    image3, image4, image5, paper, packing, suit, ISBN, detail, contentSummary, authorSummary, `catalog`, groundingTime
   </sql>
-  <select id="getBookById" resultType="com.book.entity.Book">
-    select
-      <include refid="Base_List" />
-    from book where id=#{id,jdbcType=INTEGER};
-  </select>
+    <select id="getBookById" resultType="com.book.entity.Book">
+        select
+        <include refid="Base_List"/>
+        from book where id=#{id,jdbcType=INTEGER};
+    </select>
 
-  <select id="getCount" resultType="Integer">
+    <select id="getCount" resultType="Integer">
     select count(1) from book;
   </select>
+
+    <select id="getTenNewBook" resultType="com.book.DTO.NewBookSaleDto">
+    select id,`name`,author,price,prePrice,image1 from book order by groundingTime desc limit 10;
+  </select>
+
+    <select id="getDiscountBook" parameterType="java.lang.Integer" resultType="com.book.entity.Book">
+      select
+        <include refid="Base_List"/>
+      from discount_book
+      where
+        category=#{type}
+      order by groundingTime desc limit 10;
+    </select>
+
+    <select id="getDiscountBookAll" resultType="com.book.entity.Book">
+        select
+        <include refid="Base_List"/>
+        from discount_book
+        order by groundingTime desc limit 10;
+    </select>
+
+    <select id="getSaleRankBook" parameterType="java.lang.Integer" resultType="com.book.entity.Book">
+        select
+        <include refid="Base_List"/>
+        from book
+        where
+        category=#{type}
+        order by sales desc limit 10;
+    </select>
+
+    <select id="getSaleRankBookAll" resultType="com.book.entity.Book">
+        select
+        <include refid="Base_List"/>
+        from book
+        order by sales desc limit 10;
+    </select>
 </mapper>

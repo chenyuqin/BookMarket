@@ -266,21 +266,43 @@ a:hover {
     text-decoration: underline;
 }
 .book-png{
-    margin-top: 15px;
-    margin-left: 55px;
-    float: left;
+    /*margin-top: 15px;*/
+    margin-left: 19px;
+    /*float: left;*/
 }
 
 .page-box{
     position: absolute;
-    bottom: 15px;
     width: 100%;
-    text-align: center;
+    bottom: 0px;
+    /*text-align: center;*/
     font-size: 14px;
+    background-color: #000;
+    opacity: 0.7;
 }
 
 .page-box p {
-    padding: 10px;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #fff;
+    font-family: cursive;
+}
+
+.page-box p a {
+    color: #fff;
+}
+
+.page-box span {
+    color: white;
+    font-family: monospace;
+    padding-left: 10px;
+    /*超过一行显示省略号*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /*具体分类框*/
@@ -445,13 +467,11 @@ a:hover {
 }
 
 .all a {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
-    opacity: 0.8;
-    font-family: consolas;
+    font-family: serif;
     color: blue;
     float: right;
-    width: 120px;
     height: 30px;
     line-height: 30px;
     cursor: pointer;
@@ -636,16 +656,22 @@ a:hover {
 }
 
 .book_new .box-8 li .book_name {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 16px;
+    /*font-weight: 600;*/
     color: #000;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_new .box-8 li .author {
-    font-size: 17px;
+    font-size: 15px;
     color: #aaa;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_new .box-8 li .price {
@@ -673,12 +699,15 @@ a:hover {
 .all_cate_tab {
     float: right;
     padding: 16px 0 0;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .all_cate_tab a {
-    margin-left: 15px;
+    margin-left: 16px;
     padding-bottom: 5px;
+    font-family: serif;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 /*打折优惠*/
@@ -690,7 +719,7 @@ a:hover {
     cursor: pointer;
     float: left;
     width: 234px;
-    height: 300px;
+    height: 310px;
     background: #fff;
     margin-left: 11px;
     padding: 10px 0;
@@ -710,19 +739,37 @@ a:hover {
 
 .book_account .box-8 li p {
     padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book_account .box-8 li .star {
+    padding-bottom: 5px;
+}
+
+.book_account .box-8 li p .cate {
+    font-family: monospace;
+    color: black;
 }
 
 .book_account .box-8 li .book_name {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 16px;
+    /*font-weight: 600;*/
     color: #000;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_account .box-8 li .author {
-    font-size: 17px;
+    font-size: 15px;
     color: #aaa;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_account .box-8 li .price {
@@ -731,9 +778,13 @@ a:hover {
     color: #c30;
 }
 
+.book_account .box-8 li .price span {
+    font-size: 13px;
+}
+
 .book_account .box-8 li .price del {
-    font-size: 15px;
-    padding-left: 10px;
+    font-size: 13px;
+    padding-left: 5px;
     color: #666;
 }
 
@@ -746,7 +797,7 @@ a:hover {
     cursor: pointer;
     float: left;
     width: 234px;
-    height: 300px;
+    height: 335px;
     background: #fff;
     margin-left: 11px;
     padding: 10px 0;
@@ -762,23 +813,49 @@ a:hover {
     width: 200px;
     height: 200px;
     margin: 0px 17px 10px 17px;
+
 }
 
 .book_sale_ranking .box-8 li p {
     padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book_sale_ranking .box-8 li .sales {
+    color: black;
+    font-size: 13px;
+    /*opacity: 0.8;*/
+    font-family: fantasy;
+}
+
+.book_sale_ranking .box-8 li .star {
+    padding-bottom: 5px;
+}
+
+.book_sale_ranking .box-8 li p .cate {
+    font-family: monospace;
+    color: black;
 }
 
 .book_sale_ranking .box-8 li .book_name {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 16px;
+    /*font-weight: 600;*/
     color: #000;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_sale_ranking .box-8 li .author {
-    font-size: 17px;
+    font-size: 15px;
     color: #aaa;
     font-family: cursive;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_sale_ranking .box-8 li .price {
@@ -787,9 +864,13 @@ a:hover {
     color: #c30;
 }
 
+.book_sale_ranking .box-8 li .price span {
+    font-size: 13px;
+}
+
 .book_sale_ranking .box-8 li .price del {
-    font-size: 15px;
-    padding-left: 10px;
+    font-size: 13px;
+    padding-left: 5px;
     color: #666;
 }
 

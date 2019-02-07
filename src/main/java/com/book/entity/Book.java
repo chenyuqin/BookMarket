@@ -12,6 +12,8 @@ public class Book {
 
     private String publishTime;
 
+    private Integer category;
+
     private String biggestCate;
 
     private String biggerCate;
@@ -32,7 +34,11 @@ public class Book {
 
     private String discount;
 
-    private String stock;
+    private Integer stock;
+
+    private Integer sales;
+
+    private Integer remark;
 
     private String image1;
 
