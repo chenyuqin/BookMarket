@@ -51,4 +51,95 @@
         from book
         order by sales desc limit 10;
     </select>
+
+    <select id="getSameCateBook" parameterType="Map" resultType="com.book.DTO.SameCateBookDto">
+        select id,name,author,price,image1 from book where biggerCate=#{biggerCate} and id>=(SELECT floor(RAND() * (SELECT MAX(id) FROM book))) and id!=#{id} order by id limit 5;
+    </select>
+
+    <select id="searchByCate" resultType="com.book.DTO.SearchByCateBookDto">
+        select id,name,detail,price,discount,prePrice,star,remark,image1 from book
+        <where>
+            <if test="category != null" >
+                and category=#{category,jdbcType=INTEGER}
+            </if>
+            <if test="biggestCate != 'null'" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != 'null'" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != 'null'" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+        </where>
+        limit 15;
+    </select>
+
+    <!--找到某具体分类下的子分类-->
+    <select id="getSubCateByC1" resultType="String">
+        select biggerCate from book where category=#{category,jdbcType=INTEGER} and biggestCate=#{biggestCate,jdbcType=VARCHAR} group by biggerCate;
+    </select>
+
+    <select id="getSubCateByC2" resultType="String">
+        select bigCate from book where category=#{category,jdbcType=INTEGER} and biggestCate=#{biggestCate,jdbcType=VARCHAR} and biggerCate=#{biggerCate,jdbcType=VARCHAR} group by bigCate;
+    </select>
+
+    <!--找到某具体分类下的所有书籍的出版社-->
+    <select id="getPublishers" resultType="String">
+        select publisher from book
+        <where>
+            <if test="category != null" >
+                and category=#{category,jdbcType=INTEGER}
+            </if>
+            <if test="biggestCate != 'null'" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != 'null'" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != 'null'" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+        </where>
+        group by publisher order by count(*) desc limit 40;
+    </select>
+
+    <!--找到某具体分类下的所有书籍的作者-->
+    <select id="getAuthors" resultType="String">
+        select author from book
+        <where>
+            <if test="category != null" >
+                and category=#{category,jdbcType=INTEGER}
+            </if>
+            <if test="biggestCate != 'null'" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != 'null'" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != 'null'" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+        </where>
+        group by author order by count(*) desc limit 40;
+    </select>
+
+    <select id="getCountByCate" resultType="Integer">
+        select count(1) from book
+        <where>
+            <if test="category != null" >
+                and category=#{category,jdbcType=INTEGER}
+            </if>
+            <if test="biggestCate != 'null'" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != 'null'" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != 'null'" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+        </where>
+        ;
+    </select>
 </mapper>

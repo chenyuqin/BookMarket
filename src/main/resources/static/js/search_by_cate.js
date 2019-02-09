@@ -1,4 +1,24 @@
 $(document).ready(function () {
+
+    if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
+        $("#top_tools").html(
+            "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
+            "                <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
+            "                <a href=\"login.html\" id=\"logout\">\n" +
+            "                <span class=\"iconfont icon-dengchu\">&nbsp;登出</span></a>\n" +
+            "                <span style=\"margin:0 .5em;color:#424242;\">|</span>"
+        );
+    } else {
+        $("#top_tools").html(
+            "<a href=\"login.html\" id=\"login\">\n" +
+            "                        <span class=\"iconfont icon-dengru\">&nbsp;登录</span></a>\n" +
+            "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
+            "                    <a href=\"register.html\" id=\"register\">\n" +
+            "                        <span class=\"iconfont icon-zhuce\"> 注册</span></a>\n" +
+            "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>"
+        );
+    }
+
     $('.price_text').focus(function () {
         $('.price_text').css("color", "#000");
         $('.interval').css("background", "#fff");
@@ -103,4 +123,56 @@ $(document).ready(function () {
             "                </div>");
         $(".all_count").css("display", "none");
     });
+
+    //根据url中的参数显示搜索结果
+    var category = getQueryString('category');
+    var c1 = decodeURI(getQueryString('c1'));
+    var c2 = decodeURI(getQueryString('c2'));
+    var c3 = decodeURI(getQueryString('c3'));
+    if (c1 != 'null') {
+        $(".address .addressTo").append(
+            '<span class="fl choose2">\n' +
+            '                    <a style="text-decoration: none">' + c1 + '\n' +
+            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
+            '                    </a>\n' +
+            '                </span>'
+        );
+    }
+    if (c2 != 'null') {
+        $(".address .addressTo").append(
+            '<span class="fl"> ></span>\n' +
+            '                <span class="fl choose2">\n' +
+            '                    <a style="text-decoration: none">' + c2 + '\n' +
+            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
+            '                    </a>\n' +
+            '                </span>'
+        );
+    }
+    if (c3 != 'null') {
+        $(".address .addressTo").append(
+            '<span class="fl"> ></span>\n' +
+            '                <span class="fl choose2">\n' +
+            '                    <a style="text-decoration: none">' + c3 + '\n' +
+            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
+            '                    </a>\n' +
+            '                </span>'
+        );
+        $(".screen .category").hide();
+    }
+    $.ajax({
+        url: 'searchByCate/search',
+        type: 'Get',
+        data: {'category':category, "c1":c1, "c2":c2, "c3":c3},
+        dataType: 'JSON',
+        success: function (result) {
+
+        }
+    });
 });
+
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = encodeURI(window.location.search).substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}

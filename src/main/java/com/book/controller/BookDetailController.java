@@ -1,10 +1,11 @@
 package com.book.controller;
 
 import com.book.DTO.BookDetailDto;
+import com.book.DTO.SameCateBookDto;
 import com.book.entity.Book;
+import com.book.mapper.BookMapper;
 import com.book.service.BookDetailService;
 import com.book.service.CategoryService;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("bookDetail")
+@RequestMapping("bookDetail/")
 public class BookDetailController {
 
     @Autowired
@@ -48,6 +51,13 @@ public class BookDetailController {
             String image5 = bookDetailDto.getImage5().replace("_x_", "_w_");
             bookDetailDto.setImage5(image5);
         }
+
+        List<SameCateBookDto> sameCateBooks = bookDetailService.getSameCateBook(bookDetailDto.getBiggerCate(), id);
+        for (SameCateBookDto sameCateBookDto : sameCateBooks) {
+            image1 = sameCateBookDto.getImage1().replace("_x_", "_w_");
+            sameCateBookDto.setImage1(image1);
+        }
+        bookDetailDto.setSameCateBooks(sameCateBooks);
         return bookDetailDto;
     }
 }

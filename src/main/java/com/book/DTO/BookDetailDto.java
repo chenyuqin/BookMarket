@@ -2,10 +2,11 @@ package com.book.DTO;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.List;
 
 @Data
-public class BookDetailDto {
+public class BookDetailDto implements Serializable {
     private Integer id;
 
     private String name;
@@ -65,4 +66,6 @@ public class BookDetailDto {
     private String authorSummary;
 
     private String catalog;
+
+    List<SameCateBookDto> sameCateBooks;
 }

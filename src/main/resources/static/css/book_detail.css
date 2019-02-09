@@ -101,6 +101,12 @@
     /*line-height: 20px;*/
     word-break: break-all;
     color: #e3393c;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 /*价格 促销 配送*/
@@ -365,6 +371,11 @@
     border: 1px solid #ED1058;
 }
 
+.same_cate_book li p {
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
 .same_cate_book li .price {
     color: #ff2832;
 }
@@ -373,13 +384,18 @@
     color: #000;
     font-size: 13px;
     font-family: simsun;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .same_cate_book li .author {
     color: #969696;
     font-size: 13px;
     font-family: simsun;
-    padding-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .same_cate_book li img {
@@ -431,7 +447,7 @@
 }
 
 .book_standard li {
-    height: 30px;
+    height: 40px;
     font: 15px/30px 'Microsoft Yahei';
     text-indent: 5px;
     color: #000;
@@ -458,12 +474,52 @@
 
 .author_info table .text {
     padding: 10px;
-    /*font-weight: bold;*/
     color: #000;
     height: 40px;
     line-height: 40px;
-    font-size: 16px;
-    font-family: 微软雅黑;
+    font-family: 宋体;
+}
+
+#content-btn {
+    height:22px;
+    line-height:22px;
+    background:url(../../static/img/book_detail/product_sprites.png) repeat-x 0 -95px;
+    border:1px solid #e6e6e6;
+    color:#505050;
+    float:right;
+    padding:0 15px;
+    border-radius:3px;
+    text-decoration:none;
+    margin-left:10px;
+    font-size:12px;
+}
+
+#authorIntroduction-btn {
+    height:22px;
+    line-height:22px;
+    background:url(../../static/img/book_detail/product_sprites.png) repeat-x 0 -95px;
+    border:1px solid #e6e6e6;
+    color:#505050;
+    float:right;
+    padding:0 15px;
+    border-radius:3px;
+    text-decoration:none;
+    margin-left:10px;
+    font-size:12px;
+}
+
+#catalog-btn {
+    height:22px;
+    line-height:22px;
+    background:url(../../static/img/book_detail/product_sprites.png) repeat-x 0 -95px;
+    border:1px solid #e6e6e6;
+    color:#505050;
+    float:right;
+    padding:0 15px;
+    border-radius:3px;
+    text-decoration:none;
+    margin-left:10px;
+    font-size:12px;
 }
 
 .service_more_info {

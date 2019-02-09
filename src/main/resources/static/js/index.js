@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //判断是否登录
     if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
         $("#top_tools").html(
             "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
@@ -26,15 +27,30 @@ $(document).ready(function () {
         $("#load").css('display', 'none');
     });
 
+    //给每个分类设置href
+    $('.main2').find('li').each(function () {
+        if ($(this).find('h3 a').attr("href") == '' || $(this).find('h3 a').attr("href") == null) {
+            var href = "http://localhost:8088/search_by_cate.html?category=" + ($(this).find('h3').closest('.main2').parent().index() + 1) + "&c1=" + $(this).find('h3 a').text();
+            $(this).find('h3 a').attr("href", href);
+        }
+        $(this).find('h3 a').attr("target", "_blank");
+        $(this).find('ul li').each(function () {
+            if ($(this).find('a').attr("href") == "" || $(this).find('a').attr("href") == null) {
+                $(this).find('a').attr("href", href + "&c2=" + $(this).find('a').text());
+            }
+            $(this).find('a').attr("target", "_blank");
+        });
+    });
+
     //最新动态
     $.ajax({
         url: 'index/notice',
         type: 'Get',
         data: {},
         dataType: 'JSON',
-        success: function(result){
+        success: function (result) {
             var inner_html = "";
-            $.each(result,function(index, item){
+            $.each(result, function (index, item) {
                 inner_html = inner_html +
                     "<li><a href=\"" + item.url + "\" title=\"" + item.title + "\">" + item.title + "</a></li>"
                 ;
@@ -49,7 +65,7 @@ $(document).ready(function () {
         type: 'Get',
         data: {},
         dataType: 'JSON',
-        success: function(result){
+        success: function (result) {
             $('#guessYouLike').append(
                 "<div class=\"book-png\">\n" +
                 "                    <a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" target=\"_blank\"><img src=\"" + result.image1 + "\"/></a>\n" +
@@ -68,9 +84,9 @@ $(document).ready(function () {
         type: 'Get',
         data: {},
         dataType: 'JSON',
-        success: function(result){
+        success: function (result) {
             var ten_book_html = "";
-            $.each(result,function(index, item){
+            $.each(result, function (index, item) {
                 ten_book_html = ten_book_html +
                     "<li>\n" +
                     "                            <div>\n" +
@@ -86,7 +102,9 @@ $(document).ready(function () {
                 ;
             });
             $('#ten_new_book').html(ten_book_html);
-
+            $('#ten_new_book li').click(function () {
+                window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+            });
         }
     });
 
@@ -98,11 +116,11 @@ $(document).ready(function () {
         $.ajax({
             url: 'index/getDiscountBook',
             type: 'Get',
-            data: {'type':type},
+            data: {'type': type},
             dataType: 'JSON',
-            success: function(result){
+            success: function (result) {
                 var ten_book_html = "";
-                $.each(result,function(index, item){
+                $.each(result, function (index, item) {
                     ten_book_html = ten_book_html +
                         "<li>\n" +
                         "                            <div>\n" +
@@ -130,6 +148,9 @@ $(document).ready(function () {
                     ;
                 });
                 $('#ten_discount_book').html(ten_book_html);
+                $('#ten_discount_book li').click(function () {
+                    window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+                });
             }
         });
     });
@@ -143,11 +164,11 @@ $(document).ready(function () {
         $.ajax({
             url: 'index/getSaleRankBook',
             type: 'Get',
-            data: {'type':type},
+            data: {'type': type},
             dataType: 'JSON',
-            success: function(result){
+            success: function (result) {
                 var ten_book_html = "";
-                $.each(result,function(index, item){
+                $.each(result, function (index, item) {
                     ten_book_html = ten_book_html +
                         "<li>\n" +
                         "                            <div>\n" +
@@ -173,11 +194,14 @@ $(document).ready(function () {
                         "                                <p class=\"sales\">\n" +
                         "                                    <span>总销量：" + item.sales + "本</span>\n" +
                         "                                </p>\n"
-                        "                            </div>\n" +
-                        "                        </li>"
+                    "                            </div>\n" +
+                    "                        </li>"
                     ;
                 });
                 $('#ten_sale_rank_book').html(ten_book_html);
+                $('#ten_sale_rank_book li').click(function () {
+                    window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+                });
             }
         });
     });

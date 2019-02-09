@@ -26,13 +26,11 @@ $(function () {
             "left": left
         });
         var src = $("#preview>img")[0].src;
-        var i = src.lastIndexOf(".");
+        src = src.replace(/_w_/g,"_u_");
+
         $("#big-preview").css({
             "display": "block",
-            "background": "url(" + src.slice(0, i - 2)
-            + "_lar"
-            + src.slice(i - 2)
-            + ")" + " no-repeat " + -left * 7 / 4 + "px -" + top * 7 / 4 + "px"
+            "background": "url(" + src + ")" + " no-repeat " + -left * 7 / 4 + "px -" + top * 7 / 4 + "px"
         });
 
         $("#big-preview").css("display", "block");
@@ -66,6 +64,7 @@ $(function () {
             $("#cate").html(inner_html);
 
             //预览图加载
+            $("#first_img").attr("src", result.image1);
             inner_html = "<li class=\"active\">\n" +
                 "                        <img src=\"" + result.image1 + "\" alt=\"\">\n" +
                 "                    </li>";
@@ -94,6 +93,88 @@ $(function () {
                     "</li>"
             }
             $("#preview_img").html(inner_html);
+
+            //图书信息
+            $("#book_name").text(result.name);
+            if (result.detail != '' && result.detail != null) {
+                $("#p-ad").text(result.detail);
+                $("#p-ad").attr('title', result.detail);
+            }
+            $("#bookinfo_author").text(result.author);
+            $("#bookinfo_publisher").text(result.publisher);
+            $("#bookinfo_publishTime").text(result.publishTime);
+            $("#jd-price").text(result.price);
+            $("#jd-discount").text("(" + result.discount + "折)");
+            $("#jd-prePrice").text("￥" + result.prePrice);
+            $("#jd-remark").text(result.remark);
+            $(".level span").css("width", result.star);
+            $("#J_SpanStock").text(" " + result.stock + " ");
+
+            //底部图书详情
+            $("#bottom_book_info").find('span').eq(0).text(result.name);
+            $("#bottom_book_info").find('span').eq(1).text(result.author);
+            $("#bottom_book_info").find('span').eq(2).text(result.publisher);
+            $("#bottom_book_info").find('span').eq(3).text(result.publishTime);
+            $("#bottom_book_info").find('span').eq(4).text(result.isbn);
+            if (result.bigCate != '' && result.bigCate != null) {
+                $("#bottom_book_info").find('span').eq(5).text(result.category + " > " + result.biggestCate + " > " + result.biggerCate + " > " + result.bigCate);
+            } else {
+                $("#bottom_book_info").find('span').eq(5).text(result.category + " > " + result.biggestCate + " > " + result.biggerCate);
+            }
+            $("#bottom_book_info").find('span').eq(6).text(result.suit);
+            $("#bottom_book_info").find('span').eq(7).text(result.packing);
+            $("#bottom_book_info").find('span').eq(8).text(result.paper);
+
+            //作者简介
+            if (result.authorSummary != '' && result.authorSummary != null) {
+                $("#bottom_author_info").html(result.authorSummary);
+            } else {
+                $("#bottom_author_info").html("暂无作者简介！");
+            }
+            $("#authorIntroduction-btn").click(function () {
+                $("#authorIntroduction-show").css('display', 'none');
+                $("#authorIntroduction-show-all").html($("#authorIntroduction-textarea").text()).css('display', 'block');
+                $("#authorIntroduction-btn").css('display', 'none');
+            });
+
+            //内容简介
+            if (result.contentSummary != '' && result.contentSummary != null) {
+                $("#bottom_content_info").html(result.contentSummary);
+            } else {
+                $("#bottom_content_info").html("暂无内容简介！");
+            }
+            $("#content-btn").click(function () {
+                $("#content-show").css('display', 'none');
+                $("#content-show-all").html($("#content-textarea").text()).css('display', 'block');
+                $("#content-btn").css('display', 'none');
+            });
+
+            //目录
+            if (result.catalog != '' && result.catalog != null) {
+                $("#bottom_catalog_info").html(result.catalog);
+            } else {
+                $("#bottom_catalog_info").html("暂无目录！");
+            }
+            $("#catalog-btn").click(function () {
+                $("#catalog-show").css('display', 'none');
+                $("#catalog-show-all").html($("#catalog-textarea").text()).css('display', 'block');
+                $("#catalog-btn").css('display', 'none');
+            });
+
+            //同类书籍推荐
+            $.each(result.sameCateBooks,function(index, item){
+                $("#same_cate_book").append(
+                    '<li>\n' +
+                    '                <a target="_blank" href="http://localhost:8088/book_detail.html?bid=' + item.id + '">\n' +
+                    // '                    <input type="hidden" value="' + item.id + '"/>\n' +
+                    '                    <img src="' + item.image1 + '">\n' +
+                    '                    <p class="title" title="' + item.name + '">' + item.name + '</p>\n' +
+                    '                    <p class="author" title="' + item.author + '">' + item.author + '</p>\n' +
+                    '                    <p class="price">￥' + item.price + '</p>\n' +
+                    '                </a>\n' +
+                    '            </li>'
+                );
+            });
         }
     });
 });

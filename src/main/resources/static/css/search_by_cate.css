@@ -736,7 +736,9 @@ body {
 .choose2 {
     border: 1px solid lightgray;
     color: #666;
-    /*padding: 1px;*/
+    height: 20px;
+    line-height: 19px;
+    margin-top: 3px;
 }
 
 .interval {
@@ -781,4 +783,5 @@ body {
     background:#fa2f00;
     color:#fff;
 }
+
 
