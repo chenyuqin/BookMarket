@@ -56,90 +56,227 @@
         select id,name,author,price,image1 from book where biggerCate=#{biggerCate} and id>=(SELECT floor(RAND() * (SELECT MAX(id) FROM book))) and id!=#{id} order by id limit 5;
     </select>
 
-    <select id="searchByCate" resultType="com.book.DTO.SearchByCateBookDto">
-        select id,name,detail,price,discount,prePrice,star,remark,image1 from book
+    <!--找到某具体分类下的子分类-->
+    <select id="getSubCateByC1" resultType="String" parameterType="com.book.VO.SearchByCateVO">
+        select biggerCate from book
         <where>
-            <if test="category != null" >
-                and category=#{category,jdbcType=INTEGER}
-            </if>
-            <if test="biggestCate != 'null'" >
+            <if test="biggestCate != null" >
                 and biggestCate=#{biggestCate,jdbcType=VARCHAR}
             </if>
-            <if test="biggerCate != 'null'" >
+            <if test="biggerCate != null" >
                 and biggerCate=#{biggerCate,jdbcType=VARCHAR}
             </if>
-            <if test="bigCate != 'null'" >
+            <if test="bigCate != null" >
                 and bigCate=#{bigCate,jdbcType=VARCHAR}
             </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
+            </if>
         </where>
-        limit 15;
+        group by biggerCate;
     </select>
 
-    <!--找到某具体分类下的子分类-->
-    <select id="getSubCateByC1" resultType="String">
-        select biggerCate from book where category=#{category,jdbcType=INTEGER} and biggestCate=#{biggestCate,jdbcType=VARCHAR} group by biggerCate;
-    </select>
-
-    <select id="getSubCateByC2" resultType="String">
-        select bigCate from book where category=#{category,jdbcType=INTEGER} and biggestCate=#{biggestCate,jdbcType=VARCHAR} and biggerCate=#{biggerCate,jdbcType=VARCHAR} group by bigCate;
+    <select id="getSubCateByC2" resultType="String" parameterType="com.book.VO.SearchByCateVO">
+        select bigCate from book
+        <where>
+            <if test="biggestCate != null" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != null" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != null" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
+            </if>
+        </where>
+        group by bigCate;
     </select>
 
     <!--找到某具体分类下的所有书籍的出版社-->
-    <select id="getPublishers" resultType="String">
+    <select id="getPublishers" resultType="String" parameterType="com.book.VO.SearchByCateVO">
         select publisher from book
         <where>
-            <if test="category != null" >
-                and category=#{category,jdbcType=INTEGER}
-            </if>
-            <if test="biggestCate != 'null'" >
+            <if test="biggestCate != null" >
                 and biggestCate=#{biggestCate,jdbcType=VARCHAR}
             </if>
-            <if test="biggerCate != 'null'" >
+            <if test="biggerCate != null" >
                 and biggerCate=#{biggerCate,jdbcType=VARCHAR}
             </if>
-            <if test="bigCate != 'null'" >
+            <if test="bigCate != null" >
                 and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
             </if>
         </where>
         group by publisher order by count(*) desc limit 40;
     </select>
 
     <!--找到某具体分类下的所有书籍的作者-->
-    <select id="getAuthors" resultType="String">
+    <select id="getAuthors" resultType="String" parameterType="com.book.VO.SearchByCateVO">
         select author from book
         <where>
-            <if test="category != null" >
-                and category=#{category,jdbcType=INTEGER}
-            </if>
-            <if test="biggestCate != 'null'" >
+            <if test="biggestCate != null" >
                 and biggestCate=#{biggestCate,jdbcType=VARCHAR}
             </if>
-            <if test="biggerCate != 'null'" >
+            <if test="biggerCate != null" >
                 and biggerCate=#{biggerCate,jdbcType=VARCHAR}
             </if>
-            <if test="bigCate != 'null'" >
+            <if test="bigCate != null" >
                 and bigCate=#{bigCate,jdbcType=VARCHAR}
             </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
+            </if>
         </where>
-        group by author order by count(*) desc limit 40;
+        group by author order by count(*) desc limit 60;
     </select>
 
-    <select id="getCountByCate" resultType="Integer">
-        select count(1) from book
+    <select id="searchByParam" parameterType="com.book.VO.SearchByCateVO" resultType="com.book.DTO.SearchByCateBookDto">
+        select id,`name`,detail,price,discount,prePrice,star,remark,image1 from book
         <where>
-            <if test="category != null" >
-                and category=#{category,jdbcType=INTEGER}
-            </if>
-            <if test="biggestCate != 'null'" >
+            <if test="biggestCate != null" >
                 and biggestCate=#{biggestCate,jdbcType=VARCHAR}
             </if>
-            <if test="biggerCate != 'null'" >
+            <if test="biggerCate != null" >
                 and biggerCate=#{biggerCate,jdbcType=VARCHAR}
             </if>
-            <if test="bigCate != 'null'" >
+            <if test="bigCate != null" >
                 and bigCate=#{bigCate,jdbcType=VARCHAR}
             </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
+            </if>
         </where>
-        ;
+        limit #{page,jdbcType=INTEGER},15;
+    </select>
+
+    <select id="getCountByParam" parameterType="com.book.VO.SearchByCateVO" resultType="Integer">
+        select count(1) from book
+        <where>
+            <if test="biggestCate != null" >
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != null" >
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+            <if test="bigCate != null" >
+                and bigCate=#{bigCate,jdbcType=VARCHAR}
+            </if>
+            <if test="publisher != null" >
+                and publisher=#{publisher,jdbcType=VARCHAR}
+            </if>
+            <if test="author != null" >
+                and author like CONCAT('%',#{author,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="slowPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) >= #{slowPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highPrice != null" >
+                and <![CDATA[CONVERT(price,SIGNED) < #{highPrice,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowAppraise != null" >
+                and <![CDATA[CONVERT(star,SIGNED) >= #{slowAppraise,jdbcType=INTEGER}]]>
+            </if>
+            <if test="slowDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) >= #{slowDiscount,jdbcType=INTEGER}]]>
+            </if>
+            <if test="highDiscount != null" >
+                and <![CDATA[CONVERT(discount,SIGNED) <= #{highDiscount,jdbcType=INTEGER}]]>
+            </if>
+        </where>
     </select>
 </mapper>

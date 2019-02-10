@@ -235,7 +235,7 @@ body {
 
 .screenList .listTitle, .screenList dd {
     float: left;
-    width: 140px;
+    /*width: 140px;*/
 }
 
 .screenList .listTitle {
@@ -250,11 +250,15 @@ body {
 
 .listWrap a {
     display: inline-block;
-    max-width: 140px;
+    /*max-width: 140px;*/
     margin: 6px 40px 5px 0;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
+}
+
+.listWrap a:hover {
+    color:orangered;
 }
 
 .screenCon {
@@ -406,9 +410,19 @@ body {
 .infoCont .titleRow {
     overflow: hidden;
     width: 188px;
-    /*height: 36px;*/
+    height: 105px;
     padding: 2px 16px 15px;
     line-height: 18px;
+}
+
+.infoCont .titleRow p:first-child {
+    height: 35px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .productTitle {
@@ -432,8 +446,15 @@ body {
 
 .keyword {
     font-size: 12px;
+    height: 50px;
     color: orangered;
     margin: 3px 0px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .level {
@@ -578,7 +599,7 @@ body {
 
 .infoCont .num {
     /*padding-left: 6px;*/
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
 }
 
@@ -680,25 +701,17 @@ body {
     background: #ff2832;
 }
 
-
-.slogan {
-    color: #000;
-    clear: both;
-    margin: 10px auto 15px;
-    font-size: 22px;
-    font-family: 华文中宋;
-    width: 280px;
-    /*height: 40px;*/
-    /*line-height: 40px;*/
-}
-
 .addressTo span:last-child:after{
     display: none;
 }
 
+.publish, .cate, .author {
+    height: 29px;
+    overflow: hidden;
+}
+
 .opencate, .openpublish, .openauthor {
     float: left;
-    /*padding: 4px 0 6px;*/
     color: black;
     cursor: pointer;
     font-size: 13px;
@@ -706,18 +719,6 @@ body {
 
 .opencate:hover, .openpublish:hover, .openauthor:hover {
     color: orangered;
-}
-
-.cate dd:nth-child(n+8) {
-    display: none;
-}
-
-.publish dd:nth-child(n+8) {
-    display: none;
-}
-
-.author dd:nth-child(n+8) {
-    display: none;
 }
 
 .choose {
@@ -784,4 +785,39 @@ body {
     color:#fff;
 }
 
+.notice_nobook {
+    text-align: center;
+    font-size: 20px;
+    color: orangered;
+}
 
+.notice_nobook p {
+    padding-bottom:14px
+}
+
+.slogan {
+    color: #000;
+    clear: both;
+    padding: 15px auto 15px;
+    font-size: 22px;
+    font-family: 华文中宋;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #dbdbdb;
+    height: 50px;
+    line-height: 50px;
+}
+
+.slogan2 {
+    color: #000;
+    margin: 10px auto 10px;
+    font-size: 22px;
+    font-family: 华文中宋;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid #dbdbdb;
+}

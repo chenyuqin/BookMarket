@@ -16,4 +16,6 @@ public class SearchByCateDto implements Serializable {
     List<SearchByCateBookDto> books;
 
     Integer count;
+
+    Integer pages;
 }

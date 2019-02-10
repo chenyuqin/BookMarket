@@ -3,6 +3,7 @@ package com.book.mapper;
 import com.book.DTO.NewBookSaleDto;
 import com.book.DTO.SameCateBookDto;
 import com.book.DTO.SearchByCateBookDto;
+import com.book.VO.SearchByCateVO;
 import com.book.entity.Book;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -28,30 +29,15 @@ public interface BookMapper {
 
     List<SameCateBookDto> getSameCateBook(@Param("biggerCate") String biggerCate, @Param("id") Integer id);
 
-    List<SearchByCateBookDto> searchByCate(@Param("category") Integer category,
-                                           @Param("biggestCate") String biggestCate,
-                                           @Param("biggerCate") String biggerCate,
-                                           @Param("bigCate") String bigCate);
+    List<String> getSubCateByC1(SearchByCateVO searchByCateVO);
 
-    List<String> getSubCateByC1(@Param("category") Integer category,
-                                @Param("biggestCate") String biggestCate);
+    List<String> getSubCateByC2(SearchByCateVO searchByCateVO);
 
-    List<String> getSubCateByC2(@Param("category") Integer category,
-                                @Param("biggestCate") String biggestCate,
-                                @Param("biggerCate") String biggerCate);
+    List<String> getPublishers(SearchByCateVO searchByCateVO);
 
-    List<String> getPublishers(@Param("category") Integer category,
-                               @Param("biggestCate") String biggestCate,
-                               @Param("biggerCate") String biggerCate,
-                               @Param("bigCate") String bigCate);
+    List<String> getAuthors(SearchByCateVO searchByCateVO);
 
-    List<String> getAuthors(@Param("category") Integer category,
-                            @Param("biggestCate") String biggestCate,
-                            @Param("biggerCate") String biggerCate,
-                            @Param("bigCate") String bigCate);
+    List<SearchByCateBookDto> searchByParam(SearchByCateVO searchByCateVO);
 
-    Integer getCountByCate(@Param("category") Integer category,
-                            @Param("biggestCate") String biggestCate,
-                            @Param("biggerCate") String biggerCate,
-                            @Param("bigCate") String bigCate);
+    Integer getCountByParam(SearchByCateVO searchByCateVO);
 }

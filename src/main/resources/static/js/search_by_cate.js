@@ -24,17 +24,14 @@ $(document).ready(function () {
         $('.interval').css("background", "#fff");
         $('.inner div').css("display", "block");
     });
-
     $('.price_text').blur(function () {
         $('.interval').css("background", "#efefef");
         $('.price_text').css("color", "#878787");
         $('.inner div').css("display", "none");
     });
-
     $('.btn_yes').mousedown(function () {
         event.preventDefault();
     });
-
     $('.btn_yes').click(function () {
         $('.interval').css("background", "#efefef");
         $('.price_text').css("color", "#878787");
@@ -44,88 +41,35 @@ $(document).ready(function () {
     //分类项较多时的更多和收起实现
     $(".opencate").click(function () {
         if ($(".opencate span").text() == "收起") {
-            $(".cate dd").eq(6).nextAll().css("display", "none");
+            $('.cate').css('height', '29px');
             $(".opencate").html("<span>更多</span><i class=\"iconfont icon-zhankai\"></i>");
         } else {
-            $(".cate dd").eq(6).nextAll().css("display", "block");
+            $('.cate').css('height', 'auto');
             $(".opencate").html("<span>收起</span><i class=\"iconfont icon-shouqi\"></i>");
         }
     });
 
     $(".openpublish").click(function () {
         if ($(".openpublish span").text() == "收起") {
-            $(".publish dd").eq(6).nextAll().css("display", "none");
+            $('.publish').css('height', '29px');
             $(".openpublish").html("<span>更多</span><i class=\"iconfont icon-zhankai\"></i>");
         } else {
-            $(".publish dd").eq(6).nextAll().css("display", "block");
+            $('.publish').css('height', 'auto');
             $(".openpublish").html("<span>收起</span><i class=\"iconfont icon-shouqi\"></i>");
         }
     });
 
     $(".openauthor").click(function () {
         if ($(".openauthor span").text() == "收起") {
-            $(".author dd").eq(6).nextAll().css("display", "none");
+            $('.author').css('height', '29px');
             $(".openauthor").html("<span>更多</span><i class=\"iconfont icon-zhankai\"></i>");
         } else {
-            $(".author dd").eq(6).nextAll().css("display", "block");
+            $('.author').css('height', 'auto');
             $(".openauthor").html("<span>收起</span><i class=\"iconfont icon-shouqi\"></i>");
         }
     });
 
-    $(".textbook").click(function () {
-        var i=$(this).index('.textbook');
-        $(".title").append("<span class='fl'>&gt; </span>" +
-            "               <span class=\"fl choose2\">\n" +
-            "                    <a href=\"\" style=\"text-decoration: none\">" + $(".cate dd").eq(i).text() + "\n" +
-            "                        <i class=\"iconfont icon-zhankai\" style=\"font-size: 13px;opacity:0.4;\"></i>\n" +
-            "                    </a>\n" +
-            "                </span>");
-        $(".category").css("display", "none");
-    });
-
-    //点击分类项时归类到筛选条件里
-    $(".pub").click(function () {
-        var i=$(this).index('.pub');
-        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
-            "                     <span>" + $(".publish dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_publish").css("display", "none");
-    });
-
-    $(".aut").click(function () {
-        var i=$(this).index('.aut');
-        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
-            "                     <span>" + $(".author dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_author").css("display", "none");
-    });
-
-    $(".pri").click(function () {
-        var i=$(this).index('.pri');
-        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
-            "                     <span>" + $(".price dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_price").css("display", "none");
-    });
-
-    $(".appr").click(function () {
-        var i=$(this).index('.appr');
-        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
-            "                     <span>" + $(".appraise dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_appraise").css("display", "none");
-    });
-
-    $(".cou").click(function () {
-        var i=$(this).index('.cou');
-        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
-            "                     <span>" + $(".count dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_count").css("display", "none");
-    });
-
     //根据url中的参数显示搜索结果
-    var category = getQueryString('category');
     var c1 = decodeURI(getQueryString('c1'));
     var c2 = decodeURI(getQueryString('c2'));
     var c3 = decodeURI(getQueryString('c3'));
@@ -159,16 +103,269 @@ $(document).ready(function () {
         );
         $(".screen .category").hide();
     }
-    $.ajax({
-        url: 'searchByCate/search',
-        type: 'Get',
-        data: {'category':category, "c1":c1, "c2":c2, "c3":c3},
-        dataType: 'JSON',
-        success: function (result) {
 
+    //点击分类项时归类到筛选条件里
+    $(".pri").click(function () {
+        var i = $(this).index('.pri');
+        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
+            "                     <span id='pri_choose'>" + $(".price dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+            "                </div>");
+        $(".all_price").css("display", "none");
+        queryByParam(1);
+    });
+
+    $(".appr").click(function () {
+        var i = $(this).index('.appr');
+        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
+            "                     <span id='appr_choose'>" + $(".appraise dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+            "                </div>");
+        $(".all_appraise").css("display", "none");
+        queryByParam(1);
+    });
+
+    $(".cou").click(function () {
+        var i = $(this).index('.cou');
+        $(".select").append("<div class=\"addressToCont fl choose\">\n" +
+            "                     <span id='cou_choose'>" + $(".count dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+            "                </div>");
+        $(".all_count").css("display", "none");
+        queryByParam(1);
+    });
+
+    queryByParam(1);
+
+    // $(".listWrap a").click(function () {
+    //     queryByParam(1);
+    // });
+});
+
+function queryByParam(page) {
+    //自动获取需要查询的已选条件
+    var c1 = trim($('.address .addressTo').find(".choose2").eq(0).text());
+    var c2;
+    if (trim($('.address .addressTo').find(".choose2").eq(1).text()) != '') {
+        c2 = trim($('.address .addressTo').find(".choose2").eq(1).text());
+    }
+    var c3;
+    if (trim($('.address .addressTo').find(".choose2").eq(2).text()) != '') {
+        c3 = trim($('.address .addressTo').find(".choose2").eq(2).text());
+    }
+
+    var pub_choose;
+    if (trim($('#pub_choose').text()) != '') {
+        pub_choose = trim($('#pub_choose').text());
+    }
+
+    var aut_choose;
+    if (trim($('#aut_choose').text()) != '') {
+        aut_choose = trim($('#aut_choose').text());
+    }
+
+    var pri_choose = trim($('#pri_choose').text());
+    var s_pri;
+    var h_pri;
+    if (pri_choose != '') {
+        if (pri_choose == "49以上") {
+            s_pri = "49";
+        } else {
+            s_pri = pri_choose.split("-")[0];
+            h_pri = pri_choose.split("-")[1];
+        }
+    }
+
+    var appr_choose = trim($('#appr_choose').text());
+    var s_appr;
+    switch (appr_choose) {
+        case "5星":
+            s_appr = "100%";
+            break;
+        case "4星以上":
+            s_appr = "80%";
+            break;
+        case "3星以上":
+            s_appr = "60%";
+            break;
+        case "2星以上":
+            s_appr = "40%";
+            break;
+        case "1星以上":
+            s_appr = "20%";
+            break;
+    }
+
+    var cou_choose = trim($('#cou_choose').text());
+    var s_cou, h_cou;
+    switch (cou_choose) {
+        case "3折以下":
+            s_cou = "0";
+            h_cou = "3";
+            break;
+        case "3-5折":
+            s_cou = "3";
+            h_cou = "5";
+            break;
+        case "5-7折":
+            s_cou = "5";
+            h_cou = "7";
+            break;
+        case "7折以上":
+            s_cou = "7";
+            h_cou = "10";
+            break;
+    }
+
+    $.ajax({
+        url: 'searchByCate/searchByParam',
+        type: 'Get',
+        data: {
+            "biggestCate": c1, "biggerCate": c2, "bigCate": c3,
+            "publisher": pub_choose, "author": aut_choose, "slowPrice": s_pri,
+            "highPrice": h_pri, "slowAppraise": s_appr, "slowDiscount": s_cou,
+            "highDiscount": h_cou, "page": page
+        },
+        dataType: 'JSON',
+        async: false,
+        success: function (result) {
+            $(".productNum b").text(result.count);
+
+            if (result.cates == null || result.cates.length == 0) {
+                $(".category").css("display", "none");
+            } else {
+                $(".category .cate").empty();
+                $.each(result.cates, function (index, item) {
+                    $(".category .cate").append(
+                        '<dd><a class="textbook">' + item + '</a></dd>'
+                    );
+                });
+            }
+
+            $(".all_publish .publish").empty();
+            if (result.publishers.length == 0) {
+                $(".all_publish").css("display", "none");
+            } else {
+                $.each(result.publishers, function (index, item) {
+                    $(".all_publish .publish").append(
+                        '<dd><a class="pub">' + item + '</a></dd>'
+                    );
+                });
+            }
+
+            $(".all_author .author").empty();
+            if (result.authors.length == 0) {
+                $(".all_author").css("display", "none");
+            } else {
+                $.each(result.authors, function (index, item) {
+                    $(".all_author .author").append(
+                        '<dd><a class="aut">' + item + '</a></dd>'
+                    );
+                });
+            }
+
+            $(".productListWrap").empty();
+            if (result.books.length == 0) {
+                $('.productListWrap').html(
+                    '<div class="notice_nobook">' +
+                        '<i class="iconfont icon-meiyoushuju" style="font-size: 50px;"></i>' +
+                        '<p>查无图书!</p>' +
+                        '<p>可能造成该问题的原因有两个:</p>' +
+                        '<p>①您的筛选条件较多，请适当减少筛选条件。</p>' +
+                        '<p>②相关图书未收录，请联系管理员收录图书。</p>' +
+                    '</div>'
+                );
+                $('.page').css("display", 'none');
+                checkSlogan();
+            } else {
+                $.each(result.books, function (index, item) {
+                    $(".productListWrap").append(
+                        '<div class="productItem">\n' +
+                        '                <div class="imgBox">\n' +
+                        '                    <a href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                        <img src="' + item.image1 + '" alt="" style="height:188px;width: 188px;">\n' +
+                        '                    </a>\n' +
+                        '                </div>\n' +
+                        '                <div class="infoCont">\n' +
+                        '                    <div class="saleRow">\n' +
+                        '                        <div class="col fl" style="padding-right: 10px;">\n' +
+                        '                            <span class="price">\n' +
+                        '                                <span class="priceSign">¥</span>\n' +
+                        '                                <span class="priceNum">' + item.price + '</span>\n' +
+                        '                            </span>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="col end">\n' +
+                        '                            <span class="weekSale">\n' +
+                        '                                <span class="num"><del>' + item.prePrice + '</del></span>\n' +
+                        '                                <span class="num" style="color: red;">(' + item.discount + '折)</span>\n' +
+                        '                            </span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="titleRow">\n' +
+                        '                        <p>\n' +
+                        '                            <a class="productTitle" title="' + item.name + '" href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                                ' + item.name + '\n' +
+                        '                            </a>\n' +
+                        '                        </p>\n' +
+                        '                        <p class="keyword" title="' + item.detail + '">\n' +
+                        '                            ' + item.detail + '\n' +
+                        '                        </p>\n' +
+                        '                        <p class="star">\n' +
+                        '                            <span class="level">\n' +
+                        '                                <span style="width: ' + item.star + ';"></span>\n' +
+                        '                            </span>\n' +
+                        '                            <a href="#" target="_blank" name="itemlist-review">' + item.remark + '条评论</a>\n' +
+                        '                        </p>\n' +
+                        '                    </div>\n' +
+                        '                    <!--</div>-->\n' +
+                        '                    <div class="infoRow seller">\n' +
+                        '                        <div class="addToCart">\n' +
+                        '                            <a href="#" target="_blank">\n' +
+                        '                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车\n' +
+                        '                            </a>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="collect">\n' +
+                        '                            <a href="#" target="_blank">\n' +
+                        '                                <span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏\n' +
+                        '                            </a>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>'
+                    );
+                });
+            }
+
+            //下方总页数
+            $('.pageList').children("span").eq(1).text(result.pages);
+
+            $(".textbook").unbind('click').bind('click', function () {
+                var i = $(this).index('.textbook');
+                $(".title").append("<span class='fl'>&gt; </span>" +
+                    "               <span class=\"fl choose2\">\n" +
+                    "                    <a href=\"\" style=\"text-decoration: none\">" + $(".cate dd").eq(i).text() + "\n" +
+                    "                        <i class=\"iconfont icon-zhankai\" style=\"font-size: 13px;\"></i>\n" +
+                    "                    </a>\n" +
+                    "                </span>");
+                // $(".category").css("display", "none");
+                queryByParam(1);
+            });
+            $(".pub").unbind('click').bind('click', function () {
+                var i = $(this).index('.pub');
+                $(".select").append("<div class=\"addressToCont fl choose\">\n" +
+                    "                     <span id='pub_choose'>" + $(".publish dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+                    "                </div>");
+                $(".all_publish").css("display", "none");
+                queryByParam(1);
+            });
+            $(".aut").unbind('click').bind('click', function () {
+                var i = $(this).index('.aut');
+                $(".select").append("<div class=\"addressToCont fl choose\">\n" +
+                    "                     <span id='aut_choose'>" + $(".author dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+                    "                </div>");
+                $(".all_author").css("display", "none");
+                queryByParam(1);
+            });
         }
     });
-});
+}
 
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -176,3 +373,19 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
+
+function trim(str) { //删除左右两端的空格
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function checkSlogan() {
+    var realHeight=$(document).height();
+    if(realHeight <= 722) {
+        $('#slogan').removeClass('slogan')
+        $('#slogan').addClass('slogan2');
+    } else {
+        $('#slogan').removeClass('slogan2')
+        $('#slogan').addClass('slogan');
+    }
+}
+

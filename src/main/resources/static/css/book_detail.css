@@ -447,9 +447,8 @@
 }
 
 .book_standard li {
-    height: 40px;
     font: 15px/30px 'Microsoft Yahei';
-    text-indent: 5px;
+    padding-left: 5px;
     color: #000;
 }
 
