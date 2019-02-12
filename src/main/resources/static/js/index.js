@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    document.onkeydown = function(e){
+        if((e||event).keyCode==13)
+            $("#search").click();
+    };
     //判断是否登录
     if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
         $("#top_tools").html(
@@ -206,6 +210,15 @@ $(document).ready(function () {
         });
     });
     $('#sale_rank_cate .tab-active').click();
+    $("#search").click(function () {
+        var query_string = trim($("#query_string").val());
+        if (query_string == '' || query_string == null) {
+            alert("请输入需要查询的信息!");
+            return;
+        }
+        $("#query_string").val("");
+        window.open("http://localhost:8088/search.html?q=" + query_string);
+    });
 });
 
 (function ($) {
@@ -217,4 +230,8 @@ $(document).ready(function () {
         return null;
     }
 })(jQuery);
+
+function trim(str) { //删除左右两端的空格
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
 

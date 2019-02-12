@@ -5,7 +5,7 @@
     <title>图书分类搜索</title>
     <link rel="stylesheet" href="../static/css/layui/css/layui.css">
     <link href="../static/css/global.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/search_by_cate.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/search.css" rel="stylesheet" type="text/css"/>
     <link href="../static/css/font-class.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -65,7 +65,7 @@
 <div>
     <nav class="nav-top">
         <ul class="nav-top-ul">
-            <li><a href="javascript:void(0)">图书分类检索</a></li>
+            <li><a href="javascript:void(0)">图书搜索结果</a></li>
         </ul>
     </nav>
 </div>
@@ -76,29 +76,12 @@
         <div class="address wrap clear">
             <div class="addressTo fl clear title">
                 <span class="fl"><a href="">全部</a> ></span>
-                <span class="fl"><a href="">图书</a> ></span>
-                <!--<span class="fl choose2">-->
-                    <!--<a style="text-decoration: none">教材-->
-                        <!--<i class="iconfont icon-zhankai" style="font-size: 13px;"></i>-->
-                    <!--</a>-->
-                <!--</span>-->
-                <!--<span class="fl"> ></span>-->
-                <!--<span class="fl choose2">-->
-                    <!--<a style="text-decoration: none">教材2-->
-                        <!--<i class="iconfont icon-zhankai" style="font-size: 13px;"></i>-->
-                    <!--</a>-->
-                <!--</span>-->
-                <!--<span class="fl"> ></span>-->
-                <!--<span class="fl choose2">-->
-                    <!--<a style="text-decoration: none">教材3-->
-                        <!--<i class="iconfont icon-zhankai" style="font-size: 13px;"></i>-->
-                    <!--</a>-->
-                <!--</span>-->
-            </div>
-            <div class="productNum fr">
-                <span>共</span>
-                <b></b>
-                <span>件商品</span>
+                <span class="fl"><a style="text-decoration: none;color: orangered;font-weight: bold;" id="queryStringShow"></a></span>
+                <span class="fl">
+                    <span>共</span>
+                    <span style="color: orangered;font-weight: bold;" id="productNum"></span>
+                    <span>本图书</span>
+                </span>
             </div>
         </div>
         <div class="screen wrap">
@@ -137,40 +120,6 @@
                 </div>
             </dl>
 
-            <dl class="screenList clear all_price">
-                <div class="listTitle fl">
-                    <dt>价格</dt>
-                </div>
-                <div class="listWrap fl clear price">
-                    <dd><a class="pri">0-19</a></dd>
-                    <dd><a class="pri">19-29</a></dd>
-                    <dd><a class="pri">29-49</a></dd>
-                    <dd><a class="pri">49以上</a></dd>
-                </div>
-            </dl>
-            <dl class="screenList clear all_appraise">
-                <div class="listTitle fl">
-                    <dt>客户评分</dt>
-                </div>
-                <div class="listWrap fl clear appraise">
-                    <dd><a class="appr">5星</a></dd>
-                    <dd><a class="appr">4星以上</a></dd>
-                    <dd><a class="appr">3星以上</a></dd>
-                    <dd><a class="appr">2星以上</a></dd>
-                    <dd><a class="appr">1星以上</a></dd>
-                </div>
-            </dl>
-            <dl class="screenList clear all_count">
-                <div class="listTitle fl">
-                    <dt>折扣</dt>
-                </div>
-                <div class="listWrap fl clear count">
-                    <dd><a class="cou">3折以下</a></dd>
-                    <dd><a class="cou">3-5折</a></dd>
-                    <dd><a class="cou">5-7折</a></dd>
-                    <dd><a class="cou">7折以上</a></dd>
-                </div>
-            </dl>
             <dl class="screenList screenCon clear">
                 <div class="listTitle fl">
                     <dt>筛选条件</dt>
@@ -221,56 +170,56 @@
         <!-- 商品列表区域 -->
         <div class="productListWrap clear">
             <!--<div class="productItem">-->
-                <!--<div class="imgBox">-->
-                    <!--<a href="http://localhost:8088/book_detail?bid=555" target="_blank">-->
-                        <!--<img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">-->
-                    <!--</a>-->
-                <!--</div>-->
-                <!--<div class="infoCont">-->
-                    <!--<div class="saleRow">-->
-                        <!--<div class="col fl">-->
-                            <!--<span class="price">-->
-                                <!--<span class="priceSign">¥</span>-->
-                                <!--<span class="priceNum">23</span>-->
-                            <!--</span>-->
-                        <!--</div>-->
-                        <!--<div class="col end fr">-->
-                            <!--<span class="weekSale">定价：-->
-                                <!--<span class="num"><del>35.00</del></span>-->
-                                <!--<span class="num">(6.57折)</span>-->
-                            <!--</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="titleRow">-->
-                        <!--<p>-->
-                            <!--<a class="productTitle" title="ssss" href="http://localhost:8088/book_detail?bid=555" target="_blank">-->
-                                <!--天才在左，疯子在右-->
-                            <!--</a>-->
-                        <!--</p>-->
-                        <!--<p class="keyword" title="ssss">-->
-                            <!--心理学最畅销书籍-->
-                        <!--</p>-->
-                        <!--<p class="star">-->
-                            <!--<span class="level">-->
-                                <!--<span style="width: 65%;"></span>-->
-                            <!--</span>-->
-                            <!--<a href="#" target="_blank" name="itemlist-review">93805条评论</a>-->
-                        <!--</p>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<div class="infoRow seller">-->
-                        <!--<div class="addToCart">-->
-                            <!--<a href="#" target="_blank">-->
-                                <!--<span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="collect">-->
-                            <!--<a href="#" target="_blank">-->
-                                <!--<span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="imgBox">-->
+            <!--<a href="http://localhost:8088/book_detail?bid=555" target="_blank">-->
+            <!--<img src="../static/img/1.jpg" alt="" style="height:188px;width: 188px;">-->
+            <!--</a>-->
+            <!--</div>-->
+            <!--<div class="infoCont">-->
+            <!--<div class="saleRow">-->
+            <!--<div class="col fl">-->
+            <!--<span class="price">-->
+            <!--<span class="priceSign">¥</span>-->
+            <!--<span class="priceNum">23</span>-->
+            <!--</span>-->
+            <!--</div>-->
+            <!--<div class="col end fr">-->
+            <!--<span class="weekSale">定价：-->
+            <!--<span class="num"><del>35.00</del></span>-->
+            <!--<span class="num">(6.57折)</span>-->
+            <!--</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="titleRow">-->
+            <!--<p>-->
+            <!--<a class="productTitle" title="ssss" href="http://localhost:8088/book_detail?bid=555" target="_blank">-->
+            <!--天才在左，疯子在右-->
+            <!--</a>-->
+            <!--</p>-->
+            <!--<p class="keyword" title="ssss">-->
+            <!--心理学最畅销书籍-->
+            <!--</p>-->
+            <!--<p class="star">-->
+            <!--<span class="level">-->
+            <!--<span style="width: 65%;"></span>-->
+            <!--</span>-->
+            <!--<a href="#" target="_blank" name="itemlist-review">93805条评论</a>-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="infoRow seller">-->
+            <!--<div class="addToCart">-->
+            <!--<a href="#" target="_blank">-->
+            <!--<span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车-->
+            <!--</a>-->
+            <!--</div>-->
+            <!--<div class="collect">-->
+            <!--<a href="#" target="_blank">-->
+            <!--<span class="iconfont icon-shoucang" style="font-size: 17px;"></span> 收藏-->
+            <!--</a>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
         </div>
         <!-- /商品列表区域 -->
@@ -300,7 +249,7 @@
 </body>
 <script src="../static/js/jquery-2.1.1.min.js"></script>
 <script src="../static/css/layui/layui.js"></script>
-<script src="../static/js/search_by_cate.js"></script>
+<script src="../static/js/search.js"></script>
 <script>
     layui.use('carousel', function () {
         var carousel = layui.carousel;

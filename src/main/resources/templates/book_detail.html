@@ -93,19 +93,19 @@
             <div class="spec-list" id="spec-list">
                 <ul id="preview_img">
                     <!--<li class="active">-->
-                        <!--<img src="../static/img/list4_big1.jpg" alt="">-->
+                    <!--<img src="../static/img/list4_big1.jpg" alt="">-->
                     <!--</li>-->
                     <!--<li>-->
-                        <!--<img src="../static/img/cart/book.png" alt="">-->
+                    <!--<img src="../static/img/cart/book.png" alt="">-->
                     <!--</li>-->
                     <!--<li>-->
-                        <!--<img src="../static/img/cart/add.jpg" alt="">-->
+                    <!--<img src="../static/img/cart/add.jpg" alt="">-->
                     <!--</li>-->
                     <!--<li>-->
-                        <!--<img src="../static/img/cart/cartTop01.png" alt="">-->
+                    <!--<img src="../static/img/cart/cartTop01.png" alt="">-->
                     <!--</li>-->
                     <!--<li>-->
-                        <!--<img src="../static/img/cart/sub.jpg" alt="">-->
+                    <!--<img src="../static/img/cart/sub.jpg" alt="">-->
                     <!--</li>-->
                 </ul>
             </div>
@@ -116,7 +116,7 @@
         <div class="drightArea fl clear">
             <div class="book_info fl clear">
                 <div id="book_word">
-                    <span class="book_name"id="book_name"></span>
+                    <span class="book_name" id="book_name"></span>
                     <div id="p-ad" class="p-ad J-ad-1279804"></div>
                 </div>
                 <div class="bookinfo">
@@ -253,30 +253,41 @@
         <div class="layui-tab layui-tab-card">
             <ul class="layui-tab-title">
                 <li class="layui-this">图书详情</li>
-                <li>作者简介</li>
-                <li>内容简介</li>
-                <li>目录</li>
+                <!--<li>作者简介</li>-->
+                <!--<li>内容简介</li>-->
+                <!--<li>目录</li>-->
                 <li>图书评价</li>
             </ul>
             <div class="layui-tab-content" style="">
                 <!--图书详情-->
                 <div class="layui-tab-item layui-show">
-                    <div class="book_standard clear">
-                        <ul id="bottom_book_info">
-                            <li>图书名称：<span></span></li>
-                            <li>作者：<span></span></li>
-                            <li>出版社：<span></span></li>
-                            <li>出版时间：<span></span></li>
-                            <li>国际标准书号ISBN：<span></span></li>
-                            <li>所属分类：<span></span></li>
-                            <li>是否为套装：<span></span></li>
-                            <li>包装：<span></span></li>
-                            <li>纸张：<span></span></li>
-                        </ul>
+                    <div class="book_standard">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="name">
+                                    &nbsp;基本信息
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ul id="bottom_book_info">
+                                        <li>图书名称：<span></span></li>
+                                        <li>作者：<span></span></li>
+                                        <li>出版社：<span></span></li>
+                                        <li>出版时间：<span></span></li>
+                                        <li>国际标准书号ISBN：<span></span></li>
+                                        <li>所属分类：<span></span></li>
+                                        <li>是否为套装：<span></span></li>
+                                        <li>包装：<span></span></li>
+                                        <li>纸张：<span></span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <!--作者简介-->
-                <div class="layui-tab-item">
+                    <!--作者简介-->
                     <div class="author_info">
                         <table>
                             <tbody>
@@ -293,9 +304,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!--内容简介-->
-                <div class="layui-tab-item">
+                    <!--内容简介-->
                     <div class="author_info">
                         <table>
                             <tbody>
@@ -312,9 +321,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!--目录-->
-                <div class="layui-tab-item">
+                    <!--目录-->
                     <div class="author_info">
                         <table>
                             <tbody>
@@ -726,4 +733,4 @@
     });
 </script>
 </body>
-</html>`
+</html>

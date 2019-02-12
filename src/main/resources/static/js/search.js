@@ -69,85 +69,8 @@ $(document).ready(function () {
         }
     });
 
-    //根据url中的参数显示搜索结果
-    var c1 = decodeURI(getQueryString('c1'));
-    var c2 = decodeURI(getQueryString('c2'));
-    var c3 = decodeURI(getQueryString('c3'));
-    if (c1 != 'null') {
-        $(".address .addressTo").append(
-            '<span class="fl choose2">\n' +
-            '                    <a style="text-decoration: none">' + c1 + '\n' +
-            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
-            '                    </a>\n' +
-            '                </span>'
-        );
-    }
-    if (c2 != 'null') {
-        $(".address .addressTo").append(
-            '<span class="fl"> ></span>\n' +
-            '                <span class="fl choose2">\n' +
-            '                    <a style="text-decoration: none">' + c2 + '\n' +
-            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
-            '                    </a>\n' +
-            '                </span>'
-        );
-    }
-    if (c3 != 'null') {
-        $(".address .addressTo").append(
-            '<span class="fl"> ></span>\n' +
-            '                <span class="fl choose2">\n' +
-            '                    <a style="text-decoration: none">' + c3 + '\n' +
-            '                        <i class="iconfont icon-zhankai" style="font-size: 13px;"></i>\n' +
-            '                    </a>\n' +
-            '                </span>'
-        );
-        $(".screen .category").hide();
-    }
-
-    //点击分类项时归类到筛选条件里
-    $(".pri").click(function () {
-        var i = $(this).index('.pri');
-        $(".select").append("<div class=\"addressToCont fl choose\" id='price_choose'>\n" +
-            "                     <span id='pri_choose'>" + $(".price dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_price").css("display", "none");
-        queryByParam(1);
-        $('#price_choose').unbind('click').bind('click', function () {
-            $('#price_choose').remove();
-            $(".all_price").css("display", "block");
-            queryByParam(1);
-        });
-    });
-
-    $(".appr").click(function () {
-        var i = $(this).index('.appr');
-        $(".select").append("<div class=\"addressToCont fl choose\" id='appraise_choose'>\n" +
-            "                     <span id='appr_choose'>" + $(".appraise dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_appraise").css("display", "none");
-        queryByParam(1);
-        $('#appraise_choose').unbind('click').bind('click', function () {
-            $('#appraise_choose').remove();
-            $(".all_appraise").css("display", "block");
-            queryByParam(1);
-        });
-    });
-
-    $(".cou").click(function () {
-        var i = $(this).index('.cou');
-        $(".select").append("<div class=\"addressToCont fl choose\" id='discount_choose'>\n" +
-            "                     <span id='cou_choose'>" + $(".count dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
-            "                </div>");
-        $(".all_count").css("display", "none");
-        queryByParam(1);
-        $('#discount_choose').unbind('click').bind('click', function () {
-            $('#discount_choose').remove();
-            $(".all_count").css("display", "block");
-            queryByParam(1);
-        });
-    });
-
-    queryByParam(1);
+    //根据搜索参数获取初始化数据
+    search(1);
 
     $("#up_page").click(function () {
         var current = parseInt($(".zuo").text());
@@ -157,7 +80,7 @@ $(document).ready(function () {
         }
         var updatePage = current - 1;
         $('.zuo').text(updatePage);
-        queryByParam(updatePage);
+        search(updatePage);
     });
 
     $("#down_page").click(function () {
@@ -168,7 +91,7 @@ $(document).ready(function () {
         }
         var updatePage = current + 1;
         $('.zuo').text(updatePage);
-        queryByParam(updatePage);
+        search(updatePage);
     });
 
     $("#go_page").click(function () {
@@ -179,20 +102,17 @@ $(document).ready(function () {
             return;
         }
         $(".zuo").text(page);
-        queryByParam(page);
+        search(page);
     });
 });
 
-function queryByParam(page) {
-    //自动获取需要查询的已选条件
-    var c1 = trim($('.address .addressTo').find(".choose2").eq(0).text());
-    var c2;
-    if (trim($('.address .addressTo').find(".choose2").eq(1).text()) != '') {
-        c2 = trim($('.address .addressTo').find(".choose2").eq(1).text());
-    }
-    var c3;
-    if (trim($('.address .addressTo').find(".choose2").eq(2).text()) != '') {
-        c3 = trim($('.address .addressTo').find(".choose2").eq(2).text());
+function search(page) {
+    var q;
+    q = decodeURI(getQueryString('q'));
+
+    var cate_choose;
+    if (trim($('#cate_choose').text()) != '') {
+        cate_choose = trim($('#cate_choose').text());
     }
 
     var pub_choose;
@@ -205,72 +125,18 @@ function queryByParam(page) {
         aut_choose = trim($('#aut_choose').text());
     }
 
-    var pri_choose = trim($('#pri_choose').text());
-    var s_pri;
-    var h_pri;
-    if (pri_choose != '') {
-        if (pri_choose == "49以上") {
-            s_pri = "49";
-        } else {
-            s_pri = pri_choose.split("-")[0];
-            h_pri = pri_choose.split("-")[1];
-        }
-    }
-
-    var appr_choose = trim($('#appr_choose').text());
-    var s_appr;
-    switch (appr_choose) {
-        case "5星":
-            s_appr = "100%";
-            break;
-        case "4星以上":
-            s_appr = "80%";
-            break;
-        case "3星以上":
-            s_appr = "60%";
-            break;
-        case "2星以上":
-            s_appr = "40%";
-            break;
-        case "1星以上":
-            s_appr = "20%";
-            break;
-    }
-
-    var cou_choose = trim($('#cou_choose').text());
-    var s_cou, h_cou;
-    switch (cou_choose) {
-        case "3折以下":
-            s_cou = "0";
-            h_cou = "3";
-            break;
-        case "3-5折":
-            s_cou = "3";
-            h_cou = "5";
-            break;
-        case "5-7折":
-            s_cou = "5";
-            h_cou = "7";
-            break;
-        case "7折以上":
-            s_cou = "7";
-            h_cou = "10";
-            break;
-    }
 
     $.ajax({
-        url: 'searchByCate/searchByParam',
+        url: 'search/search',
         type: 'Get',
-        data: {
-            "biggestCate": c1, "biggerCate": c2, "bigCate": c3,
-            "publisher": pub_choose, "author": aut_choose, "slowPrice": s_pri,
-            "highPrice": h_pri, "slowAppraise": s_appr, "slowDiscount": s_cou,
-            "highDiscount": h_cou, "page": page
+        data: {"queryString": q, "bigCate": cate_choose,
+            "publisher": pub_choose, "author": aut_choose, "page": page
         },
         dataType: 'JSON',
         async: false,
         success: function (result) {
-            $(".productNum b").text(result.count);
+            $("#productNum").text(result.count);
+            $("#queryStringShow").text(q);
 
             if (result.cates == null || result.cates.length == 0) {
                 $(".category").css("display", "none");
@@ -348,7 +214,7 @@ function queryByParam(page) {
                         '                                ' + item.name + '\n' +
                         '                            </a>\n' +
                         '                        </p>\n' +
-                        '                        <p class="keyword" title="' + item.detail + '">\n' +
+                        '                        <p class="keyword" title="' + item.detail.replace(/"/g,"\'") + '">\n' +
                         '                            ' + item.detail + '\n' +
                         '                        </p>\n' +
                         '                        <p class="star">\n' +
@@ -419,12 +285,12 @@ function queryByParam(page) {
                     $('#fanye_zuo').css("color", "gray");
                     $('#up_page').css('background', "lightgray");
                     $('.zuo').text(updatePage);
-                    queryByParam(updatePage);
+                    search(updatePage);
                 } else {
                     $('#fanye_zuo').css("color", "orangered");
                     $('#up_page').css('background', "#fff");
                     $('.zuo').text(updatePage);
-                    queryByParam(updatePage);
+                    search(updatePage);
                 }
             });
 
@@ -437,25 +303,28 @@ function queryByParam(page) {
                     $('#fanye_you').css("color", "gray");
                     $('#down_page').css('background', "lightgray");
                     $('.zuo').text(updatePage);
-                    queryByParam(updatePage);
+                    search(updatePage);
                 } else {
                     $('#fanye_zuo').css("color", "orangered");
                     $('#up_page').css('background', "#fff");
                     $('.zuo').text(updatePage);
-                    queryByParam(updatePage);
+                    search(updatePage);
                 }
             });
 
+
             $(".textbook").unbind('click').bind('click', function () {
                 var i = $(this).index('.textbook');
-                $(".title").append("<span class='fl'>&gt; </span>" +
-                    "               <span class=\"fl choose2\">\n" +
-                    "                    <a href=\"\" style=\"text-decoration: none\">" + $(".cate dd").eq(i).text() + "\n" +
-                    "                        <i class=\"iconfont icon-zhankai\" style=\"font-size: 13px;\"></i>\n" +
-                    "                    </a>\n" +
-                    "                </span>");
-                // $(".category").css("display", "none");
-                queryByParam(1);
+                $(".select").append("<div class=\"addressToCont fl choose\" id='category_choose'>\n" +
+                    "                     <span id='cate_choose'>" + $(".cate dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
+                    "                </div>");
+                $(".category").css("display", "none");
+                search(1);
+                $('#category_choose').unbind('click').bind('click', function () {
+                    $('#category_choose').remove();
+                    $(".category").css("display", "block");
+                    search(1);
+                });
             });
             $(".pub").unbind('click').bind('click', function () {
                 var i = $(this).index('.pub');
@@ -463,11 +332,11 @@ function queryByParam(page) {
                     "                     <span id='pub_choose'>" + $(".publish dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
                     "                </div>");
                 $(".all_publish").css("display", "none");
-                queryByParam(1);
+                search(1);
                 $('#publisher_choose').unbind('click').bind('click', function () {
                     $('#publisher_choose').remove();
                     $(".all_publish").css("display", "block");
-                    queryByParam(1);
+                    search(1);
                 });
             });
             $(".aut").unbind('click').bind('click', function () {
@@ -476,11 +345,11 @@ function queryByParam(page) {
                     "                     <span id='aut_choose'>" + $(".author dd").eq(i).text() + " <i class=\"iconfont icon-cha\" style='font-size: 10px;opacity:0.4;'></i></span>\n" +
                     "                </div>");
                 $(".all_author").css("display", "none");
-                queryByParam(1);
+                search(1);
                 $('#author_choose').unbind('click').bind('click', function () {
                     $('#author_choose').remove();
                     $(".all_author").css("display", "block");
-                    queryByParam(1);
+                    search(1);
                 });
             });
         }

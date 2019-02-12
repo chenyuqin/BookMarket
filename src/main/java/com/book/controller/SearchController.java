@@ -1,9 +1,9 @@
 package com.book.controller;
 
 import com.book.DTO.SearchByCateBookDto;
-import com.book.DTO.SearchByCateDto;
-import com.book.VO.SearchByCateVO;
-import com.book.service.SearchByCateService;
+import com.book.DTO.SearchDto;
+import com.book.VO.SearchVO;
+import com.book.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,22 +13,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
 
 @Controller
-@RequestMapping("searchByCate/")
-public class SearchByCateController {
+@RequestMapping("search/")
+public class SearchController {
 
     @Autowired
-    SearchByCateService searchByCateService;
+    SearchService searchService;
 
-    @RequestMapping(value = "searchByParam", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "search", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Object searchByParam(SearchByCateVO searchByCateVO) {
+    public Object search(SearchVO searchVO) {
+        //图书
+        searchVO.setPage((searchVO.getPage() - 1) * 15);
+        List<SearchByCateBookDto> books = searchService.getBooksByQueryString(searchVO);
+        for (SearchByCateBookDto searchByCateBookDto : books) {
+            String image1 = searchByCateBookDto.getImage1().replace("_x_", "_b_");
+            searchByCateBookDto.setImage1(image1);
+        }
+
         //分类
         List<String> subCates = null;
-        if (searchByCateVO.getBiggerCate() == null) {
-            subCates = searchByCateService.getSubCateByC1(searchByCateVO);
-        } else if (searchByCateVO.getBigCate() == null) {
-            subCates = searchByCateService.getSubCateByC2(searchByCateVO);
-        }
+        subCates = searchService.getCatesByQueryString(searchVO);
         if (subCates != null) {
             if (subCates.size() == 1 && (subCates.get(0) == null || subCates.get(0) == "" || subCates.get(0) == "null")) {
                 subCates = null;
@@ -36,10 +40,12 @@ public class SearchByCateController {
                 if (subCates.contains("")) {
                     subCates.remove("");
 //                    subCates.add("更多");
-                } else if (subCates.contains(null)) {
+                }
+                if (subCates.contains(null)) {
                     subCates.remove(null);
 //                    subCates.add("更多");
-                } else if (subCates.contains("null")) {
+                }
+                if (subCates.contains("null")) {
                     subCates.remove("null");
 //                    subCates.add("更多");
                 }
@@ -48,13 +54,14 @@ public class SearchByCateController {
 
         //出版社
         List<String> publishers = null;
-        publishers = searchByCateService.getPublishers(searchByCateVO);
+        publishers = searchService.getPublishersByQueryString(searchVO);
+
 
         //作者
         List<String> authors = null;
-        authors = searchByCateService.getAuthors(searchByCateVO);
-        String[] countryWord = {"（美）", "[美]", "(美)","【美】", "（韩）", "[韩]", "(韩)","【韩】",
-                "（日）", "[日]", "(日)", "【日】", "（英）", "[英]", "(英)","【英】", "（丹）", "[丹]", "(丹)", "【丹】", "（法）", "[法]", "(法)", "【法】","（俄）", "[俄]", "(俄)", "【俄】","（新西兰）", "[新西兰]", "(新西兰)", "【新西兰】","（法国）", "[法国]", "(法国)", "【法国】", "（意）", "[意]", "(意)", "【意】","（德）", "[德]", "(德)", "【德】","（奥）", "[奥]", "(奥)", "【奥】","（美国）", "[美国]", "(美国)", "【美国】","（澳）", "[澳]", "(澳)", "【澳】","（智）", "[智]", "(智)", "【智】","（苏）", "[苏]", "(苏)", "【苏】","（奥地利）", "[奥地利]", "(奥地利)", "【奥地利】","（俄罗斯）", "[俄罗斯]", "(俄罗斯)", "【俄罗斯】","（印度）", "[印度]", "(印度)", "【印度】","（哥伦比亚）", "[哥伦比亚]", "(哥伦比亚)", "【哥伦比亚】"};
+        authors = searchService.getAuthorsByQueryString(searchVO);
+        String[] countryWord = {"（美）", "[美]", "(美)", "【美】", "（韩）", "[韩]", "(韩)", "【韩】",
+                "（日）", "[日]", "(日)", "【日】", "（英）", "[英]", "(英)", "【英】", "（丹）", "[丹]", "(丹)", "【丹】", "（法）", "[法]", "(法)", "【法】", "（俄）", "[俄]", "(俄)", "【俄】", "（新西兰）", "[新西兰]", "(新西兰)", "【新西兰】", "（法国）", "[法国]", "(法国)", "【法国】", "（意）", "[意]", "(意)", "【意】", "（德）", "[德]", "(德)", "【德】", "（奥）", "[奥]", "(奥)", "【奥】", "（美国）", "[美国]", "(美国)", "【美国】", "（澳）", "[澳]", "(澳)", "【澳】", "（智）", "[智]", "(智)", "【智】", "（苏）", "[苏]", "(苏)", "【苏】", "（奥地利）", "[奥地利]", "(奥地利)", "【奥地利】", "（俄罗斯）", "[俄罗斯]", "(俄罗斯)", "【俄罗斯】", "（印度）", "[印度]", "(印度)", "【印度】", "（哥伦比亚）", "[哥伦比亚]", "(哥伦比亚)", "【哥伦比亚】"};
         List<String> authorsExceptWord = new ArrayList<>();
         for (String author : authors) {
             for (String word : countryWord) {
@@ -105,26 +112,18 @@ public class SearchByCateController {
         }
 
         //图书总数
-        Integer count = searchByCateService.getCountByParam(searchByCateVO);
+        Integer count = searchService.getCountByQueryString(searchVO);
 
         //总页数
         Integer pages = (int)Math.ceil(count*1.0 / 15);
 
-        //匹配的图书
-        searchByCateVO.setPage((searchByCateVO.getPage()-1) * 15);
-        List<SearchByCateBookDto> searchByCateBookDtos = searchByCateService.searchByParam(searchByCateVO);
-        for (SearchByCateBookDto searchByCateBookDto : searchByCateBookDtos) {
-            String image1 = searchByCateBookDto.getImage1().replace("_x_", "_b_");
-            searchByCateBookDto.setImage1(image1);
-        }
-
-        SearchByCateDto searchByCateDto = new SearchByCateDto();
-        searchByCateDto.setBooks(searchByCateBookDtos);
-        searchByCateDto.setAuthors(new ArrayList<>(autSet));
-        searchByCateDto.setPublishers(publishers);
-        searchByCateDto.setCates(subCates);
-        searchByCateDto.setCount(count);
-        searchByCateDto.setPages(pages);
-        return searchByCateDto;
+        SearchDto searchDto = new SearchDto();
+        searchDto.setBooks(books);
+        searchDto.setAuthors(new ArrayList<>(autSet));
+        searchDto.setPublishers(publishers);
+        searchDto.setCates(subCates);
+        searchDto.setCount(count);
+        searchDto.setPages(pages);
+        return searchDto;
     }
 }

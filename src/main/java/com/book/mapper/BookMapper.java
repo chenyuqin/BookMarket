@@ -4,6 +4,7 @@ import com.book.DTO.NewBookSaleDto;
 import com.book.DTO.SameCateBookDto;
 import com.book.DTO.SearchByCateBookDto;
 import com.book.VO.SearchByCateVO;
+import com.book.VO.SearchVO;
 import com.book.entity.Book;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,7 @@ public interface BookMapper {
 
     List<SameCateBookDto> getSameCateBook(@Param("biggerCate") String biggerCate, @Param("id") Integer id);
 
+    //按分类搜索图书
     List<String> getSubCateByC1(SearchByCateVO searchByCateVO);
 
     List<String> getSubCateByC2(SearchByCateVO searchByCateVO);
@@ -40,4 +42,17 @@ public interface BookMapper {
     List<SearchByCateBookDto> searchByParam(SearchByCateVO searchByCateVO);
 
     Integer getCountByParam(SearchByCateVO searchByCateVO);
+
+    //按关键字搜索匹配的id
+    List<String> getIdsByQueryString(String queryString);
+
+    List<SearchByCateBookDto> getBooksByQueryString(SearchVO searchVO);
+
+    List<String> getCatesByQueryString(SearchVO searchVO);
+
+    List<String> getPublishersByQueryString(SearchVO searchVO);
+
+    List<String> getAuthorsByQueryString(SearchVO searchVO);
+
+    Integer getCountByQueryString(SearchVO searchVO);
 }
