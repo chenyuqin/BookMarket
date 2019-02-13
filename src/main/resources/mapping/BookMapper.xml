@@ -375,4 +375,22 @@
             </if>
         </where>
     </select>
+
+    <!--排行榜-->
+    <select id="getRankBooks" parameterType="com.book.VO.RankVO" resultType="com.book.DTO.RankBookDto">
+      select id,`name`,image1,star,remark,author,publishTime,publisher,price,prePrice,discount,sales,@rownum:=@rownum+1 AS rankNo
+      from (SELECT @rownum := 0) r,book
+        <where>
+            <if test="category != null and category != 0">
+                and category=#{category}
+            </if>
+            <if test="biggestCate != null">
+                and biggestCate=#{biggestCate,jdbcType=VARCHAR}
+            </if>
+            <if test="biggerCate != null">
+                and biggerCate=#{biggerCate,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by sales desc limit #{page,jdbcType=INTEGER},10;
+    </select>
 </mapper>

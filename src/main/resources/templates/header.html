@@ -1,0 +1,253 @@
+<link rel="stylesheet" href="../static/css/layui/css/layui.css">
+<link rel="stylesheet" href="../static/css/font-class.css" type="text/css" media="all">
+<script src="../static/js/jquery-2.1.1.min.js"></script>
+<script src="../static/css/layui/layui.js"></script>
+<script src="../static/js/header.js"></script>
+
+<style>
+    body {
+        font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+        margin: auto;
+    }
+
+    .wrap {
+        width: 1226px;
+        height: 35px;
+        margin: auto;
+    }
+
+    .wrap2 {
+        width: 1226px;
+        height: 52px;
+        margin: 5px auto 0px;
+    }
+
+    .header {
+        margin: auto;
+    }
+
+    a:hover {
+        color: #ff6700;
+    }
+
+    .clear {
+        clear: both;
+        height: 10px;
+        overflow: hidden;
+    }
+
+    /*菜单栏*/
+    .topbar {
+        height: 35px;
+        background-color: rgb(245, 245, 245);
+        color: #b0b0b0;
+        line-height: 35px;
+        font-size: 12px;
+    }
+
+    .topbar a {
+        color: #000;
+    }
+
+    .topbar a:hover {
+        color: orangered;
+    }
+
+    .topbar-left {
+        float: left;
+    }
+
+    .topbar-right {
+        float: right;
+        position: relative;
+    }
+
+    /*消息通知*/
+    .loading {
+        position: absolute;
+        top: 35px;
+        right: 0px;
+        width: 300px;
+        height: auto;
+        color: #424242;
+        text-align: center;
+        padding: 15px 0 18px 0;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+    }
+
+    .logo {
+        /*float: left;*/
+        color: orangered;
+        height: 52px;
+        width: 234px;
+        line-height: 52px;
+        position: absolute;
+    }
+
+    .search {
+        /*float:left;*/
+        height: 52px;
+        width: 500px;
+        position: absolute;
+        margin-left: 85px;
+    }
+
+    .search-text {
+        position: absolute;
+        width: 340px;
+        height: 40px;
+        padding: 0 10px;
+        border: 2px solid orangered;
+        font-size: 14px;
+        line-height: 38px;
+        margin-top: 10px;
+        margin-left: 334px;
+        /*float :right;*/
+    }
+
+    .search-btn {
+        position: absolute;
+        width: 42px;
+        height: 40px;
+        border: 2px solid orangered;
+        font-size: 20px;
+        line-height: 24px;
+        background-color: orangered;
+        font-weight: 900;
+        color: #fff;
+        margin-top: 10px;
+        margin-left: 673px;
+        /*float:right;*/
+    }
+
+    /*购物车和订单按钮*/
+    .cart, .order {
+        height: 36px;
+        margin-top: 10px;
+        position: absolute;
+        border: 2px solid #dcdcdc;
+        font: 16px/36px "Microsoft Yahei";
+    }
+
+    .cart {
+        right: 235px;
+        width: 110px;
+        border-color: #ff2832;
+        background: #ff2832;
+    }
+
+    .cart:hover {
+        background-position: 5px -36px;
+        background-color: #f6f6f6;
+        border-color: #dcdcdc;
+        color: #ff2832;
+    }
+
+    .cart:hover a, .cart :hover span {
+        color: #ff2832;
+    }
+
+    .cart a {
+        color: #fff;
+        padding-left: 8px;
+        width: 110px;
+        display: inline-block;
+    }
+
+    .cart a:hover {
+        text-decoration: none;
+    }
+
+    .cart span {
+        color: #fff;
+        padding-left: 3px;
+        font-family: Arial;
+        font-weight: bold;
+    }
+
+    .order {
+        width: 86px;
+        padding: 0;
+        text-align: center;
+        right: 147px;
+        border-left: 0;
+        background-color: #f6f6f6;
+    }
+
+    .order a:hover {
+        text-decoration: none;
+        color: #ff2832;
+    }
+
+</style>
+
+<div class="header">
+    <div class="topbar">
+        <div class="wrap">
+            <div class="topbar-left">
+                <a href="index.html" target="_parent"><span class="iconfont icon-shouye"> 首页</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <span style="color: #000;">您的定位：
+                    <span class="iconfont icon-dingwei"></span>
+                    <span class="glyphicon glyphicon-map-marker" id="location"></span>
+                </span>
+            </div>
+            <div class="topbar-right">
+                <div style="float: left;" id="top_tools">
+
+                </div>
+                <a href="#" id="dd">
+                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
+                    <span class="layui-badge layui-bg-orange">0</span>
+                </a>
+                <div class="loading" id="load" style="display:none">暂无消息！</div>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href="personal.html" id="gerenzhongxin" target="_blank">
+                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="wrap2">
+        <div class="logo">
+            <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
+                    网上图书超市</span>
+        </div>
+        <div class="search">
+            <form>
+                <input class="iconfont search-btn" type="button" id="search" value="&#xe778;">
+                <input class="search-text" id="query_string" type="text" placeholder="搜索图书" autocomplete="off">
+            </form>
+        </div>
+        <!--购物车部分-->
+        <div class="cart">
+            <a href="cart.html" target="_blank">
+                <span class="iconfont icon-gouwuche"> 购物车</span>
+                <span class="cart_counts">0</span>
+            </a>
+        </div>
+        <!--订单部分-->
+        <div class="order">
+            <a href="order.html" target="_blank">我的订单</a>
+        </div>
+    </div>
+</div>
+<!--<div class="clear"></div>-->
+
+<script>
+    //定位
+    $.ajax({
+        url: 'http://restapi.amap.com/v3/ip',
+        data: {key: '049d254de7046935c431b8db38ce95b3'},
+        success: function (arg) {
+            $('#location').text(arg.city);
+        },
+        error: function (arg) {
+            $('#location').text(arg.info);
+        }
+    });
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+</script>

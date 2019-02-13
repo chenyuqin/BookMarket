@@ -719,11 +719,12 @@ a:hover {
     cursor: pointer;
     float: left;
     width: 234px;
-    height: 310px;
+    height: 320px;
     background: #fff;
     margin-left: 11px;
     padding: 10px 0;
     transition: all .2s linear;
+    margin-bottom: 10px;
 }
 
 .book_account .box-8 li:hover {
@@ -802,6 +803,7 @@ a:hover {
     margin-left: 11px;
     padding: 10px 0;
     transition: all .2s linear;
+    margin-bottom: 10px;
 }
 
 .book_sale_ranking .box-8 li:hover {

@@ -1,36 +1,4 @@
 $(document).ready(function () {
-    document.onkeydown = function(e){
-        if((e||event).keyCode==13)
-            $("#search").click();
-    };
-    //判断是否登录
-    if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
-        $("#top_tools").html(
-            "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
-            "                <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
-            "                <a href=\"login.html\" id=\"logout\">\n" +
-            "                <span class=\"iconfont icon-dengchu\">&nbsp;登出</span></a>\n" +
-            "                <span style=\"margin:0 .5em;color:#424242;\">|</span>"
-        );
-    } else {
-        $("#top_tools").html(
-            "<a href=\"login.html\" id=\"login\">\n" +
-            "                        <span class=\"iconfont icon-dengru\">&nbsp;登录</span></a>\n" +
-            "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
-            "                    <a href=\"register.html\" id=\"register\">\n" +
-            "                        <span class=\"iconfont icon-zhuce\"> 注册</span></a>\n" +
-            "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>"
-        );
-    }
-
-    $("#dd").hover(function () {
-        $("#load").slideToggle("fast");
-    });
-
-    $("#load").mouseleave(function () {
-        $("#load").css('display', 'none');
-    });
-
     //给每个分类设置href
     $('.main2').find('li').each(function () {
         if ($(this).find('h3 a').attr("href") == '' || $(this).find('h3 a').attr("href") == null) {
@@ -210,15 +178,11 @@ $(document).ready(function () {
         });
     });
     $('#sale_rank_cate .tab-active').click();
-    $("#search").click(function () {
-        var query_string = trim($("#query_string").val());
-        if (query_string == '' || query_string == null) {
-            alert("请输入需要查询的信息!");
-            return;
-        }
-        $("#query_string").val("");
-        window.open("http://localhost:8088/search.html?q=" + query_string);
-    });
+
+    $("#all_rank_book").click(function () {
+        var category = $('#sale_rank_cate .tab-active').index();
+        window.open("http://localhost:8088/rank.html?category=" + category);
+    })
 });
 
 (function ($) {

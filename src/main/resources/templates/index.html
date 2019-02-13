@@ -15,57 +15,58 @@
 </head>
 <body>
 <!--头部-->
-<div class="header">
-    <div class="topbar">
-        <div class="wrap">
-            <div class="topbar-left">
-                <a href="index.html"><span class="iconfont icon-shouye"> 首页</span></a>
-                <span style="margin:0 .5em;color:#424242;">|</span>
-                <span style="color: #000;">您的定位：
-                    <span class="iconfont icon-dingwei"></span>
-                    <span class="glyphicon glyphicon-map-marker" id="location"></span>
-                </span>
-            </div>
-            <div class="topbar-right">
-                <div style="float: left;" id="top_tools">
+<!--<div class="header">-->
+    <!--<div class="topbar">-->
+        <!--<div class="wrap">-->
+            <!--<div class="topbar-left">-->
+                <!--<a href="index.html"><span class="iconfont icon-shouye"> 首页</span></a>-->
+                <!--<span style="margin:0 .5em;color:#424242;">|</span>-->
+                <!--<span style="color: #000;">您的定位：-->
+                    <!--<span class="iconfont icon-dingwei"></span>-->
+                    <!--<span class="glyphicon glyphicon-map-marker" id="location"></span>-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<div class="topbar-right">-->
+                <!--<div style="float: left;" id="top_tools">-->
 
-                </div>
-                <a href="#" id="dd">
-                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
-                    <span class="layui-badge layui-bg-orange">0</span>
-                </a>
-                <div class="loading" id="load" style="display:none">暂无消息！</div>
-                <span style="margin:0 .5em;color:#424242;">|</span>
-                <a href="personal.html" id="gerenzhongxin">
-                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
-            </div>
-        </div>
-    </div>
-    <div class="wrap2">
-        <div class="logo">
-            <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
-                    网上图书超市</span>
-        </div>
-        <div class="search">
-            <form>
-                <input class="iconfont search-btn" type="button" id="search" value="&#xe778;">
-                <input class="search-text" id="query_string" type="text" placeholder="搜索图书" autocomplete="off">
-            </form>
-        </div>
-        <!--购物车部分-->
-        <div class="cart">
-            <a href="cart.html">
-                <span class="iconfont icon-gouwuche"> 购物车</span>
-                <span class="cart_counts">0</span>
-            </a>
-        </div>
-        <!--订单部分-->
-        <div class="order">
-            <a href="order.html">我的订单</a>
-        </div>
-    </div>
-</div>
-<div class="clear"></div>
+                <!--</div>-->
+                <!--<a href="#" id="dd">-->
+                    <!--<span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>-->
+                    <!--<span class="layui-badge layui-bg-orange">0</span>-->
+                <!--</a>-->
+                <!--<div class="loading" id="load" style="display:none">暂无消息！</div>-->
+                <!--<span style="margin:0 .5em;color:#424242;">|</span>-->
+                <!--<a href="personal.html" id="gerenzhongxin">-->
+                    <!--<span class="iconfont icon-app_icons&#45;&#45;"> 个人中心</span></a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="wrap2">-->
+        <!--<div class="logo">-->
+            <!--<span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">-->
+                    <!--网上图书超市</span>-->
+        <!--</div>-->
+        <!--<div class="search">-->
+            <!--<form>-->
+                <!--<input class="iconfont search-btn" type="button" id="search" value="&#xe778;">-->
+                <!--<input class="search-text" id="query_string" type="text" placeholder="搜索图书" autocomplete="off">-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;购物车部分&ndash;&gt;-->
+        <!--<div class="cart">-->
+            <!--<a href="cart.html">-->
+                <!--<span class="iconfont icon-gouwuche"> 购物车</span>-->
+                <!--<span class="cart_counts">0</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;订单部分&ndash;&gt;-->
+        <!--<div class="order">-->
+            <!--<a href="order.html">我的订单</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="clear"></div>-->
+<object style="border:0px" type="text/x-scriptlet" data="header.html" width=100% height=103></object>
 <!--主体-->
 <div class="main">
     <nav class="nav-top">
@@ -1133,7 +1134,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="all"><a>查看完整榜单>></a></div>
         </div>
         <hr>
         <div class="book_sale_ranking">
@@ -1186,7 +1186,7 @@
                         <!--</li>-->
                     </ul>
                 </div>
-                <div class="all"><a>查看完整榜单>></a></div>
+                <div class="all"><a id="all_rank_book">查看完整榜单>></a></div>
             </div>
         </div>
         <hr>
@@ -1311,17 +1311,6 @@
                 });
             }
         });
-    });
-    // 定位
-    $.ajax({
-        url: 'http://restapi.amap.com/v3/ip',
-        data: {key: '049d254de7046935c431b8db38ce95b3'},
-        success: function (arg) {
-            $('#location').text(arg.city);
-        },
-        error: function (arg) {
-            $('#location').text(arg.info);
-        }
     });
 </script>
 </html>

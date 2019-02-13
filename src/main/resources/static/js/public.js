@@ -1,5 +1,4 @@
 $(function () {
-//	nav
     $(".head ul>li").hover(function () {
         var aa = $(this).children().length;
         if (aa != 1) {
@@ -14,6 +13,7 @@ $(function () {
         $(this).siblings("p").slideUp(100);
     });
 
+
 //	回到顶部
     $(".gotop a").hover(function () {
         var aa = $(this).hasClass("dh");
@@ -25,7 +25,6 @@ $(function () {
     }, function () {
         $(this).find("dt").fadeIn().siblings("dd").hide().parents("a").siblings("p").hide();
     });
-
     $(window).scroll(function () {
         var wh = $(window).scrollTop();
         if (wh > 100) {

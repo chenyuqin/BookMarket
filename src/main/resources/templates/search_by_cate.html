@@ -10,57 +10,7 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="topbar">
-        <div class="wrap">
-            <div class="topbar-left">
-                <a href="index.html"><span class="iconfont icon-shouye"> 首页</span></a>
-                <span style="margin:0 .5em;color:#424242;">|</span>
-                <span style="color: #000;">您的定位：
-                    <span class="iconfont icon-dingwei"></span>
-                    <span class="glyphicon glyphicon-map-marker" id="location"></span>
-                </span>
-            </div>
-            <div class="topbar-right">
-                <div style="float: left;" id="top_tools">
-
-                </div>
-                <a href="#" id="dd">
-                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
-                    <span class="layui-badge layui-bg-orange">0</span>
-                </a>
-                <div class="loading" id="load" style="display:none">暂无消息！</div>
-                <span style="margin:0 .5em;color:#424242;">|</span>
-                <a href=".html" id="gerenzhongxin">
-                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
-            </div>
-        </div>
-    </div>
-    <div class="wrap2">
-        <div class="logo">
-            <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
-                    网上图书超市</span>
-        </div>
-        <div class="search">
-            <form>
-                <input class="iconfont search-btn " type="submit" value="&#xe778;">
-                <input class="search-text" type="text" placeholder="搜索图书">
-            </form>
-        </div>
-        <!--购物车部分-->
-        <div class="cart">
-            <a href="l">
-                <span class="iconfont icon-gouwuche"> 购物车</span>
-                <span class="cart_counts">0</span>
-            </a>
-        </div>
-        <!--订单部分-->
-        <div class="order">
-            <a href="ml">我的订单</a>
-        </div>
-    </div>
-</div>
-<div class="clear2"></div>
+<object style="border:0px" type="text/x-scriptlet" data="header.html" width=100% height=103></object>
 <!-- 导航条 -->
 <div>
     <nav class="nav-top">
@@ -301,6 +251,7 @@
 <script src="../static/js/jquery-2.1.1.min.js"></script>
 <script src="../static/css/layui/layui.js"></script>
 <script src="../static/js/search_by_cate.js"></script>
+<script src="../static/js/public.js"></script>
 <script>
     layui.use('carousel', function () {
         var carousel = layui.carousel;

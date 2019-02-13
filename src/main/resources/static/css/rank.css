@@ -170,8 +170,9 @@ body {
     text-decoration: none;
     color: #ff2832;
 }
+
 /*主体部分顶部导航条样式*/
-.nav-top{
+.nav-top {
     width: 100%;
     height: 36px;
     line-height: 36px;
@@ -179,22 +180,26 @@ body {
     /*opacity: 0.85;*/
     border-bottom: 2px solid #ff2832;
 }
-.nav-top ul{
+
+.nav-top ul {
     width: 1200px;
     margin: 0 auto;
 }
-.nav-top li{
+
+.nav-top li {
     float: left;
     padding: 0 10px;
     text-align: center;
 }
-.nav-top li a{
+
+.nav-top li a {
     color: #FFFFFF;
     font-size: 16px;
     font-weight: bold;
 }
+
 /*主题部分顶部导航条全部商品详细分类样式*/
-.nav-top li:first-of-type{
+.nav-top li:first-of-type {
     width: 170px;
     background: url("../img/index/home_sprite.png") no-repeat 161px -567px;
     cursor: pointer;
@@ -206,6 +211,7 @@ body {
     height: 10px;
     overflow: hidden;
 }
+
 /*------------------------------------------------*/
 
 .w1200 {
@@ -228,51 +234,6 @@ body {
 i {
     font-style: normal;
 }
-
-/*site-nav*/
-.site-nav-bg {
-    height: 30px;
-    line-height: 30px;
-    background-color: #f5f5f5;
-}
-
-.site-nav {
-    position: relative;
-}
-
-.sn-back-home {
-    float: left;
-}
-
-.sn-back-home i {
-    margin: 0 4px 0 8px;
-    font-size: 14px;
-}
-
-.sn-quick-menu {
-    position: absolute;
-    right: 12px;
-}
-
-.sn-quick-menu div {
-    float: left;
-}
-
-.sn-quick-menu div.login {
-    margin-right: 22px;
-}
-
-.sn-quick-menu div.login a {
-    color: #ff5500;
-}
-
-.sn-quick-menu div.sp-cart span {
-    margin-left: 4px;
-    color: #ff5500;
-    font-weight: bold;
-}
-
-/*end-site-nav*/
 
 .content .layui-fluid {
     padding: 0;
@@ -661,7 +622,6 @@ i {
     padding: 0 22px;
 }
 
-
 .content-nav-base .main-nav {
     border-bottom: 1px solid #cfb1f7;
 }
@@ -674,7 +634,6 @@ i {
     padding: 0;
     margin-right: 75px;
 }
-
 
 /*commodity*/
 .commodity-content .commod-cont-wrap {
@@ -696,7 +655,7 @@ i {
 
 .commodity-content .commod-cont .left-nav .title {
     color: #4f776e;
-    font-size: 20px;
+    font-size: 19px;
     background: #F6F6F6;
     text-align: center;
     height: 45px;
@@ -713,14 +672,13 @@ i {
 }
 
 .commodity-content .commod-cont .left-nav .list-box dt {
-    font-size: 17px;
-    color: #333;
+    font-size: 16px;
+    color: #000;
     padding-left: 30px;
-    background: url(../img/rank/img/off-icon.png) 8px -2px no-repeat;
+    background: url(../img/rank/img/off-icon.png) 8px -40px no-repeat;
     cursor: pointer;
-    font-family: cursive;
+    font-family: monospace;
     font-weight: 600;
-    /*opacity: 0.9;*/
 }
 
 .commodity-content .commod-cont .left-nav .list-box dd {
@@ -728,14 +686,20 @@ i {
 }
 
 .commodity-content .commod-cont .left-nav .list-box dt.active {
-    background-position: 8px -40px;
+    background-position: 8px -2px;
+    color: orangered;
 }
 
 .commodity-content .commod-cont .left-nav .list-box dd a {
     padding-left: 42px;
-    color: #888888;
-    font-size: 13px;
+    color: #000;
+    font-size: 14px;
     font-family: 宋体;
+}
+
+.commodity-content .commod-cont .left-nav .list-box dd a.active {
+    background-position: 8px -2px;
+    color: orangered;
 }
 
 .commodity-content .commod-cont .left-nav .list-box dl:last-child dd:last-child {
@@ -763,7 +727,9 @@ i {
 }
 
 .commodity-content .commod-cont .own span:nth-child(n+2) {
-    font-size: 14px;
+    font-size: 15px;
+    font-family: Serif;
+    font-weight: bold;
 }
 
 .commodity-content .commod-cont .own span a:hover {
@@ -772,12 +738,11 @@ i {
 }
 
 /*.commodity-content .commod-cont .own span:after {*/
-    /*content: ">";*/
-    /*width: 3px;*/
-    /*color: #646464;*/
-    /*margin: 0 2px;*/
+/*content: ">";*/
+/*width: 3px;*/
+/*color: #646464;*/
+/*margin: 0 2px;*/
 /*}*/
-
 
 .commodity-content .commod-cont .right-cont .sort {
     margin-top: 5px;
@@ -826,7 +791,7 @@ i {
     cursor: default;
 }
 
-.commodity-content .commod-cont .right-cont .cont-list .item:nth-child(-n+3) .rank_num {
+.commodity-content .commod-cont .right-cont .cont-list .item .rank_num_top {
     padding-top: 10px;
     padding-left: 10px;
     font-size: 28px;
@@ -867,7 +832,13 @@ i {
 
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .book_name {
     color: #000;
-    font-size: 17px;
+    font-size: 14px;
+    word-break: break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .book_name:hover {
@@ -878,6 +849,9 @@ i {
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .author {
     font-size: 13px;
     padding-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .publish {
@@ -887,7 +861,7 @@ i {
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .price {
     font-size: 13px;
     cursor: text;
-    padding-bottom: 30px;
+    padding-bottom: 5px;
 }
 
 .commodity-content .commod-cont .right-cont .cont-list .item .desc .price .pri {
@@ -933,7 +907,6 @@ i {
 }
 
 /*end-commodity*/
-
 
 /*details*/
 .datails-content {
@@ -1170,7 +1143,6 @@ i {
 
 /*end-details*/
 
-
 /*information*/
 .information-content .info-list-box {
     padding: 63px 0 84px 0;
@@ -1220,7 +1192,6 @@ i {
 }
 
 /*end-information*/
-
 
 /*buytoday*/
 .buytoday-content .banner {
@@ -1377,7 +1348,6 @@ i {
 
 /*end-buytoday*/
 
-
 /*about*/
 .about-content .banner-box .banner {
     height: 750px;
@@ -1476,7 +1446,6 @@ i {
 
 /*end-about*/
 
-
 /*LoginService*/
 .login-content .login-bg {
     width: 100%;
@@ -1557,7 +1526,6 @@ i {
 }
 
 /*end-LoginService*/
-
 
 /*shopcart-content*/
 .shopcart-content .banner-bg {
@@ -1803,4 +1771,40 @@ i {
 .star a:hover {
     color: red;
     text-decoration: underline;
+}
+
+.pageList {
+    font: 400 14px/25px '微软雅黑';
+}
+
+.pageList a {
+    display: inline-block;
+    height: 25px;
+    margin: 0 2px;
+    padding: 0 10px;
+    line-height: 25px;
+    color: #000;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+}
+
+.pageList a:hover {
+    color: #000;
+    cursor:pointer;
+}
+
+.pageList span {
+    display: inline-block;
+    height: 25px;
+    padding: 5px 0px;
+    font: 400 16px/25px '-webkit-pictograph';
+    color: #000;
+}
+
+.sales {
+    color: black;
+    font-size: 13px;
+    /*opacity: 0.8;*/
+    font-family: fantasy;
+    padding-bottom: 15px;
 }

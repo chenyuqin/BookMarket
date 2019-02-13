@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $("#header").load("header.html");
+
     if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
         $("#top_tools").html(
             "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
