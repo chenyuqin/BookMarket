@@ -43,4 +43,11 @@
   <update id="updatePasswordByToken" parameterType="String">
     update user set password=#{password,jdbcType=VARCHAR} where activeCode=#{activeCode,jdbcType=VARCHAR};
   </update>
+
+  <select id="selectByPrimaryKey" resultType="com.book.entity.User" parameterType="java.lang.Integer" >
+    select
+    id, name, sex, birthday, hobby, settle, email, activeCode, status, introdution
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

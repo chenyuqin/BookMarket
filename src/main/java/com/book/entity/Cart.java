@@ -8,9 +8,7 @@ public class Cart {
 
     private Integer book_id;
 
-    private String count;
-
-    private String price;
+    private Integer count;
 
     private Integer user_id;
 

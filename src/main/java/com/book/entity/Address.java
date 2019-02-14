@@ -8,7 +8,7 @@ public class Address {
 
     private String name;
 
-    private Integer phone;
+    private String phone;
 
     private String province;
 

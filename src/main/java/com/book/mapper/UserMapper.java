@@ -23,4 +23,7 @@ public interface UserMapper {
     //忘记密码
     String findEmailByName(@Param("name")String name);
     void updatePasswordByToken(@Param("password") String password, @Param("activeCode") String activeCode);
+
+    //个人信息
+    User selectByPrimaryKey(Integer id);
 }

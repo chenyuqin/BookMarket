@@ -14,7 +14,6 @@ $(function () {
         $(this).attr('off', '');
         $('.own').find('span').eq(2).text($(this).text());
         getRankBooks($(this).parent().index(), null, 1);
-        $('html,body').animate({scrollTop: 0}, 0);
     });
     $('.list-box dl dd').on('click', function () {
         $('.active').removeClass('active');
@@ -75,9 +74,9 @@ function getRankBooks(category, type, page) {
                 var rankNo = parseInt(item.rankNo + 10 * page - 10);
                 var inner_html = '';
                 if (rankNo == 1 || rankNo == 2 || rankNo == 3) {
-                    inner_html = '                <p class=\"rank_num_top\">' + (item.rankNo + 10 * page - 10) + '.</p>\\n';
+                    inner_html = '                <p class=\"rank_num_top\">' + (item.rankNo + 10 * page - 10) + '.</p>';
                 } else {
-                    inner_html = '                <p class=\"rank_num\">' + (item.rankNo + 10 * page - 10) + '.</p>\\n';
+                    inner_html = '                <p class=\"rank_num\">' + (item.rankNo + 10 * page - 10) + '.</p>';
                 }
                 $("#list-cont").append(
                     '<div class="item">\n' +

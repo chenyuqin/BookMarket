@@ -21,7 +21,6 @@ var current = {
 
 /*自动加载省份列表*/
 (function showProv() {
-    btn.disabled = true;
     var len = provice.length;
     for (var i = 0; i < len; i++) {
         var provOpt = document.createElement('option');
@@ -41,7 +40,6 @@ function showCity(obj) {
     if (val != current.prov) {
         current.prov = val;
         addrShow.value = '';
-        btn.disabled = true;
     }
     //console.log(val);
     if (val != null) {
@@ -63,7 +61,7 @@ function showCountry(obj) {
     if (val != null) {
         country.length = 1; //清空之前的内容只留第一个默认选项
         var countryLen = provice[current.prov]["city"][val].districtAndCounty.length;
-        if(countryLen == 0){
+        if (countryLen == 0) {
             addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name;
             return;
         }
@@ -79,15 +77,21 @@ function showCountry(obj) {
 /*选择县区之后的处理函数*/
 function selecCountry(obj) {
     current.country = obj.options[obj.selectedIndex].value;
-    if ((current.city != null) && (current.country != null)) {
-        btn.disabled = false;
-    }
 }
 
 /*点击确定按钮显示用户所选的地址*/
 function showAddr() {
-    addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
-    return addrShow.value;
+    try {
+        if (provice[current.prov]["city"][current.city].districtAndCounty[current.country] == undefined) {
+            alert("请选择您所在的地区信息！");
+            return false;
+        }
+        addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+        return addrShow.value;
+    } catch (err) {
+        alert("请选择您所在的地区信息！");
+        return false;
+    }
 }
 
 //**********************************************************************************************************//
@@ -108,7 +112,6 @@ var c_current = {
 
 /*自动加载省份列表*/
 (function c_showprov() {
-    c_btn.disabled = true;
     var len = provice.length;
     for (var i = 0; i < len; i++) {
         var provOpt = document.createElement('option');
@@ -128,7 +131,6 @@ function c_showCity(obj) {
     if (val != current.prov) {
         c_current.prov = val;
         c_addrShow.value = '';
-        c_btn.disabled = true;
     }
     //console.log(val);
     if (val != null) {
@@ -150,7 +152,7 @@ function c_showCountry(obj) {
     if (val != null) {
         c_country.length = 1; //清空之前的内容只留第一个默认选项
         var countryLen = provice[c_current.prov]["city"][val].districtAndCounty.length;
-        if(countryLen == 0){
+        if (countryLen == 0) {
             c_addrShow.value = provice[c_current.prov].name + '-' + provice[c_current.prov]["city"][c_current.city].name;
             return;
         }
@@ -166,13 +168,27 @@ function c_showCountry(obj) {
 /*选择县区之后的处理函数*/
 function c_selecCountry(obj) {
     c_current.country = obj.options[obj.selectedIndex].value;
-    if ((c_current.city != null) && (c_current.country != null)) {
-        c_btn.disabled = false;
-    }
 }
 
 /*点击确定按钮显示用户所选的地址*/
 function c_showAddr() {
-    c_addrShow.value = provice[c_current.prov].name + '-' + provice[c_current.prov]["city"][c_current.city].name + '-' + provice[c_current.prov]["city"][c_current.city].districtAndCounty[c_current.country];
-    return c_addrShow.value;
+    try {
+        if (provice[c_current.prov]["city"][c_current.city].districtAndCounty[c_current.country] == undefined) {
+            alert("请选择您所在的地区信息！");
+            return true;
+        }
+        c_addrShow.value = provice[c_current.prov].name + '-' + provice[c_current.prov]["city"][c_current.city].name + '-' + provice[c_current.prov]["city"][c_current.city].districtAndCounty[c_current.country];
+        return c_addrShow.value;
+    } catch (err) {
+        if($("#c_city").children().eq(0).text() == "请选择城市") {
+            alert("请选择您所在的地区信息！");
+            return true;
+        }
+        if ($("#c_country").children().eq(0).text() == "请选择县/区") {
+            alert("请选择您所在的地区信息！");
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -77,24 +77,7 @@
                     </a>
                     <span>添加新地址</span>
                 </div>
-                <div class="myAddress">
-                    <p>陈育钦</p>
-                    <p>1573****666</p>
-                    <p>河北省 唐山市 路北区</p>
-                    <p>唐山市大学生公寓村（063000）</p>
-                </div>
-                <div class="myAddress">
-                    <p>陈育钦①</p>
-                    <p>1573****666</p>
-                    <p>河北省 唐山市 路北区</p>
-                    <p>唐山市大学生公寓村（063000）</p>
-                </div>
-                <div class="myAddress">
-                    <p>陈育钦②</p>
-                    <p>1573****666</p>
-                    <p>河北省 唐山市 路北区</p>
-                    <p>唐山市大学生公寓村（063000）</p>
-                </div>
+
             </div>
         </div>
     </div>
@@ -103,9 +86,9 @@
 <!--遮罩-->
 <div class="mask"></div>
 <div class="adddz">
-    <form action="#" method="get">
-        <input type="text" placeholder="姓名"/>
-        <input type="text" placeholder="手机号"/>
+    <form>
+        <input type="text" placeholder="姓名" id="adddz_name" required="required"/>
+        <input type="text" placeholder="手机号" id="adddz_phone" required="required"/>
         <div class="city">
             <!--省份选择-->
             <input type="hidden" value="" id="addr-show">
@@ -122,8 +105,8 @@
                 <option>请选择县/区</option>
             </select>
         </div>
-        <textarea name="" rows="" cols="" placeholder="详细地址"></textarea>
-        <input type="text" placeholder="邮政编码"/>
+        <textarea name="" rows="" cols="" placeholder="详细地址" id="adddz_addrDetail" required="required"></textarea>
+        <input type="text" placeholder="邮政编码" id="adddz_postcode" required="required"/>
         <div class="bc">
             <input type="button" value="保存" class="met1"/>
             <input type="button" value="取消"/>
@@ -131,26 +114,26 @@
     </form>
 </div>
 <div class="readd">
-    <form action="#" method="get">
-        <input type="text" value="六六六"/>
-        <input type="text" value="157****0022"/>
+    <form>
+        <input type="text" value="" id="readd_name"/>
+        <input type="text" value="" id="readd_phone"/>
         <div class="city">
             <input type="hidden" value="" id="c_addr-show">
             <select id="c_prov" onchange="c_showCity(this)">
-                <option>河北省</option>
+                <option></option>
             </select>
             <!--城市选择-->
             <select id="c_city" onchange="c_showCountry(this)">
-                <option>唐山市</option>
+                <option></option>
             </select>
 
             <!--县区选择-->
             <select id="c_country" onchange="c_selecCountry(this)">
-                <option>路北区</option>
+                <option></option>
             </select>
         </div>
-        <textarea name="" rows="" cols="" placeholder="详细地址">高新产业园</textarea>
-        <input type="text" placeholder="邮政编码" value="063000"/>
+        <textarea name="" rows="" cols="" placeholder="详细地址"  id="readd_address"></textarea>
+        <input type="text" placeholder="邮政编码" value=""  id="readd_postcode"/>
         <div class="bc">
             <input type="button" value="保存" class="met2"/>
             <input type="button" value="取消"/>
@@ -179,7 +162,6 @@
     </a>
 </div>
 
-
 <!--footer-->
 <div class="slogan">
     <span><strong>让阅读成为一种生活习惯！</strong></span>
@@ -188,7 +170,7 @@
 <script src="../static/js/city.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
-<script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/address.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/method01.js" type="text/javascript" charset="utf-8"></script>
 
 </body>

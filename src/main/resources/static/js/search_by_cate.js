@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    $("#header").load("header.html");
-
     if (sessionStorage.getItem('id') != "" && sessionStorage.getItem('id') != null) {
         $("#top_tools").html(
             "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
@@ -157,6 +155,11 @@ $(document).ready(function () {
             alert("已经是第一页，点击无效！");
             return;
         }
+        if (current == 2) {
+            $("#up_page").css('cursor', 'not-allowed');
+        } else {
+            $("#up_page").css('cursor', 'pointer');
+        }
         var updatePage = current - 1;
         $('.zuo').text(updatePage);
         queryByParam(updatePage);
@@ -167,6 +170,11 @@ $(document).ready(function () {
         if (current == $(".you").text()) {
             alert("已经是最后一页，点击无效！");
             return;
+        }
+        if (current == parseInt($(".zuo").text()) - 1) {
+            $("#down_page").css('cursor', 'not-allowed');
+        } else {
+            $("#down_page").css('cursor', 'pointer');
         }
         var updatePage = current + 1;
         $('.zuo').text(updatePage);
@@ -385,6 +393,8 @@ function queryByParam(page) {
             $('.pageList').children("span").eq(1).text(result.pages);
             $('.you').text(result.pages);
             if (result.pages == 0 || result.pages == 1) {
+                $("#up_page").css('cursor', 'not-allowed');
+                $("#down_page").css('cursor', 'not-allowed');
                 $(".zuo").text(result.pages);
                 $(".you").text(result.pages);
                 $('#fanye_zuo').css('color', "gray");
@@ -396,18 +406,24 @@ function queryByParam(page) {
                     $('#fanye_zuo').css('color', "orangered");
                     $('#fanye_you').css('color', "gray");
                     $('#down_page').css('background', "lightgray");
+                    $("#down_page").css('cursor', 'not-allowed');
                     $('#up_page').css('background', "#fff");
+                    $("#up_page").css('cursor', 'pointer');
                 } else {
                     if ($(".zuo").text() == 1) {
                         $('#fanye_zuo').css('color', "gray");
                         $('#fanye_you').css('color', "orangered");
                         $('#up_page').css('background', "lightgray");
+                        $("#up_page").css('cursor', 'not-allowed');
                         $('#down_page').css('background', "#fff");
+                        $("#down_page").css('cursor', 'pointer');
                     } else {
                         $('#fanye_zuo').css('color', "orangered");
                         $('#fanye_you').css('color', "orangered");
                         $('#up_page').css('background', "#fff");
+                        $("#up_page").css('cursor', 'pointer');
                         $('#down_page').css('background', "#fff");
+                        $("#down_page").css('cursor', 'pointer');
                     }
                 }
             }
@@ -438,11 +454,13 @@ function queryByParam(page) {
                 if (updatePage == $('.you').text()) {
                     $('#fanye_you').css("color", "gray");
                     $('#down_page').css('background', "lightgray");
+                    $("#down_page").css('cursor', 'not-allowed');
                     $('.zuo').text(updatePage);
                     queryByParam(updatePage);
                 } else {
                     $('#fanye_zuo').css("color", "orangered");
                     $('#up_page').css('background', "#fff");
+                    $("#up_page").css('cursor', 'pointer');
                     $('.zuo').text(updatePage);
                     queryByParam(updatePage);
                 }

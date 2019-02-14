@@ -1,11 +1,10 @@
 $(function () {
 
-//	订单页面  修改地址
+    //订单页面  修改地址
     $(".edit").click(function () {
         $(".mask").show();
         $(".adddz").show();
     });
-
     $(".bc>input").click(function () {
         if ($(this).val() == "保存") {
             $(".mask").hide();
@@ -25,9 +24,7 @@ $(function () {
             $(".chak").hide();
         }
     });
-
-
-//	我的订单tab切换
+    //我的订单tab切换
     $("#wa li").click(function () {
         $(this).addClass("on").siblings().removeClass("on");
         var txt1 = $(this).find("a").text();
@@ -41,9 +38,7 @@ $(function () {
             })
         });
     });
-
-//	评价 tab切换
-
+    //评价 tab切换
     $(".sx div:gt(0)").hide();
     $(".sx div").each(function (i) {
         if ($(this).html() == '') {
@@ -58,9 +53,7 @@ $(function () {
         var index = $(this).index();
         $(".sx > div").eq(index).show().siblings().hide();
     });
-
-
-//		评价打心
+    //评价打心
     $(".sx dl dd").find("a").click(function () {
         if ($(this).text() == "评价") {
             $(".mask").show();
@@ -75,7 +68,7 @@ $(function () {
         }
 
     });
-//	评价打心
+    //评价打心
     $("#xin").each(function (i) {
         $("#xin").eq(i).children("a").click(function () {
             var index = $(this).index();
@@ -95,7 +88,7 @@ $(function () {
     });
 
 
-//	个人信息 编辑
+    //个人信息 编辑
     $("#edit1").click(function () {
         $(".mask").show();
         $(".bj").show();
@@ -105,13 +98,13 @@ $(function () {
         $(".xg").show();
     });
 
-//修改头像
+    //修改头像
     $("#avatar").click(function () {
         $(".mask").show();
         $(".avatar").show();
     });
 
-//	弹框关闭按钮
+    //弹框关闭按钮
     $(".gb").click(function () {
         $(".mask").hide();
         $(".bj").hide();
@@ -122,40 +115,13 @@ $(function () {
         $(".chak").hide();
     });
 
-//	address
-    $("#addxad").click(function () {
-        $(".mask").show();
-        $(".adddz").show();
-    });
-    $(".myAddress").hover(function () {
-        var txt = "";
-        txt = '<p class="addp"><a href="#"  id="readd">修改</a><a href="#" id="deladd">删除</a></p>'
-        $(this).append(txt);
-        $("#readd").click(function () {
-            $(".mask").show();
-            $(".readd").show();
-        });
-        $("#deladd").click(function () {
-            $(this).parents(".myAddress").remove();
-        });
-    }, function () {
-        $(".bc>input").click(function () {
-            if ($(this).val() == "保存") {
-                $(".mask").hide();
-                $(".readd").hide();
-            } else {
-                $(".mask").hide();
-                $(".readd").hide();
-            }
-        });
-        $(".addp").remove();
-    });
 
-//	查看物流
+
+    //查看物流
     $(".vewwl").hover(function () {
         $(this).children(".wuliu").fadeIn(100);
     }, function () {
         $(this).children(".wuliu").fadeOut(100);
     });
 
-})
+});

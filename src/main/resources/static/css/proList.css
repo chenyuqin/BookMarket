@@ -738,6 +738,11 @@ section h3 {
     margin-right: 13px;
 }
 
+.table .th .pro dl dt img {
+    width: 120px;
+    height: 120px;
+}
+
 .table .th .pro dl dd {
     position: relative;
     color: #777;

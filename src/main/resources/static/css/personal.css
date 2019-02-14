@@ -22,6 +22,23 @@
 .Bott .zuo h3 a img {
     display: block;
     margin: 0 auto;
+    width: 92px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.you .tx .fl a img {
+    display: block;
+    margin: 0 auto;
+    width: 92px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .Bott .zuo h3 p {
@@ -175,7 +192,7 @@
     margin-right: 10px;
 }
 
-.Bott .you .add div p:nth-child(1) {
+.Bott .you .add div p:nth-child(2) {
     font-size: 18px;
     margin-bottom: 25px;
     color: #262626;

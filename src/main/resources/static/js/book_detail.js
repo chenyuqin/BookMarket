@@ -177,6 +177,41 @@ $(function () {
             });
         }
     });
+
+    $("#add_num").bind('click',function () {
+        var num = parseInt($("#J_IptAmount").val());
+        $("#sub_num").removeClass('disable-reduce');
+        $("#sub_num").removeAttr('disabled');
+        $("#J_IptAmount").val(num + 1);
+    });
+
+    $("#sub_num").bind('click',function () {
+        var num = parseInt($("#J_IptAmount").val());
+        if (num == 1) {
+            return;
+        }
+        if (num == 2) {
+            $("#sub_num").addClass('disable-reduce');
+        }
+        $("#J_IptAmount").val(num - 1);
+    })
+
+    //加入购物车
+    $(".J_LinkAdd").click(function () {
+        var count = parseInt($("#J_IptAmount").val());
+        var book_id = parseInt(getQueryString('bid'));
+        var token = sessionStorage.getItem('token');
+        $.ajax({
+            url: 'cart/add',
+            type: 'Post',
+            data: {'count': count, 'book_id': book_id, 'token': token},
+            dataType: 'JSON',
+            success: function (result) {
+                alert("加入购物车成功！");
+                $("#J_IptAmount").val('1');
+            }
+        });
+    });
 });
 
 function getQueryString(name) {

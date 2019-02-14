@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +101,7 @@ public class IndexController {
         return discountBookDtos;
     }
 
+    //销量排行榜
     @RequestMapping(value = "getSaleRankBook", method = RequestMethod.GET)
     @ResponseBody
     public Object book_sale_rank(@RequestParam("type") Integer type) {
