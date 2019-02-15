@@ -1,10 +1,4 @@
 $(function () {
-
-    //订单页面  修改地址
-    $(".edit").click(function () {
-        $(".mask").show();
-        $(".adddz").show();
-    });
     $(".bc>input").click(function () {
         if ($(this).val() == "保存") {
             $(".mask").hide();

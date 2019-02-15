@@ -86,4 +86,18 @@
     from cart
     where book_id=#{book_id,jdbcType=INTEGER} and user_id=#{user_id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectCountByUserId" resultType="Integer">
+    select count(1) from cart where user_id=user_id=#{user_id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getCartsByUserID" resultType="com.book.DTO.CartDto">
+    select b.id as book_id, c.id as cart_id, image1, name, author, price, count
+    from cart c join book b on c.user_id=#{user_id,jdbcType=INTEGER} and c.book_id=b.id;
+  </select>
+
+  <select id="getCartByCartID" resultType="com.book.DTO.CartDto">
+    select b.id as book_id, c.id as cart_id, image1, name, author, price, count
+    from cart c join book b on c.id=#{cart_id,jdbcType=INTEGER} and c.book_id=b.id;
+  </select>
 </mapper>

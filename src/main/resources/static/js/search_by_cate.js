@@ -332,6 +332,7 @@ function queryByParam(page) {
                 $.each(result.books, function (index, item) {
                     $(".productListWrap").append(
                         '<div class="productItem">\n' +
+                        '<input type="hidden" value="' + item.id + '"/>' +
                         '                <div class="imgBox">\n' +
                         '                    <a href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
                         '                        <img src="' + item.image1 + '" alt="" style="height:188px;width: 188px;">\n' +
@@ -371,7 +372,7 @@ function queryByParam(page) {
                         '                    <!--</div>-->\n' +
                         '                    <div class="infoRow seller">\n' +
                         '                        <div class="addToCart">\n' +
-                        '                            <a href="#" target="_blank">\n' +
+                        '                            <a>\n' +
                         '                                <span class="iconfont icon-gouwuche1" style="font-size: 17px;"></span> 加入购物车\n' +
                         '                            </a>\n' +
                         '                        </div>\n' +
@@ -384,6 +385,20 @@ function queryByParam(page) {
                         '                </div>\n' +
                         '            </div>'
                     );
+                });
+                $('.addToCart').click(function () {
+                    var book_id = $(this).closest('.productItem').children().eq(0).val();
+                    var token = sessionStorage.getItem('token');
+                    $.ajax({
+                        url: 'cart/add',
+                        type: 'Post',
+                        data: {'count': 1, 'book_id': book_id, 'token': token},
+                        dataType: 'JSON',
+                        success: function (result) {
+                            alert("加入购物车成功，请前往购物车查看！");
+                            document.getElementById("object").data = "header.html";
+                        }
+                    });
                 });
                 checkSlogan();
                 $('.page').css("display", 'block');

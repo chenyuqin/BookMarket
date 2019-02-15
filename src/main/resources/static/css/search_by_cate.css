@@ -582,6 +582,7 @@ body {
 }
 
 .infoCont .addToCart:hover, .infoCont .collect:hover {
+    cursor: pointer;
     background-color: rgb(253,245,245);
 }
 

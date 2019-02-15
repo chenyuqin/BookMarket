@@ -44,59 +44,10 @@
     <div class="orderCon wrapper clearfix">
         <div class="orderL fl">
             <!--------h3---------------->
-            <h3>收件信息<a href="#" class="fr">新增地址</a></h3>
+            <h3>收件信息<a href="#" class="fr" id="addxad">新增地址</a></h3>
             <!--------addres---------------->
             <div class="addres clearfix">
-                <div class="addre fl on">
-                    <div class="tit clearfix">
-                        <p class="fl">张三1
-                            <span class="default">[默认地址]</span>
-                        </p>
-                        <p class="fr">
-                            <a href="#">删除</a>
-                            <span>|</span>
-                            <a href="#" class="edit">编辑</a>
-                        </p>
-                    </div>
-                    <div class="addCon">
-                        <p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
-                        <p>15732570937</p>
-                    </div>
-                </div>
-                <div class="addre fl">
-                    <div class="tit clearfix">
-                        <p class="fl">张三2
-                        </p>
-                        <p class="fr">
-                            <a href="#" class="setDefault">设为默认</a>
-                            <span>|</span>
-                            <a href="#">删除</a>
-                            <span>|</span>
-                            <a href="#" class="edit">编辑</a>
-                        </p>
-                    </div>
-                    <div class="addCon">
-                        <p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
-                        <p>15732570937</p>
-                    </div>
-                </div>
-                <div class="addre fl">
-                    <div class="tit clearfix">
-                        <p class="fl">张三3
-                        </p>
-                        <p class="fr">
-                            <a href="#" class="setDefault">设为默认</a>
-                            <span>|</span>
-                            <a href="#">删除</a>
-                            <span>|</span>
-                            <a href="#" class="edit">编辑</a>
-                        </p>
-                    </div>
-                    <div class="addCon">
-                        <p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
-                        <p>15732570937</p>
-                    </div>
-                </div>
+                <!--地址显示区域-->
             </div>
             <h3>支付方式</h3>
             <!--------way---------------->
@@ -105,51 +56,21 @@
                 <img src="../static/img/balance/way02.jpg">
                 <img src="../static/img/balance/way03.jpg">
             </div>
-            <!--<h3>选择快递</h3>-->
-            <!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;dis&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--<div class="dis clearfix">-->
-                <!--<span class="on">顺风快递</span>-->
-                <!--<span>百世汇通</span>-->
-                <!--<span>圆通快递</span>-->
-                <!--<span>中通快递</span>-->
-            <!--</div>-->
         </div>
         <div class="orderR fr">
             <div class="msg">
                 <h3>订单内容</h3>
                 <!--------ul---------------->
-                <ul class="clearfix">
-                    <li class="fl">
-                        <img src="../static/img/cart/book.png">
-                    </li>
-                    <li class="fl">
-                        <p>创意现代简约干花花瓶摆件</p>
-                        <p>颜色分类：烟灰色玻璃瓶</p>
-                        <p>数量：1</p>
-                    </li>
-                    <li class="fr">￥69.90</li>
-                </ul>
-                <ul class="clearfix">
-                    <li class="fl">
-                        <img src="../static/img/cart/book.png">
-                    </li>
-                    <li class="fl">
-                        <p>创意现代简约干花花瓶摆件</p>
-                        <p>颜色分类：烟灰色玻璃瓶</p>
-                        <p>数量：1</p>
-                    </li>
-                    <li class="fr">￥69.90</li>
-                </ul>
             </div>
             <!--------tips---------------->
             <div class="tips">
-                <p><span class="fl">商品金额：</span><span class="fr">￥139.80</span></p>
+                <p><span class="fl">商品金额：</span><span class="fr totalPrice"></span></p>
                 <p><span class="fl">优惠金额：</span><span class="fr">￥0.00</span></p>
                 <p><span class="fl">运费：</span><span class="fr">免运费</span></p>
             </div>
             <!--------tips count---------------->
             <div class="count tips">
-                <p><span class="fl">合计：</span><span class="fr">￥139.80</span></p>
+                <p><span class="fl">合计：</span><span class="fr totalPrice">￥139.80</span></p>
             </div>
             <!--<input type="button" name="" value="去支付"> -->
             <a href="pay_success.html" class="pay">去支付</a>
@@ -159,28 +80,57 @@
 <!--编辑弹框-->
 <!--遮罩-->
 <div class="mask"></div>
-<div class="adddz editAddre">
-    <form action="#" method="get">
-        <input type="text" placeholder="姓名" class="on"/>
-        <input type="text" placeholder="手机号"/>
+<div class="adddz adddz2">
+    <form>
+        <input type="text" placeholder="姓名" id="adddz_name" required="required"/>
+        <input type="text" placeholder="手机号" id="adddz_phone" required="required"/>
         <div class="city">
-            <select name="">
-                <option value="省份/自治区">省份/自治区</option>
+            <!--省份选择-->
+            <input type="hidden" value="" id="addr-show">
+            <select id="prov" onchange="showCity(this)">
+                <option>请选择省份</option>
             </select>
-            <select>
-                <option value="城市/地区">城市/地区</option>
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)">
+                <option>请选择城市</option>
             </select>
-            <select>
-                <option value="区/县">区/县</option>
-            </select>
-            <select>
-                <option value="配送区域">配送区域</option>
+
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)">
+                <option>请选择县/区</option>
             </select>
         </div>
-        <textarea name="" rows="" cols="" placeholder="详细地址"></textarea>
-        <input type="text" placeholder="邮政编码"/>
+        <textarea name="" rows="" cols="" placeholder="详细地址" id="adddz_addrDetail" required="required"></textarea>
+        <input type="text" placeholder="邮政编码" id="adddz_postcode" required="required"/>
         <div class="bc">
-            <input type="button" value="保存"/>
+            <input type="button" value="保存" class="met1"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
+<div class="readd adddz2">
+    <form>
+        <input type="text" value="" id="readd_name"/>
+        <input type="text" value="" id="readd_phone"/>
+        <div class="city">
+            <input type="hidden" value="" id="c_addr-show">
+            <select id="c_prov" onchange="c_showCity(this)">
+                <option></option>
+            </select>
+            <!--城市选择-->
+            <select id="c_city" onchange="c_showCountry(this)">
+                <option></option>
+            </select>
+
+            <!--县区选择-->
+            <select id="c_country" onchange="c_selecCountry(this)">
+                <option></option>
+            </select>
+        </div>
+        <textarea name="" rows="" cols="" placeholder="详细地址"  id="readd_address"></textarea>
+        <input type="text" placeholder="邮政编码" value=""  id="readd_postcode"/>
+        <div class="bc">
+            <input type="button" value="保存" class="met2"/>
             <input type="button" value="取消"/>
         </div>
     </form>
@@ -216,9 +166,12 @@
 <div class="slogan">
     <span><strong>让阅读成为一种生活习惯！</strong></span>
 </div>
+<script src="../static/js/city.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/pro.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/balance.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/method01.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

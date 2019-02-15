@@ -165,7 +165,7 @@ $(function () {
             $.each(result.sameCateBooks,function(index, item){
                 $("#same_cate_book").append(
                     '<li>\n' +
-                    '                <a target="_blank" href="http://localhost:8088/book_detail.html?bid=' + item.id + '">\n' +
+                    '                <a href="http://localhost:8088/book_detail.html?bid=' + item.id + '">\n' +
                     // '                    <input type="hidden" value="' + item.id + '"/>\n' +
                     '                    <img src="' + item.image1 + '">\n' +
                     '                    <p class="title" title="' + item.name + '">' + item.name + '</p>\n' +
@@ -208,6 +208,7 @@ $(function () {
             dataType: 'JSON',
             success: function (result) {
                 alert("加入购物车成功！");
+                document.getElementById("object").data = "header.html";
                 $("#J_IptAmount").val('1');
             }
         });

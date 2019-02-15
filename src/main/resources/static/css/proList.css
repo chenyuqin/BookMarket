@@ -143,6 +143,15 @@
     cursor: pointer;
 }
 
+.off2 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+
 .proDets .tit {
     height: 50px;
     line-height: 50px;
@@ -703,18 +712,22 @@ section h3 {
 
 .table .th div:nth-child(2), .table .tr:first-child div:nth-child(2) {
     flex: 1;
+    font-size: 13px;
 }
 
 .table .th div:nth-child(3), .table .tr:first-child div:nth-child(3) {
-    flex: 2;
+    flex: 1;
+    font-size: 13px;
 }
 
 .table .th div:nth-child(4), .table .tr:first-child div:nth-child(4) {
     flex: 1;
+    font-size: 13px;
 }
 
 .table .th div:nth-child(5), .table .tr:first-child div:nth-child(5) {
     flex: 1;
+    font-size: 13px;
 }
 
 .table .th a.del {
@@ -777,7 +790,28 @@ section h3 {
 
 .table .th .pro dl dd p:nth-child(1) {
     color: #262626;
+    line-height: 25px;
+    width: 260px;
+    word-break: break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 13px;
+    opacity: 0.9;
+    font-family: 宋体;
+}
+
+.table .th .pro dl dd p:nth-child(2) {
     line-height: 40px;
+    width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    font-family: 新宋体;
 }
 
 .table .th .number p {
@@ -846,6 +880,10 @@ section h3 {
     background: #8e8e8e;
 }
 
+.table .tr p:last-child a:hover {
+    cursor: pointer;
+}
+
 .table .tr p small {
     color: #c10000;
 }
@@ -869,6 +907,23 @@ section h3 {
 }
 
 .pleaseC {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 105;
+    margin-left: -100px;
+    margin-top: -50px;
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    background: #fff;
+    text-align: center;
+    color: #000;
+    display: none;
+    font-size: 16px;
+}
+
+.pleaseD {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -986,11 +1041,18 @@ section h3 {
 
 .order .orderCon .orderL .addre .addCon {
     padding: 0 10px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 .order .orderCon .orderL .addre .addCon p {
-    line-height: 50px;
+    line-height: 30px;
+    word-break: break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .order .orderCon .orderL .way img, .order .orderCon .orderL .dis span {
@@ -1017,11 +1079,15 @@ section h3 {
 
 .order .orderCon .orderR .msg {
     background: #f5f5f5;
-    padding: 0px 12px 20px;
+    padding: 0px 12px 0px;
 }
 
 .order .orderCon .orderR .msg ul {
     border-bottom: 1px solid #dbdbdb;
+}
+
+.order .orderCon .orderR .msg ul:hover {
+    cursor:pointer;
 }
 
 .order .orderCon .orderR .msg ul:last-child {
@@ -1035,6 +1101,20 @@ section h3 {
 .order .orderCon .orderR .msg ul li:nth-child(2) {
     line-height: 28px;
     margin-top: 10px;
+}
+
+.order .orderCon .orderR .msg ul li:nth-child(2) p {
+    width: 200px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    line-height: 50px;
+    font-size: 13px;
+    font-family: 新宋体;
+    height: 40px;
 }
 
 .order .orderCon .orderR .msg ul li:nth-child(3) {

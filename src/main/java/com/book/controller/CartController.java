@@ -1,7 +1,12 @@
 package com.book.controller;
 
+import com.book.DTO.CartDto;
+import com.book.DTO.NewBookSaleDto;
+import com.book.DTO.ReOrderDto;
 import com.book.common.JwtUtils;
+import com.book.entity.Address;
 import com.book.entity.Cart;
+import com.book.service.AddressService;
 import com.book.service.CartService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("cart/")
@@ -20,6 +28,9 @@ public class CartController {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    AddressService addressService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
@@ -37,5 +48,69 @@ public class CartController {
         }
         cartService.insertSelective(cart);
         return true;
+    }
+
+    @RequestMapping(value = "getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getCount(@RequestParam("token") String token) {
+        Claims claims = jwtUtils.parseJWT(token);
+        Integer userID = (Integer)claims.get("userID");
+        Integer integer = cartService.selectCountByUserId(userID);
+        return integer;
+    }
+
+    @RequestMapping(value = "getCarts", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getCartsByUserID(@RequestParam("token") String token) {
+        Claims claims = jwtUtils.parseJWT(token);
+        Integer userID = (Integer)claims.get("userID");
+        List<CartDto> carts = cartService.getCartsByUserID(userID);
+        for (CartDto cartDto : carts) {
+            String image1 = cartDto.getImage1().replace("_x_", "_b_");
+            cartDto.setImage1(image1);
+        }
+        return carts;
+    }
+
+    @RequestMapping(value = "deleteById", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteById(@RequestParam("token") String token, @RequestParam("cart_id") Integer cart_id) {
+        cartService.deleteByPrimaryKey(cart_id);
+        return true;
+    }
+
+    @RequestMapping(value = "updateCount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateCount(@RequestParam("token") String token, @RequestParam("cart_id") Integer cart_id, @RequestParam("num") Integer num) {
+        Cart cart = new Cart();
+        cart.setId(cart_id);
+        cart.setCount(num);
+        cartService.updateByPrimaryKeySelective(cart);
+        return true;
+    }
+
+    @RequestMapping(value = "getOrderInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getCartById(@RequestParam("token") String token, @RequestParam("ids") String ids) {
+        Claims claims = jwtUtils.parseJWT(token);
+        Integer userID = (Integer)claims.get("userID");
+
+        String[] allIds = ids.split(",");
+        List<CartDto> cartDtos = new ArrayList<>();
+        Double totalPrice = 0.0;
+        for (String cart_id : allIds) {
+            CartDto cart = cartService.getCartByCartID(Integer.parseInt(cart_id));
+            cart.setImage1(cart.getImage1().replace("_x_", "_b_"));
+            cartDtos.add(cart);
+            totalPrice += Double.parseDouble(cart.getPrice()) * cart.getCount();
+        }
+        String totalPrices = String.format("%.2f", totalPrice);
+        List<Address> addresses = addressService.selectAllByUserId(userID);
+
+        ReOrderDto reOrderDto = new ReOrderDto();
+        reOrderDto.setCartDtos(cartDtos);
+        reOrderDto.setAddresses(addresses);
+        reOrderDto.setTotalPrice(totalPrices);
+        return reOrderDto;
     }
 }

@@ -56,4 +56,20 @@ $(function () {
             }
         });
     });
+
+    var token = sessionStorage.getItem('token');
+    if (token == '' || token == null || token == undefined) {
+        $('.cart_counts').text(0);
+    } else {
+        $.ajax({
+            url: 'cart/getCount',
+            type: 'Post',
+            data: {'token': token},
+            dataType: 'JSON',
+            success: function (result) {
+                $('.cart_counts').text(result);
+            }
+        });
+    }
+
 });
