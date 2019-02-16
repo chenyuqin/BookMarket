@@ -8,10 +8,10 @@ public class Orderdetail {
 
     private String price;
 
-    private String count;
+    private Integer count;
 
     private Integer book_id;
 
-    private Integer order_id;
+    private String order_id;
 
 }

@@ -18,20 +18,7 @@ $(function () {
             $(".chak").hide();
         }
     });
-    //我的订单tab切换
-    $("#wa li").click(function () {
-        $(this).addClass("on").siblings().removeClass("on");
-        var txt1 = $(this).find("a").text();
-        $(".dkuang").find("p.one").each(function () {
-            var txt2 = $(this).text();
-            if (txt1 == txt2) {
-                $(this).parent(".dkuang").show().siblings(".dkuang").hide();
-            }
-            $("#wa li").eq(0).click(function () {
-                $(".dkuang").show();
-            })
-        });
-    });
+
     //评价 tab切换
     $(".sx div:gt(0)").hide();
     $(".sx div").each(function (i) {
@@ -108,14 +95,4 @@ $(function () {
         $(".pj").hide();
         $(".chak").hide();
     });
-
-
-
-    //查看物流
-    $(".vewwl").hover(function () {
-        $(this).children(".wuliu").fadeIn(100);
-    }, function () {
-        $(this).children(".wuliu").fadeOut(100);
-    });
-
 });

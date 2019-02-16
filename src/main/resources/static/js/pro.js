@@ -126,20 +126,8 @@ $(function () {
         $(this).parent("p").prev().parents('.addre').prependTo(".addres");
         $(this).remove();
     })
-    /************************ok************************/
-    var seconds = $(".ok span").text();
-
-    function time() {
-        seconds--;
-        $(".ok span").text(seconds);
-        if (seconds == 0) {
-            window.location.href = ("order.html")
-        }
-    }
-
-    setInterval(time, 1000);
     /************************forget************************/
-    $(".next").click(function () {
+    $(".next0").click(function () {
         var name = $('#name').val();	//用户名
         var yzm = $('#yzm').val();	//验证码
         $.ajax({

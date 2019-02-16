@@ -27,14 +27,17 @@
         </div>
     </div>
 </div>
-<div class="order mt cart" style="margin-bottom:220px">
+<div class="order mt cart" style="margin-bottom:70px">
     <div class="site">
         <p class="wrapper clearfix">
             <span class="fl decorate">支付成功</span>
             <img class="top" src="../static/img/cart/cartTop03.png">
         </p>
     </div>
-    <p class="ok">支付成功！剩余<span>5</span>秒<a href="order.html">返回订单页</a></p>
+    <p class="ok">支付成功！
+        <a href="order.html">前往订单页>></a>
+        <a href="cart.html">前往购物车>></a>
+    </p>
 </div>
 <div class="like">
     <h4>猜你喜欢</h4>
@@ -45,79 +48,11 @@
         </div>
         <div class="imgCon wrapper bd">
             <div class="likeList clearfix">
-                <div>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like01.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like02.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like03.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like04.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html" class="last">
-                        <dl>
-                            <dt><img src="img/temp/like05.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
+                <div id="first_recommend">
+                   <!--推荐五本图书-->
                 </div>
-                <div>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like01.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like02.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like03.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html">
-                        <dl>
-                            <dt><img src="img/temp/like04.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
-                    <a href="proDetail.html" class="last">
-                        <dl>
-                            <dt><img src="img/temp/like05.jpg"></dt>
-                            <dd>【最家】复古文艺风玻璃花瓶</dd>
-                            <dd>￥193.20</dd>
-                        </dl>
-                    </a>
+                <div id="second_recommend">
+                    <!--推荐五本图书-->
                 </div>
             </div>
         </div>
@@ -130,17 +65,10 @@
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/pro.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/pay_success.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    jQuery(".bottom").slide({
-        titCell: ".hd ul",
-        mainCell: ".bd .likeList",
-        autoPage: true,
-        autoPlay: false,
-        effect: "leftLoop",
-        autoPlay: true,
-        vis: 1
-    });
+
 </script>
 </body>
 </html>

@@ -423,7 +423,7 @@ a.btn {
 .like {
     min-width: 1423px;
     background: #fbfbfb;
-    margin: 30px 0;
+    margin: 30px 0 10px 0;
 }
 
 .like h4 {
@@ -438,7 +438,7 @@ a.btn {
     overflow: hidden;
     /*width:1123px;*/
     width: 81.5%;
-    min-width: 1160px;
+    min-width: 1260px;
     margin: 0 auto;
 }
 
@@ -454,13 +454,14 @@ a.btn {
 
 .likeList div a {
     float: left;
-    margin-right: 20px;
-    width: 216px;
+    margin: 0px 10px;
+    width: 240px;
     /*width:18%;*/
 }
 
 .likeList a img {
-    width: 100%;
+    width: 120px;
+    margin-left: 60px;
 }
 
 .likeList a.last {
@@ -1156,20 +1157,34 @@ section h3 {
     color: #fff;
 }
 
+.order .orderCon .orderR .pay:hover {
+    cursor: pointer;
+}
+
 /****************ok********************/
 p.ok {
     text-align: center;
     color: #c10000;
-    font-size: 16px;
+    font-size: 18px;
     margin: 50px 0;
 }
 
-p.ok a {
+p.ok a:first-child {
     display: block;
-    margin: 30px 0;
-    font-size: 12px;
+    margin: 30px 0px 10px 0;
+    font-size: 14px;
     color: #777;
     text-decoration: underline;
+    padding-right: 14px;
+}
+
+p.ok a:last-child {
+    display: block;
+    margin: 0px 0px 10px 0;
+    font-size: 14px;
+    color: #777;
+    text-decoration: underline;
+    padding-right: 14px;
 }
 
 /****************search********************/
@@ -1205,4 +1220,28 @@ ul.sch li h4, ul.sch li a {
 
 ul.sch li a {
     color: #666;
+}
+
+.book_name {
+    word-break: break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 13px;
+    font-family: 宋体;
+}
+
+.author_name {
+    word-break: break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    font-size: 16px;
+    font-family: cursive;
 }

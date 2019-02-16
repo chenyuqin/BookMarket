@@ -260,11 +260,11 @@ body {
     padding: 30px;
     display: none;
 }
-.adddz2 {
-    margin-top: -400px;
-    margin-left: -150px;
-    z-index: 30;
-}
+/*.adddz2 {*/
+    /*margin-top: -400px;*/
+    /*margin-left: -150px;*/
+    /*z-index: 30;*/
+/*}*/
 
 .adddz form input, .readd form input {
     border: 1px solid #e0e0e0;

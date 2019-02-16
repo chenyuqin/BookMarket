@@ -43,7 +43,6 @@ public class ForgetPwdController {
 
         String email = forgetPwdService.findEmailByName(name);
         String returnEmail = email.split("@")[0].replace((email.split("@")[0].substring((email.split("@")[0].length() / 2 - 2), (email.split("@")[0].length() / 2 + 2))), "****") + "@" + email.split("@")[1];
-        System.out.println(returnEmail);
         try {
             //邮件的内容
             StringBuffer sb = new StringBuffer("<h1 style=\"font-weight: 0.9\">网上图书超市</h1>请点击以下链接前往修改密码 :<br><span style=\"color:red;\">注意：若此操作不是您所触发的，请不要点击任何链接！</span><br><br>");

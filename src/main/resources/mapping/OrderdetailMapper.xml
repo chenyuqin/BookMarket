@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.mapper.OrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.book.entity.Orderdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="book_id" property="book_id" jdbcType="INTEGER" />
+    <result column="order_id" property="order_id" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, price, count, book_id, order_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.book.entity.Orderdetail" >
+    insert into orderdetail (id, price, count, 
+      book_id, order_id)
+    values (#{id,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{book_id,jdbcType=INTEGER}, #{order_id,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.book.entity.Orderdetail" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="book_id != null" >
+        book_id,
+      </if>
+      <if test="order_id != null" >
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="book_id != null" >
+        #{book_id,jdbcType=INTEGER},
+      </if>
+      <if test="order_id != null" >
+        #{order_id,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.book.entity.Orderdetail" >
+    update orderdetail
+    <set >
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="book_id != null" >
+        book_id = #{book_id,jdbcType=INTEGER},
+      </if>
+      <if test="order_id != null" >
+        order_id = #{order_id,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.book.entity.Orderdetail" >
+    update orderdetail
+    set price = #{price,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      book_id = #{book_id,jdbcType=INTEGER},
+      order_id = #{order_id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

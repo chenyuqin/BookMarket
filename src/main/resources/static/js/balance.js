@@ -114,14 +114,16 @@ $(function () {
             });
 
             $('.addre').click(function () {
-                $('.addres .on').removeClass('.addres on');
-                $(this).addClass('.addres on');
+                $('.addres .on').removeClass('on');
+                $(this).addClass('on');
             });
 
             $.each(result.cartDtos, function (index, item) {
                 $('.msg').append(
                     '<ul class="clearfix">' +
                     '   <li class="fl">\n' +
+                    '                        <input id="msg_cart_id" type="hidden" value="' + item.cart_id + '" />' +
+                    '<input id="msg_book_id" type="hidden" value="' + item.book_id + '" />' +
                     '                        <img style="width: 120px;" src="' + item.image1 + '">\n' +
                     '                    </li>\n' +
                     '                    <li class="fl">\n' +
@@ -132,6 +134,10 @@ $(function () {
                     '                    <li class="fr">￥' + (parseInt(item.price) * parseInt(item.count)) + '</li>' +
                     '</ul>'
                 );
+            });
+
+            $('.msg ul').click(function () {
+                window.open("http://localhost:8088/book_detail.html?bid=" + $(this).find('#msg_book_id').val());
             });
 
             $(".totalPrice").text("￥" + result.totalPrice);
@@ -179,6 +185,23 @@ $(function () {
         $(".adddz").hide();
     });
 
+    $('.pay').click(function () {
+        var address_id = $('.addres .on').find('input').val();
+        if (address_id == undefined) {
+            alert("请选择您的收件信息！");
+            return;
+        }
+        var pay_way = $('.way img').index($('.way .on'));
+        $.ajax({
+            url: 'order/insertOrder',
+            type: 'Post',
+            data: {'token': token, 'address_id': parseInt(address_id), 'pay_way': parseInt(pay_way), 'ids': ids},
+            dataType: 'JSON',
+            success: function (result) {
+                window.location.href="http://localhost:8088/pay_success.html"
+            }
+        });
+    });
 });
 
 function getQueryString(name) {

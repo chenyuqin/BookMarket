@@ -1,9 +1,6 @@
 package com.book.mapper;
 
-import com.book.DTO.NewBookSaleDto;
-import com.book.DTO.RankBookDto;
-import com.book.DTO.SameCateBookDto;
-import com.book.DTO.SearchByCateBookDto;
+import com.book.DTO.*;
 import com.book.VO.RankVO;
 import com.book.VO.SearchByCateVO;
 import com.book.VO.SearchVO;
@@ -60,4 +57,5 @@ public interface BookMapper {
 
     //排行榜
     List<RankBookDto> getRankBooks(RankVO rankVO);
+
 }

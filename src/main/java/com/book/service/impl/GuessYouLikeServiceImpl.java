@@ -21,5 +21,4 @@ public class GuessYouLikeServiceImpl implements GuessYouLikeService {
     public Integer getCount() {
         return bookMapper.getCount();
     }
-
 }
