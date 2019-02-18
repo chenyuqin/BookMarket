@@ -3,13 +3,11 @@ package com.book.controller;
 import com.book.DTO.*;
 import com.book.common.GetOrderIdByUUID;
 import com.book.common.JwtUtils;
+import com.book.entity.Address;
 import com.book.entity.Book;
 import com.book.entity.Order;
 import com.book.entity.Orderdetail;
-import com.book.service.CartService;
-import com.book.service.GuessYouLikeService;
-import com.book.service.OrderService;
-import com.book.service.OrderdetailService;
+import com.book.service.*;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +39,9 @@ public class OrderController {
     @Autowired
     GuessYouLikeService guessYouLikeService;
 
+    @Autowired
+    AddressService addressService;
+
     @RequestMapping(value = "insertOrder", method = RequestMethod.POST)
     @ResponseBody
     public Object insertOrder(@RequestParam("token") String token, @RequestParam("ids") String ids, @RequestParam("address_id") Integer address_id, @RequestParam("pay_way") Integer pay_way) {
@@ -60,13 +61,13 @@ public class OrderController {
             orderdetails.add(orderdetail);
             cartService.deleteByPrimaryKey(Integer.parseInt(cart_id));
         }
-
+        String totalPrices = String.format("%.2f", totalPrice);
         Order order = new Order();
         order.setOrder_id(GetOrderIdByUUID.getOrderIdByUUId());
         order.setAddress_id(address_id);
         order.setPay_way(pay_way);
-        order.setStatus(1);
-        order.setTotalPrice(totalPrice + "");
+        order.setStatus(2);
+        order.setTotalPrice(totalPrices);
         order.setUser_id(userID);
         orderService.insertSelective(order);
 
@@ -106,13 +107,41 @@ public class OrderController {
         List<EveryOrderDto> orderByUserId = orderService.getOrderByUserId(userID, status);
         for (EveryOrderDto everyOrderDto : orderByUserId) {
             String order_id = everyOrderDto.getOrder_id();
+            Integer address_id = everyOrderDto.getAddress_id();
             List<OrderBookDto> orderBookByOrderId = orderService.getOrderBookByOrderId(order_id);
+            Address address = addressService.selectByPrimaryKey(address_id);
             for (OrderBookDto orderBookDto : orderBookByOrderId) {
                 String image1 = orderBookDto.getImage1().replace("_x_", "_b_");
                 orderBookDto.setImage1(image1);
             }
             everyOrderDto.setOrderBookDtos(orderBookByOrderId);
+            everyOrderDto.setAddress(address);
+
         }
         return orderByUserId;
+    }
+
+    //点击立即支付按钮后，修改订单的状态
+    @RequestMapping(value = "updateStatusTo2", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateStatusTo2(@RequestParam("token") String token, @RequestParam("order_id") String order_id) {
+        Order order = new Order();
+        order.setOrder_id(order_id);
+        order.setStatus(2);
+        orderService.updateByOrderIdSelective(order);
+        return true;
+    }
+
+    //点击确认收货按钮后，修改订单的状态，并修改订单详情中is_remark的值
+    @RequestMapping(value = "updateStatusTo4", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateStatusTo4(@RequestParam("token") String token, @RequestParam("order_id") String order_id) {
+        Order order = new Order();
+        order.setOrder_id(order_id);
+        order.setStatus(4);
+        orderService.updateByOrderIdSelective(order);
+
+        orderdetailService.updateIsRemark(0, order_id);
+        return true;
     }
 }

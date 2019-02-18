@@ -42,4 +42,13 @@ public class OrderdetailServiceImpl implements OrderdetailService {
         return orderdetailMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public void updateIsRemark(Integer is_remark, String order_id) {
+        orderdetailMapper.updateIsRemark(is_remark, order_id);
+    }
+
+    @Override
+    public void updateIsRemarkByUserId(Integer is_remark, Integer user_id, Integer book_id) {
+        orderdetailMapper.updateIsRemarkByUserId(is_remark, user_id, book_id);
+    }
 }

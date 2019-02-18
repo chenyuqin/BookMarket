@@ -1052,8 +1052,13 @@ section h3 {
     text-overflow:ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     overflow: hidden;
+}
+
+.order .orderCon .orderL .addre .addCon p:nth-child(2) {
+    -webkit-line-clamp: 2;
+    height: 60px;
 }
 
 .order .orderCon .orderL .way img, .order .orderCon .orderL .dis span {

@@ -56,4 +56,14 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.getOrderBookByOrderId(order_id);
     }
 
+    @Override
+    public int updateByOrderIdSelective(Order record) {
+        return orderMapper.updateByOrderIdSelective(record);
+    }
+
+    @Override
+    public List<Integer> getNotApprBooksByUserID(Integer user_id) {
+        return orderMapper.getNotApprBooksByUserID(user_id);
+    }
+
 }

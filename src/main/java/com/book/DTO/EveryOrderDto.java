@@ -1,5 +1,6 @@
 package com.book.DTO;
 
+import com.book.entity.Address;
 import lombok.Data;
 
 import java.util.List;
@@ -11,7 +12,9 @@ public class EveryOrderDto {
 
     private String createTime;
 
-    private String name;
+    private Integer address_id;
+
+    private Address address;
 
     private String order_id;
 

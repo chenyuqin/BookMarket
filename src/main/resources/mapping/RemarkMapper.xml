@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.mapper.RemarkMapper" >
+  <resultMap id="BaseResultMap" type="com.book.entity.Remark" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="star" property="star" jdbcType="VARCHAR" />
+    <result column="remarkTime" property="remarkTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="user_id" jdbcType="INTEGER" />
+    <result column="book_id" property="book_id" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.book.entity.Remark" extends="BaseResultMap" >
+    <result column="remarkText" property="remarkText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, star, remarkTime, user_id, book_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    remarkText
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from remark
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from remark
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.book.entity.Remark" >
+    insert into remark (id, star, remarkTime, 
+      user_id, book_id, remarkText
+      )
+    values (#{id,jdbcType=INTEGER}, #{star,jdbcType=VARCHAR}, #{remarkTime,jdbcType=TIMESTAMP}, 
+      #{user_id,jdbcType=INTEGER}, #{book_id,jdbcType=INTEGER}, #{remarkText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.book.entity.Remark" >
+    insert into remark
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="remarkTime != null" >
+        remarkTime,
+      </if>
+      <if test="user_id != null" >
+        user_id,
+      </if>
+      <if test="book_id != null" >
+        book_id,
+      </if>
+      <if test="remarkText != null" >
+        remarkText,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTime != null" >
+        #{remarkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="book_id != null" >
+        #{book_id,jdbcType=INTEGER},
+      </if>
+      <if test="remarkText != null" >
+        #{remarkText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.book.entity.Remark" >
+    update remark
+    <set >
+      <if test="star != null" >
+        star = #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTime != null" >
+        remarkTime = #{remarkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="user_id != null" >
+        user_id = #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="book_id != null" >
+        book_id = #{book_id,jdbcType=INTEGER},
+      </if>
+      <if test="remarkText != null" >
+        remarkText = #{remarkText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.book.entity.Remark" >
+    update remark
+    set star = #{star,jdbcType=VARCHAR},
+      remarkTime = #{remarkTime,jdbcType=TIMESTAMP},
+      user_id = #{user_id,jdbcType=INTEGER},
+      book_id = #{book_id,jdbcType=INTEGER},
+      remarkText = #{remarkText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.book.entity.Remark" >
+    update remark
+    set star = #{star,jdbcType=VARCHAR},
+      remarkTime = #{remarkTime,jdbcType=TIMESTAMP},
+      user_id = #{user_id,jdbcType=INTEGER},
+      book_id = #{book_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getByUserIdAndBookId" resultType="com.book.entity.Remark">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from remark
+    where user_id=#{user_id,jdbcType=INTEGER} and book_id=#{book_id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getBookIdByUserId" resultType="Integer">
+    select book_id from remark where user_id=#{user_id,jdbcType=INTEGER};
+  </select>
+</mapper>

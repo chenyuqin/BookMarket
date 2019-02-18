@@ -73,6 +73,7 @@
 .Bott .you{
 	background: #fff;
 	width: 840px;
+	min-height: 458px;
 	padding: 50px;
 	margin: 20px 0;
 	border: 1px solid #e4e4e4;
@@ -159,10 +160,10 @@ body{
 }
 /*编辑个人信息*/
 .bj,.xg{
-	width: 410px;
+	width: 350px;
 	position: absolute;
 	top: 40%;
-	left: 50%;
+	left: 54%;
 	margin-top: -180px;
 	margin-left: -220px;
 	z-index: 30;
@@ -184,18 +185,25 @@ body{
 	border-bottom: 1px solid #e6e6e6;
 }
 .bj form,.xg form{
-	padding: 40px 50px;
+	padding: 10px 20px;
 }
 .bj form p,.xg form p{
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	color: #666666;
 }
+.bj form p label{
+	color: black;
+	font-size: 13px;
+	font-family: 宋体;
+}
 .bj form p input,.xg form p input{
-	border:1px solid #e8e8e8; 
-	width: 250px;
-	height: 40px;
-	line-height: 40px;
+	border:1px solid #e8e8e8;
+	width: 300px;
+	height: 35px;
+	line-height: 35px;
 	text-indent: 5px;
+	margin-top: 5px;
+	font-family: 宋体;
 }
 .bj form p:nth-child(3) input{
 	width: 20px;
@@ -223,16 +231,17 @@ body{
 .bj form div input:nth-child(1),.xg form div input:nth-child(1){
 	background: #A10000;
 	color: #FFFFFF;
+	cursor: pointer;
 }
 
 
 
 /*上传头像*/
 .avatar{
-	width: 410px;
+	width: 250px;
 	position: absolute;
-	top: 40%;
-	left: 50%;
+	top: 55%;
+	left: 58%;
 	margin-top: -180px;
 	margin-left: -220px;
 	z-index: 30;
@@ -242,15 +251,18 @@ body{
 	display: none;
 }
 .avatar form{
-	padding: 40px 50px;
+	padding: 10px 0px;
 }
 .avatar form h4{
-	width: 65%;
+	width: 80%;
 	margin: 0px auto 10px;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: serif;
 }
 .avatar form p{
-	width: 65%;
-	margin: 5px auto 30px;
+	width: 80%;
+	margin: 5px auto 15px;
 }
 .avatar form  input:nth-child(2){
 	display:block;
@@ -323,4 +335,8 @@ form.remima input[type=submit]{
 	margin:20px 0 0  30%;
 	background: #A10000;
 	color: #fff;
+}
+
+form.remima input[type=submit]:hover {
+	cursor: pointer;
 }

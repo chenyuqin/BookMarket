@@ -26,14 +26,18 @@ $(function () {
                     $.each(result, function (index, item) {
                         if (item.status == 1) {
                             inner_html += '<div class="dkuang deng">\n' +
-                                '                    <p class="one">未支付</p>\n' +
+                                '<img class="one" src="../static/img/order/weizhifu.png">' +
                                 '                    <div class="word clearfix">\n' +
-                                '                        <ul class="fl clearfix">\n' +
+                                '<div class="fl info_order">' +
+                                '                        <ul class="clearfix">\n' +
                                 '                            <li>' + item.createTime + '</li>\n' +
-                                '                            <li>' + item.name + '</li>\n' +
+                                '                            <li>' + item.address.name + '</li>\n' +
+                                '                            <li>' + item.address.phone + '</li>\n' +
                                 '                            <li>订单号：' + item.order_id + '</li>\n' +
                                 '                            <li>在线支付</li>\n' +
                                 '                        </ul>\n' +
+                                '<p title="' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '" class="word_address">' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '</p>' +
+                                '</div>' +
                                 '                        <p class="fr">订单金额：<span>' + item.totalPrice + '</span>元</p>\n' +
                                 '                    </div>\n' +
                                 '                    <div class="shohou clearfix">\n' +
@@ -53,8 +57,7 @@ $(function () {
                             inner_html += '     </div>\n' +
                                 '                        <div class="fr" style="padding: 30px;">\n' +
                                 '                            <p class="fr">\n' +
-                                '                                <a href="javascript:void(0);">立即支付</a>\n' +
-                                '                                <a href="' + "order_detail.html?oid=" + item.order_id + '">订单详情</a>\n' +
+                                '                                <a class="pay_btn" href="javascript:void(0);">立即支付</a>\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
@@ -63,14 +66,18 @@ $(function () {
                             inner_html = '';
                         } else if (item.status == 2) {
                             inner_html += '<div class="dkuang">\n' +
-                                '                    <p class="one">待发货</p>\n' +
+                                '<img class="one" src="../static/img/order/daifahuo.png">' +
                                 '                    <div class="word clearfix">\n' +
-                                '                        <ul class="fl clearfix">\n' +
+                                '<div class="fl">' +
+                                '                        <ul class="clearfix">\n' +
                                 '                            <li>' + item.createTime + '</li>\n' +
-                                '                            <li>' + item.name + '</li>\n' +
+                                '                            <li>' + item.address.name + '</li>\n' +
+                                '                            <li>' + item.address.phone + '</li>\n' +
                                 '                            <li>订单号：' + item.order_id + '</li>\n' +
                                 '                            <li>在线支付</li>\n' +
                                 '                        </ul>\n' +
+                                '<p title="' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '" class="word_address">' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '</p>' +
+                                '</div>' +
                                 '                        <p class="fr">订单金额：<span>' + item.totalPrice + '</span>元</p>\n' +
                                 '                    </div>\n' +
                                 '                    <div class="shohou clearfix">\n' +
@@ -91,7 +98,6 @@ $(function () {
                                 '                        <div class="fr" style="padding: 30px;">\n' +
                                 '                            <p class="fr">\n' +
                                 '                                <a style="cursor: not-allowed" href="javascript:void(0);">等待发货</a>\n' +
-                                '                                <a href="' + "order_detail.html?oid=" + item.order_id + '">订单详情</a>\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
@@ -100,7 +106,7 @@ $(function () {
                             inner_html = '';
                         } else if (item.status == 3) {
                             inner_html += '<div class="dkuang deng">\n' +
-                                '                    <p class="one fl">待收货</p>\n' +
+                                '<img class="one fl" src="../static/img/order/daishouhuo.png">' +
                                 '<div class="clearfix">\n' +
                                 '                        <div class="fl vewwl">\n' +
                                 '                            <a href="logistics.html" class="ckwl">查看物流</a>\n' +
@@ -125,12 +131,16 @@ $(function () {
                                 '                        </div>\n' +
                                 '                    </div>' +
                                 '                    <div class="word clearfix">\n' +
-                                '                        <ul class="fl clearfix">\n' +
+                                '<div class="fl">' +
+                                '                        <ul class="clearfix">\n' +
                                 '                            <li>' + item.createTime + '</li>\n' +
-                                '                            <li>' + item.name + '</li>\n' +
+                                '                            <li>' + item.address.name + '</li>\n' +
+                                '                            <li>' + item.address.phone + '</li>\n' +
                                 '                            <li>订单号：' + item.order_id + '</li>\n' +
                                 '                            <li>在线支付</li>\n' +
                                 '                        </ul>\n' +
+                                '<p title="' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '" class="word_address">' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '</p>' +
+                                '</div>' +
                                 '                        <p class="fr">订单金额：<span>' + item.totalPrice + '</span>元</p>\n' +
                                 '                    </div>\n' +
                                 '                    <div class="shohou clearfix">\n' +
@@ -149,8 +159,7 @@ $(function () {
                             inner_html += '     </div>\n' +
                                 '                        <div class="fr" style="padding: 30px;">\n' +
                                 '                            <p class="fr">\n' +
-                                '                                <a href="javascript:void(0);">确认收货</a>\n' +
-                                '                                <a href="' + "order_detail.html?oid=" + item.order_id + '">订单详情</a>\n' +
+                                '                                <a class="rec_btn" href="javascript:void(0);">确认收货</a>\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
@@ -158,52 +167,19 @@ $(function () {
                             $("#order_show").append(inner_html);
                             inner_html = '';
                         } else if (item.status == 4) {
-                            inner_html += '<div class="dkuang deng">\n' +
-                                '                    <p class="one">未评价</p>\n' +
-                                '                    <div class="word clearfix">\n' +
-                                '                        <ul class="fl clearfix">\n' +
-                                '                            <li>' + item.createTime + '</li>\n' +
-                                '                            <li>' + item.name + '</li>\n' +
-                                '                            <li>订单号：' + item.order_id + '</li>\n' +
-                                '                            <li>在线支付</li>\n' +
-                                '                        </ul>\n' +
-                                '                        <p class="fr">订单金额：<span>' + item.totalPrice + '</span>元</p>\n' +
-                                '                    </div>\n' +
-                                '                    <div class="shohou clearfix">\n' +
-                                '                        <div class="fl">\n';
-
-                            $.each(item.orderBookDtos, function (index, book) {
-                                inner_html += '  <div class="shohou_div">\n' +
-                                    '<a href="' + "http://localhost:8088/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
-                                    '       src="' + book.image1 + '"/></a>\n' +
-                                    '      <p class="fl shohou_div_p">\n' +
-                                    '          <a title="' + book.name + '" href="' + "http://localhost:8088/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
-                                    '            <a title="' + book.author + '" href="javascript:void(0);">' + book.author + '</a>\n' +
-                                    '   <a style="font-size: 13px">¥' + book.price + '×' + book.count + '</a>\n' +
-                                    '            </p>\n' +
-                                    '     </div>\n';
-                            });
-                            inner_html += '     </div>\n' +
-                                '                        <div class="fr" style="padding: 30px;">\n' +
-                                '                            <p class="fr">\n' +
-                                '                                <a href="javascript:void(0);">前往评价</a>\n' +
-                                '                                <a href="' + "order_detail.html?oid=" + item.order_id + '">订单详情</a>\n' +
-                                '                            </p>\n' +
-                                '                        </div>\n' +
-                                '                    </div>\n' +
-                                '                </div>'
-                            $("#order_show").append(inner_html);
-                            inner_html = '';
-                        } else if (item.status == 5) {
                             inner_html += '<div class="dkuang">\n' +
-                                '                    <p class="one">已完成</p>\n' +
+                                '<img class="one" src="../static/img/order/yiwancheng.png">' +
                                 '                    <div class="word clearfix">\n' +
-                                '                        <ul class="fl clearfix">\n' +
+                                '<div class="fl">' +
+                                '                        <ul class="clearfix">\n' +
                                 '                            <li>' + item.createTime + '</li>\n' +
-                                '                            <li>' + item.name + '</li>\n' +
+                                '                            <li>' + item.address.name + '</li>\n' +
+                                '                            <li>' + item.address.phone + '</li>\n' +
                                 '                            <li>订单号：' + item.order_id + '</li>\n' +
                                 '                            <li>在线支付</li>\n' +
                                 '                        </ul>\n' +
+                                '<p title="' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '" class="word_address">' + item.address.province + "&nbsp;" + item.address.city + "&nbsp;" + item.address.country + "&nbsp;" + item.address.address + '</p>' +
+                                '</div>' +
                                 '                        <p class="fr">订单金额：<span>' + item.totalPrice + '</span>元</p>\n' +
                                 '                    </div>\n' +
                                 '                    <div class="shohou clearfix">\n' +
@@ -224,7 +200,6 @@ $(function () {
                                 '                        <div class="fr" style="padding: 30px;">\n' +
                                 '                            <p class="fr">\n' +
                                 '                                <a style="cursor: not-allowed" href="javascript:void(0);">订单完成</a>\n' +
-                                '                                <a href="' + "order_detail.html?oid=" + item.order_id + '">订单详情</a>\n' +
                                 '                            </p>\n' +
                                 '                        </div>\n' +
                                 '                    </div>\n' +
@@ -240,6 +215,33 @@ $(function () {
                         $(this).children(".wuliu").fadeOut(100);
                     });
                 }
+
+                $(".pay_btn").click(function () {
+                    var order_id = $(this).parents('.shohou').siblings('.word').find('ul').children('li').eq(3).text().split('订单号：')[1];
+                    $.ajax({
+                        url: 'order/updateStatusTo2',
+                        type: 'Post',
+                        data: {'token': token, 'order_id': order_id},
+                        dataType: 'JSON',
+                        success: function (result) {
+                            window.location.href = "http://localhost:8088/pay_success.html";
+                        }
+                    });
+                });
+
+                $(".rec_btn").click(function () {
+                    var order_id = $(this).parents('.shohou').siblings('.word').find('ul').children('li').eq(3).text().split('订单号：')[1];
+                    $.ajax({
+                        url: 'order/updateStatusTo4',
+                        type: 'Post',
+                        data: {'token': token, 'order_id': order_id},
+                        dataType: 'JSON',
+                        success: function (result) {
+                            alert("已完成交易，期待您的评价！");
+                            window.location.reload();
+                        }
+                    });
+                });
             }
         });
     });

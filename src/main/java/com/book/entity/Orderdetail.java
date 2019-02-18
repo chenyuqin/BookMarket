@@ -14,4 +14,5 @@ public class Orderdetail {
 
     private String order_id;
 
+    private Integer is_remark;
 }

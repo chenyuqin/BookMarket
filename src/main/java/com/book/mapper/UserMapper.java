@@ -9,6 +9,18 @@ import java.util.Map;
 @Repository
 public interface UserMapper {
 
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKeyWithBLOBs(User record);
+
+    int updateByPrimaryKey(User record);
+
     //注册、激活
     Integer checkUsername(String username);
     Integer checkEmail(String email);
@@ -26,4 +38,6 @@ public interface UserMapper {
 
     //个人信息
     User selectByPrimaryKey(Integer id);
+
+    User selectByPrimaryKeyAndPwd(@Param("id") Integer id, @Param("password") String password);
 }

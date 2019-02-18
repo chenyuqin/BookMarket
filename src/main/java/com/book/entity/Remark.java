@@ -1,5 +1,6 @@
 package com.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ public class Remark {
 
     private String star;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date remarkTime;
 
     private Integer user_id;

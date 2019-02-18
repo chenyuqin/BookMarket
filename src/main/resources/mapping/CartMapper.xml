@@ -88,7 +88,7 @@
   </select>
 
   <select id="selectCountByUserId" resultType="Integer">
-    select count(1) from cart where user_id=user_id=#{user_id,jdbcType=INTEGER}
+    select count(1) from cart where user_id=#{user_id,jdbcType=INTEGER}
   </select>
 
   <select id="getCartsByUserID" resultType="com.book.DTO.CartDto">

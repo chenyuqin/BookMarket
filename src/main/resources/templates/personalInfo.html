@@ -80,33 +80,33 @@
                     </h3>
                     <div>
                         <span class="title">昵称：</span>
-                        <span>六六六</span>
+                        <span id="name"></span>
                     </div>
                     <div>
                         <span class="title">生日：</span>
-                        <span>1995-06-06</span>
+                        <span id="birthday"></span>
                     </div>
                     <div>
                         <span class="title">性别：</span>
-                        <span>女</span>
+                        <span id="sex"></span>
                     </div>
                     <div>
                         <span class="title">兴趣爱好：</span>
-                        <span>女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女</span>
+                        <span id="hobby"></span>
                     </div>
                     <div>
                         <span class="title">自我介绍：</span>
-                        <span>女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女</span>
+                        <span id="introdution"></span>
                     </div>
-                    <h3>高级设置</h3>
-                    <!--<div><span class="fl">银行卡</span><a href="#" class="fr">管理</a></div>-->
-                    <div>
-                        <span class="fl">
-                            <span class="title">居住地：</span>
-                            <span>中国</span>
-                        </span>
-                        <a href="#" class="fr" id="edit2">修改</a>
-                    </div>
+                    <!--<h3>高级设置</h3>-->
+                    <!--&lt;!&ndash;<div><span class="fl">银行卡</span><a href="#" class="fr">管理</a></div>&ndash;&gt;-->
+                    <!--<div>-->
+                        <!--<span class="fl">-->
+                            <!--<span class="title">居住地：</span>-->
+                            <!--<span>中国</span>-->
+                        <!--</span>-->
+                        <!--<a href="#" class="fr" id="edit2">修改</a>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -116,34 +116,61 @@
 <div class="mask"></div>
 <!--编辑弹框-->
 <div class="bj">
-    <div class="clearfix"><a href="#" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a></div>
+    <div class="clearfix">
+        <a href="#" class="fr gb">
+            <img src="../static/img/appraise/icon4.png"/>
+        </a>
+    </div>
     <h3>编辑基础资料</h3>
-    <form action="#" method="get">
-        <p><label>姓名：</label><input type="text" value="六六六"/></p>
-        <p><label>生日：</label><input type="text"/></p>
+    <form>
         <p>
-            <label>性别：</label>
-            <span><input type="radio" name="sex"/>男</span>
-            <span><input type="radio" name="sex"/>女</span>
+            <label>姓名：</label><br/>
+            <input class="bj_name" type="text" value=""/>
+        </p>
+
+        <p>
+            <label>生日：</label><br/>
+            <input class="bj_birthday" type="text"/>
+        </p>
+        <p>
+            <label>性别：</label><br/>
+            <span><input type="radio" name="sex" value="0"/>男</span>
+            <span><input type="radio" name="sex" value="1"/>女</span>
+        </p>
+        <p>
+            <label>兴趣爱好：</label><br/>
+            <input class="bj_hobby" type="text" placeholder="请输入您的兴趣爱好" />
+        </p>
+        <p>
+            <label>自我介绍：</label><br/>
+            <textarea name="" rows="" cols="" class="introdution" placeholder="请输入您的自我介绍" style="
+    width: 300px;
+    font-size: 13px;
+    font-family: 宋体;
+    text-indent: 5px;
+    margin-top: 10px;
+    line-height: 25px;
+    height: 100px;
+"></textarea>
         </p>
         <div class="bc">
-            <input type="button" value="保存"/>
+            <input class="bj_save" type="button" value="保存"/>
             <input type="button" value="取消"/>
         </div>
     </form>
 </div>
 <!--高级设置修改-->
-<div class="xg">
-    <div class="clearfix"><a href="#" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a></div>
-    <h3>切换账号地区</h3>
-    <form action="#" method="get">
-        <p><label>姓名：</label><input type="text" value="六六六"/></p>
-        <div class="bc">
-            <input type="button" value="保存"/>
-            <input type="button" value="取消"/>
-        </div>
-    </form>
-</div>
+<!--<div class="xg">-->
+    <!--<div class="clearfix"><a href="#" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a></div>-->
+    <!--<h3>切换账号地区</h3>-->
+    <!--<form action="#" method="get">-->
+        <!--<p><label>姓名：</label><input type="text" value="六六六"/></p>-->
+        <!--<div class="bc">-->
+            <!--<input type="button" value="保存"/>-->
+            <!--<input type="button" value="取消"/>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
 <!--修改头像-->
 <div class="avatar">
     <div class="clearfix"><a href="#" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a></div>
@@ -187,5 +214,6 @@
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/personalInfo.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -114,6 +114,32 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByOrderIdSelective" parameterType="com.book.entity.Order" >
+    update `order`
+    <set >
+      <if test="totalPrice != null" >
+        totalPrice = #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="user_id != null" >
+        user_id = #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="address_id != null" >
+        address_id = #{address_id,jdbcType=INTEGER},
+      </if>
+      <if test="pay_way != null" >
+        pay_way = #{pay_way,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.book.entity.Order" >
     update `order`
     set order_id = #{order_id,jdbcType=VARCHAR},
@@ -127,14 +153,11 @@
   </update>
 
   <select id="getOrderByUserId" resultType="com.book.DTO.EveryOrderDto">
-    select status,createTime,`name`,order_id,pay_way,totalPrice
-    from `order` o, address addr
+    select status,createTime,address_id,order_id,pay_way,totalPrice
+    from `order` o
     <where>
       <if test="1 == 1">
         and o.user_id=#{userId,jdbcType=INTEGER}
-      </if>
-      <if test="1 == 1">
-        and o.address_id=addr.id
       </if>
       <if test="status != null">
         and o.status=#{status,jdbcType=INTEGER}
@@ -154,5 +177,11 @@
         and o.order_id=#{order_id}
       </if>
     </where>
+  </select>
+
+  <select id="getNotApprBooksByUserID" resultType="Integer">
+    select r.book_id
+    from `order` o join orderdetail r
+    on o.order_id=r.order_id and o.user_id=#{userId,jdbcType=INTEGER} and o.status=4 and r.is_remark=0;
   </select>
 </mapper>

@@ -7,10 +7,9 @@
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="book_id" property="book_id" jdbcType="INTEGER" />
     <result column="order_id" property="order_id" jdbcType="VARCHAR" />
-    <result column="is_remark" property="is_remark" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, price, count, book_id, order_id, is_remark
+    id, price, count, book_id, order_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.book.entity.Orderdetail" >
     insert into orderdetail (id, price, count, 
-      book_id, order_id, is_remark
-      )
+      book_id, order_id)
     values (#{id,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
-      #{book_id,jdbcType=INTEGER}, #{order_id,jdbcType=VARCHAR}, #{is_remark,jdbcType=INTEGER}
-      )
+      #{book_id,jdbcType=INTEGER}, #{order_id,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.book.entity.Orderdetail" >
     insert into orderdetail
@@ -48,9 +45,6 @@
       <if test="order_id != null" >
         order_id,
       </if>
-      <if test="is_remark != null" >
-        is_remark,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -67,9 +61,6 @@
       </if>
       <if test="order_id != null" >
         #{order_id,jdbcType=VARCHAR},
-      </if>
-      <if test="is_remark != null" >
-        #{is_remark,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -88,9 +79,6 @@
       <if test="order_id != null" >
         order_id = #{order_id,jdbcType=VARCHAR},
       </if>
-      <if test="is_remark != null" >
-        is_remark = #{is_remark,jdbcType=INTEGER},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -99,21 +87,7 @@
     set price = #{price,jdbcType=VARCHAR},
       count = #{count,jdbcType=INTEGER},
       book_id = #{book_id,jdbcType=INTEGER},
-      order_id = #{order_id,jdbcType=VARCHAR},
-      is_remark = #{is_remark,jdbcType=INTEGER}
+      order_id = #{order_id,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
-
-  <update id="updateIsRemark">
-    update orderdetail
-    set is_remark = #{is_remark,jdbcType=INTEGER}
-    where order_id = #{order_id,jdbcType=VARCHAR}
-  </update>
-
-  <update id="updateIsRemarkByUserId">
-    update orderdetail
-    set is_remark = #{is_remark,jdbcType=INTEGER}
-    where orderdetail.order_id in (select order_id from `order` where user_id=#{user_id,jdbcType=INTEGER})
-    and orderdetail.book_id=#{book_id,jdbcType=INTEGER}
   </update>
 </mapper>

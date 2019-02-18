@@ -70,7 +70,7 @@
         </div>
         <div class="you fl">
             <h2>修改密码</h2>
-            <form action="#" method="get" class="remima">
+            <form class="remima">
                 <p>
                     <span>原密码：</span>
                     <input type="password" placeholder="原密码"/>
@@ -91,9 +91,17 @@
                     <input type="text" placeholder="验证码"/>
                 </p>
                 <p>
-                    <img src="https://login.dangdang.com/p/get_qrcode.php?t=1505203914765" alt=""/>
+                    <a href="javascript:;" class="code_pic">
+                        <img src="/verification/getCode" id='imgVcode'/>
+                    </a>
+                    <a style="
+    font-size: 13px;
+    margin-left: 10px;
+    color: blue;
+    font-family: monospace;
+" href="javascript:;" id='vcodeImgBtn' onclick="getCode()">换张图</a>
                 </p>
-                <input type="submit" value="提交"/>
+                <input id="change_btn" type="submit" value="提交"/>
             </form>
         </div>
     </div>
@@ -129,5 +137,6 @@
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/change_pwd.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

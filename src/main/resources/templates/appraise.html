@@ -77,43 +77,11 @@
                 <ul class="clearfix" id="pro">
                     <li class="on"><a href="javascript:void(0)">待评价图书</a></li>
                     <li><a href="javascript:void(0)">已评价图书</a></li>
-                    <li><a href="javascript:void(0)">评价失效图书</a></li>
                 </ul>
             </div>
             <div class="sx clearfix">
-                <div class="clearfix">
-                    <dl class="fl">
-                        <dt><a href="#"><img src="../static/img/cart/book.png"/></a></dt>
-                        <dd><a href="#">家用创意壁挂 釉下彩复古</a></dd>
-                        <dd>¥199.00</dd>
-                        <dd>16000人评价</dd>
-                        <dd><a href="javascript:void(0)">评价</a></dd>
-                    </dl>
-                    <dl class="fl">
-                        <dt><a href="#"><img src="../static/img/cart/book.png"/></a></dt>
-                        <dd><a href="#">家用创意壁挂 釉下彩复古</a></dd>
-                        <dd>¥199.00</dd>
-                        <dd>16000人评价</dd>
-                        <dd><a href="javascript:void(0)">评价</a></dd>
-                    </dl>
-                </div>
-                <div class="clearfix">
-                    <dl class="fl">
-                        <dt><a href="javascript:void(0)"><img src="../static/img/cart/book.png"/></a></dt>
-                        <dd><a href="javascript:void(0)">家用创意壁挂 釉下彩复古</a></dd>
-                        <dd>¥199.00</dd>
-                        <dd>16000人评价</dd>
-                        <dd><a href="javascript:void(0)">查看评价</a></dd>
-                    </dl>
-                </div>
-                <div class="clearfix">
-                    <dl class="fl">
-                        <dt><a href="javascript:void(0)"><img src="../static/img/cart/book.png"/></a></dt>
-                        <dd><a href="javascript:void(0)">家用创意壁挂 釉下彩复古</a></dd>
-                        <dd>¥199.00</dd>
-                        <dd>16000人评价</dd>
-                        <dd><a href="javascript:void(0)">暂不能评价</a></dd>
-                    </dl>
+                <div class="clearfix book_show">
+                    <!--展示书籍-->
                 </div>
             </div>
         </div>
@@ -133,7 +101,7 @@
             <p>我对本书的评分是：</p>
             <p class="star3">
                 <span class="level" onclick="fun()" id="level">
-                    <span class="level2" style="width: 0%;"></span>
+                    <span class="level2" style="width: 100%;"></span>
                 </span>
                 <span class="desc">10分 极力推荐</span>
             </p>
@@ -141,7 +109,7 @@
         <textarea cols="50" rows="5" id="textareaid"
                   placeholder="这本书的内容、作者、文笔...给你留下了怎样的印象？是否值得推荐给其他书友？写下你的书评吧~"></textarea>
         <div class="bc">
-            <input type="button" value="保存"/>
+            <input type="button" id="appr_save" value="保存"/>
             <input type="button" value="取消"/>
         </div>
     </form>
@@ -159,14 +127,14 @@
             <div class="clearfix">
                 <p>我对本书的评分是：</p>
                 <p class="star3">
-                <span class="level" onclick="fun()">
+                <span class="level">
                     <span class="level2" style="width: 100%;"></span>
                 </span>
                     <span class="desc">10分 极力推荐</span>
                 </p>
             </div>
         </div>
-        <textarea name="" rows="" cols="" disabled>挺好的挺好的挺好的~五分好评</textarea>
+        <textarea name="" rows="" cols="" class="remarkText" disabled>挺好的挺好的挺好的~五分好评</textarea>
     </form>
 </div>
 
@@ -205,25 +173,42 @@
 <script src="../static/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/appraise.js" type="text/javascript" charset="utf-8"></script>
 <script>
     function fun() {
-        var level=document.getElementById('level');
+        var level = document.getElementById('level');
 
         var off = level.getBoundingClientRect().left;
 
 
-        var bindEvent = function(dom, eventName, listener){
-            if(dom.attachEvent) {
-                dom.attachEvent('on'+eventName, listener);
+        var bindEvent = function (dom, eventName, listener) {
+            if (dom.attachEvent) {
+                dom.attachEvent('on' + eventName, listener);
             } else {
                 dom.addEventListener(eventName, listener);
             }
         }
 
-        bindEvent(level, 'click', function(e){
+        bindEvent(level, 'click', function (e) {
             var offsetX = e.clientX - level.clientLeft;
             var width = (offsetX - off) / 130 * 100 + "%";
-            $(".level2").css("width", width)
+            $(".level2").css("width", width);
+            var width_int = Math.round((offsetX - off) / 130 * 10);
+            if(width_int == 0) {
+                $('.pj .desc').text(width_int + "分 双眼已瞎！");
+            } else if(width_int == 1) {
+                $('.pj .desc').text(width_int + "分 超烂啊！");
+            } else if(width_int == 2) {
+                $('.pj .desc').text(width_int + "分 不值一提！");
+            } else if(width_int == 3 || width_int == 4) {
+                $('.pj .desc').text(width_int + "分 水准之下！");
+            } else if(width_int == 5 || width_int == 6) {
+                $('.pj .desc').text(width_int + "分 聊胜于无！");
+            } else if(width_int == 7 || width_int == 8) {
+                $('.pj .desc').text(width_int + "分 值得一看！");
+            } else if(width_int == 9 || width_int == 10) {
+                $('.pj .desc').text(width_int + "分 极力推荐！");
+            }
         });
     }
 </script>

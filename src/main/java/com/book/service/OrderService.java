@@ -23,4 +23,10 @@ public interface OrderService {
     List<EveryOrderDto> getOrderByUserId(Integer userId, Integer status);
 
     List<OrderBookDto> getOrderBookByOrderId(@Param("order_id") String order_id);
+
+    int updateByOrderIdSelective(Order record);
+
+    List<Integer> getNotApprBooksByUserID(Integer user_id);
+
+
 }

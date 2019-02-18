@@ -20,9 +20,13 @@ public interface OrderMapper {
 
     int updateByPrimaryKeySelective(Order record);
 
+    int updateByOrderIdSelective(Order record);
+
     int updateByPrimaryKey(Order record);
 
     List<EveryOrderDto> getOrderByUserId(@Param("userId") Integer userId, @Param("status") Integer status);
 
     List<OrderBookDto> getOrderBookByOrderId(@Param("order_id") String order_id);
+
+    List<Integer> getNotApprBooksByUserID(Integer user_id);
 }

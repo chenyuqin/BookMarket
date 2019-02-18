@@ -1,6 +1,7 @@
 package com.book.service;
 
 import com.book.entity.Orderdetail;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderdetailService {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,8 @@ public interface OrderdetailService {
     int updateByPrimaryKeySelective(Orderdetail record);
 
     int updateByPrimaryKey(Orderdetail record);
+
+    void updateIsRemark(Integer is_remark, String order_id);
+
+    void updateIsRemarkByUserId(Integer is_remark, Integer user_id, Integer book_id);
 }

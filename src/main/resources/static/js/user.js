@@ -3,7 +3,6 @@ $(function () {
         if ($(this).val() == "保存") {
             $(".mask").hide();
             $(".adddz").hide();
-            $(".bj").hide();
             $(".xg").hide();
             $(".remima").hide();
             $(".pj").hide();
@@ -17,66 +16,6 @@ $(function () {
             $(".pj").hide();
             $(".chak").hide();
         }
-    });
-
-    //评价 tab切换
-    $(".sx div:gt(0)").hide();
-    $(".sx div").each(function (i) {
-        if ($(this).html() == '') {
-            var str = $("#pro li").eq(i).find("a").text();
-            var txt = '';
-            txt = '<div class="noz">当前没有' + str + '。</div>';
-            $(this).html(txt);
-        }
-    });
-    $("#pro li").click(function () {
-        $(this).addClass("on").siblings().removeClass("on");
-        var index = $(this).index();
-        $(".sx > div").eq(index).show().siblings().hide();
-    });
-    //评价打心
-    $(".sx dl dd").find("a").click(function () {
-        if ($(this).text() == "评价") {
-            $(".mask").show();
-            $(".pj").show();
-        } else if ($(this).text() == "查看评价") {
-            $(".mask").show();
-            $(".chak").show();
-        } else {
-            $(".mask").hide();
-            $(".pj").hide();
-            $(".chak").hide();
-        }
-
-    });
-    //评价打心
-    $("#xin").each(function (i) {
-        $("#xin").eq(i).children("a").click(function () {
-            var index = $(this).index();
-            for (var j = 0; j < 5; j++) {
-                if (j <= index) {
-                    $("#xin").eq(i).find("a")
-                        .eq(j).find("img")
-                        .attr("src", "../img/appraise/hxin.png");
-                } else {
-                    $("#xin").eq(i).find("a")
-                        .eq(j).find("img")
-                        .attr("src", "../img/appraise/xin.png");
-                }
-
-            }
-        })
-    });
-
-
-    //个人信息 编辑
-    $("#edit1").click(function () {
-        $(".mask").show();
-        $(".bj").show();
-    });
-    $("#edit2").click(function () {
-        $(".mask").show();
-        $(".xg").show();
     });
 
     //修改头像
@@ -95,4 +34,5 @@ $(function () {
         $(".pj").hide();
         $(".chak").hide();
     });
+    
 });
