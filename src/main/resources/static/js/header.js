@@ -18,8 +18,8 @@ $(function () {
             "<a href=\"login.html\" id=\"login\" target='_parent'>\n" +
             "                        <span class=\"iconfont icon-dengru\">&nbsp;登录</span></a>\n" +
             "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
-            "                    <a href=\"register.html\" id=\"register\">\n" +
-            "                        <span class=\"iconfont icon-zhuce\" target='_parent'> 注册</span></a>\n" +
+            "                    <a href=\"register.html\" id=\"register\" target='_parent'>\n" +
+            "                        <span class=\"iconfont icon-zhuce\"> 注册</span></a>\n" +
             "                    <span style=\"margin:0 .5em;color:#424242;\">|</span>"
         );
     }
