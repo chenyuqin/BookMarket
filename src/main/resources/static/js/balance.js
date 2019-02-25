@@ -2,10 +2,11 @@ $(function () {
     var date = getQueryString('date');
     var ids = sessionStorage.getItem(date);
     var token = sessionStorage.getItem('token');
+    var count = sessionStorage.getItem('count');
     $.ajax({
         url: 'cart/getOrderInfo',
         type: 'Post',
-        data: {'token': token, 'ids': ids},
+        data: {'token': token, 'ids': ids, 'count': count},
         dataType: 'JSON',
         async: false,
         success: function (result) {
@@ -187,6 +188,7 @@ $(function () {
 
     $('.pay').click(function () {
         var address_id = $('.addres .on').find('input').val();
+        var count = sessionStorage.getItem('count');
         if (address_id == undefined) {
             alert("请选择您的收件信息！");
             return;
@@ -195,7 +197,7 @@ $(function () {
         $.ajax({
             url: 'order/insertOrder',
             type: 'Post',
-            data: {'token': token, 'address_id': parseInt(address_id), 'pay_way': parseInt(pay_way), 'ids': ids},
+            data: {'token': token, 'address_id': parseInt(address_id), 'pay_way': parseInt(pay_way), 'ids': ids, 'count': count},
             dataType: 'JSON',
             success: function (result) {
                 window.location.href="http://localhost:8088/pay_success.html"

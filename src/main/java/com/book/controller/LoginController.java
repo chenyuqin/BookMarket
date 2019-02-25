@@ -59,6 +59,7 @@ public class LoginController {
                 //服务端在session保留凭证
                 String token = jwtUtils.createJWT((Integer) result.get("id"), result.get("name").toString(), 7 * 24);
                 result.put("token", token);
+                result.put("referrerUrl", request.getSession().getAttribute("referrer").toString());
                 request.getSession().setAttribute("token", token);
                 json = JSONSerializer.toJSON(new JsonResult<>(0, "成功登录！", result));
             }

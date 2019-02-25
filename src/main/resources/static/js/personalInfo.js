@@ -1,6 +1,15 @@
 $(function () {
     var token = sessionStorage.getItem('token');
     $.ajax({
+        url: 'personal/init',
+        type: 'Post',
+        data: {'token': token},
+        dataType: 'JSON',
+        success: function (result) {
+            $(".nickname").text(result.user.name);
+        }
+    });
+    $.ajax({
         url: 'personalInfo/getPersonalInfo',
         type: 'Post',
         data: {'token': token},

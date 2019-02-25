@@ -42,26 +42,43 @@ public class OrderController {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    BookDetailService bookDetailService;
+
     @RequestMapping(value = "insertOrder", method = RequestMethod.POST)
     @ResponseBody
-    public Object insertOrder(@RequestParam("token") String token, @RequestParam("ids") String ids, @RequestParam("address_id") Integer address_id, @RequestParam("pay_way") Integer pay_way) {
+    public Object insertOrder(@RequestParam("token") String token, @RequestParam("ids") String ids, @RequestParam("address_id") Integer address_id, @RequestParam("pay_way") Integer pay_way, @RequestParam("count") Integer count) {
         Claims claims = jwtUtils.parseJWT(token);
         Integer userID = (Integer)claims.get("userID");
 
-        String[] allIds = ids.split(",");
         Double totalPrice = 0.0;
         List<Orderdetail> orderdetails = new ArrayList<>();
-        for (String cart_id : allIds) {
-            CartDto cart = cartService.getCartByCartID(Integer.parseInt(cart_id));
-            totalPrice += Double.parseDouble(cart.getPrice()) * cart.getCount();
+        String totalPrices = null;
+
+        if (count != null) {
+            Book book = bookDetailService.getBookById(Integer.parseInt(ids));
             Orderdetail orderdetail = new Orderdetail();
-            orderdetail.setBook_id(cart.getBook_id());
-            orderdetail.setCount(cart.getCount());
-            orderdetail.setPrice(cart.getPrice());
+            orderdetail.setBook_id(Integer.parseInt(ids));
+            orderdetail.setCount(count);
+            orderdetail.setPrice(book.getPrice());
+            totalPrices = String.format("%.2f", (count * 1.0 * Double.parseDouble(book.getPrice())));
             orderdetails.add(orderdetail);
-            cartService.deleteByPrimaryKey(Integer.parseInt(cart_id));
+        } else {
+            String[] allIds = ids.split(",");
+            for (String cart_id : allIds) {
+                CartDto cart = cartService.getCartByCartID(Integer.parseInt(cart_id));
+                totalPrice += Double.parseDouble(cart.getPrice()) * cart.getCount();
+                Orderdetail orderdetail = new Orderdetail();
+                orderdetail.setBook_id(cart.getBook_id());
+                orderdetail.setCount(cart.getCount());
+                orderdetail.setPrice(cart.getPrice());
+                orderdetails.add(orderdetail);
+                cartService.deleteByPrimaryKey(Integer.parseInt(cart_id));
+                totalPrices = String.format("%.2f", totalPrice);
+            }
         }
-        String totalPrices = String.format("%.2f", totalPrice);
+
+
         Order order = new Order();
         order.setOrder_id(GetOrderIdByUUID.getOrderIdByUUId());
         order.setAddress_id(address_id);

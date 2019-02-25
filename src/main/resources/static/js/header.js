@@ -1,4 +1,5 @@
 $(function () {
+
     //将回车键注册为按关键字搜索
     document.onkeydown = function (e) {
         if ((e || event).keyCode == 13)
@@ -9,7 +10,7 @@ $(function () {
         $("#top_tools").html(
             "<span style=\"color: black;font-size: 15px;font-family: monospace;font-weight: 600;\">欢迎您，<span style=\"color: blue;\">" + sessionStorage.getItem('name') + "</span></span>\n" +
             "                <span style=\"margin:0 .5em;color:#424242;\">|</span>\n" +
-            "                <a href=\"index.html\" id=\"logout\" target='_parent'>\n" +
+            "                <a href=\"javascript:window.location.reload();\" id=\"logout\" target='_parent'>\n" +
             "                <span class=\"iconfont icon-dengchu\">&nbsp;登出</span></a>\n" +
             "                <span style=\"margin:0 .5em;color:#424242;\">|</span>"
         );

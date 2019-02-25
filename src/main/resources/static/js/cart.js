@@ -213,6 +213,7 @@ $(function () {
         cart_ids.pop();
         var timestamp = Date.parse(new Date());
         sessionStorage.setItem(timestamp, cart_ids);
+        sessionStorage.removeItem('count');
         window.location.href="http://localhost:8088/balance.html?date="+timestamp;
     })
 });

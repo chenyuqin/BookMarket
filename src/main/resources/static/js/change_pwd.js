@@ -1,5 +1,14 @@
 $(function () {
     var token = sessionStorage.getItem('token');
+    $.ajax({
+        url: 'personal/init',
+        type: 'Post',
+        data: {'token': token},
+        dataType: 'JSON',
+        success: function (result) {
+            $(".nickname").text(result.user.name);
+        }
+    });
     $("#change_btn").click(function () {
         if ($('.remima input').val() == '' || $('.remima input').val() == null) {
             alert("输入不能为空！");

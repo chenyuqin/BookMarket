@@ -2,6 +2,15 @@ $(function () {
     //打开页面即加载已有的地址信息
     var token = sessionStorage.getItem('token');
     $.ajax({
+        url: 'personal/init',
+        type: 'Post',
+        data: {'token': token},
+        dataType: 'JSON',
+        success: function (result) {
+            $(".nickname").text(result.user.name);
+        }
+    });
+    $.ajax({
         url: 'address/init',
         type: 'Post',
         data: {'token': token},

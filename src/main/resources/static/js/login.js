@@ -63,7 +63,7 @@ function login() {
     var type = $("input[name=supertype]:checked").val();
     if (type == 1) {
         //正则匹配邮箱
-        var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
         if (!myReg.test(name_or_email)) {
             alert("请输入正确的邮箱地址！");
             getCode();
@@ -74,9 +74,9 @@ function login() {
     $.ajax({
         url: 'login/login',
         type: 'Post',
-        data: {'name_or_email':name_or_email, 'password':password,'yzm':yzm,'type':type},
+        data: {'name_or_email': name_or_email, 'password': password, 'yzm': yzm, 'type': type},
         dataType: 'JSON',
-        success: function(result){
+        success: function (result) {
             if (result.state == 2) {
                 alert(result.message);
                 getCode();
@@ -85,10 +85,10 @@ function login() {
                 getCode();
                 $('.user').focus();
             } else {
-                sessionStorage.setItem('id',result.data.id);
-                sessionStorage.setItem('name',result.data.name);
-                sessionStorage.setItem('token',result.data.token);
-                window.location.href="http://localhost:8088/index.html";
+                sessionStorage.setItem('id', result.data.id);
+                sessionStorage.setItem('name', result.data.name);
+                sessionStorage.setItem('token', result.data.token);
+                window.location.href = result.data.referrerUrl;
             }
         }
     });

@@ -1,5 +1,14 @@
 $(function () {
     var token = sessionStorage.getItem('token');
+    $.ajax({
+        url: 'personal/init',
+        type: 'Post',
+        data: {'token': token},
+        dataType: 'JSON',
+        success: function (result) {
+            $(".nickname").text(result.user.name);
+        }
+    });
     //订单Tab页切换
     $("#wa li").click(function () {
         $(this).addClass("on").siblings().removeClass("on");

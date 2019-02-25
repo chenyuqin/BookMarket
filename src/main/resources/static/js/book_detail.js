@@ -201,17 +201,32 @@ $(function () {
         var count = parseInt($("#J_IptAmount").val());
         var book_id = parseInt(getQueryString('bid'));
         var token = sessionStorage.getItem('token');
-        $.ajax({
-            url: 'cart/add',
-            type: 'Post',
-            data: {'count': count, 'book_id': book_id, 'token': token},
-            dataType: 'JSON',
-            success: function (result) {
-                alert("加入购物车成功！");
-                document.getElementById("object").data = "header.html";
-                $("#J_IptAmount").val('1');
-            }
-        });
+        if (token != null && token != "" && token != undefined) {
+            $.ajax({
+                url: 'cart/add',
+                type: 'Post',
+                data: {'count': count, 'book_id': book_id, 'token': token},
+                dataType: 'JSON',
+                success: function (result) {
+                    alert("加入购物车成功！");
+                    document.getElementById("object").data = "header.html";
+                    $("#J_IptAmount").val('1');
+                }
+            });
+        } else {
+            alert("请先登录！");
+        }
+
+    });
+
+    //立即购买
+    $(".J_LinkBuy").click(function () {
+        var count = parseInt($("#J_IptAmount").val());
+        var book_id = parseInt(getQueryString('bid'));
+        var timestamp = Date.parse(new Date());
+        sessionStorage.setItem(timestamp, book_id);
+        sessionStorage.setItem('count', count);
+        window.location.href="http://localhost:8088/balance.html?date="+timestamp;
     });
 });
 
