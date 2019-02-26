@@ -19,4 +19,6 @@ public class Remark {
     private Integer book_id;
 
     private String remarkText;
+
+    private Integer status;
 }

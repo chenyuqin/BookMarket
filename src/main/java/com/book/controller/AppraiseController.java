@@ -1,6 +1,7 @@
 package com.book.controller;
 
 import com.book.DTO.AppraiseBookDto;
+import com.book.common.JsonResult;
 import com.book.common.JwtUtils;
 import com.book.entity.Book;
 import com.book.entity.Orderdetail;
@@ -10,6 +11,8 @@ import com.book.service.OrderService;
 import com.book.service.OrderdetailService;
 import com.book.service.RemarkService;
 import io.jsonwebtoken.Claims;
+import net.sf.json.JSON;
+import net.sf.json.JSONSerializer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +43,8 @@ public class AppraiseController {
 
     @Autowired
     BookDetailService bookDetailService;
+
+
 
     @RequestMapping(value = "getNotApprBooks", method = RequestMethod.POST)
     @ResponseBody
@@ -88,6 +94,7 @@ public class AppraiseController {
         Integer userID = (Integer) claims.get("userID");
 
         remark.setUser_id(userID);
+        remark.setStatus(1);
         remarkService.insertSelective(remark);
         return true;
     }

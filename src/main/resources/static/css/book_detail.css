@@ -705,6 +705,7 @@
 .btn_red:hover {
     color: blue;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .comment_up {
@@ -1263,4 +1264,144 @@
 .jieda-reply span .icon-svgmoban53 {
     position: relative;
     top: 1px;
+}
+
+.noRemark {
+    font-size: 25px;
+    font-family: serif;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+/*遮罩*/
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: none;
+}
+
+/*编辑个人信息*/
+.pj {
+    width: 500px;
+    position: absolute;
+    z-index: 3000;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+}
+
+.pj div a {
+    width: 20px;
+    height: 20px;
+}
+
+.pj div a img {
+    width: 100%;
+    display: block;
+}
+
+.pj h3 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 17px;
+}
+
+.pj form {
+    padding: 5px 10px;
+}
+
+.pj form div.clearfix {
+    margin-bottom: 10px;
+}
+
+.pj form div p:nth-child(1) {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.pj form p a {
+    display: inline-block;
+}
+
+.pj form p a img {
+    display: block;
+    width: 100%;
+}
+
+.pj form textarea {
+    width: 95%;
+    height: 180px;
+    padding: 10px;
+    font-size: 14px;
+    /*text-indent: 10px;*/
+}
+
+.pj form div.bc {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pj form div input {
+    display: inline-block;
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+}
+
+.pj form div input:nth-child(1) {
+    background: #A10000;
+    color: #FFFFFF;
+}
+
+.pj .level3 {
+    cursor: pointer;
+    /*margin: -2px 10px 0 0;*/
+}
+
+.pj .level3, .pj .level3 span {
+    background: url(../img/icon_star_2x.png) 0 -25px repeat-x;
+    display: inline-block;
+    width: 130px;
+    height: 24px;
+    vertical-align: middle;
+    overflow: hidden;
+    line-height: 12px;
+    font-size: 0;
+}
+
+.pj .level3 span {
+    background-position: left top;
+    vertical-align: top;
+}
+
+.star3 {
+    margin-bottom: 20px;
+    /*text-align: center;*/
+    margin-left: 100px;
+}
+
+.star3 a {
+    font-size: 13px;
+    color: blue;
+}
+
+.star3 .desc {
+    color: orangered;
+    font-size: 13px;
+    margin: 5px 0px 0px 10px;
+}
+
+.bc>input:hover {
+    cursor: pointer;
 }

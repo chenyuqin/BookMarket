@@ -183,14 +183,15 @@ function search(page) {
                     '</div>'
                 );
                 $('.page').css("display", 'none');
-                checkSlogan();
+                $('#slogan').removeClass('slogan');
+                $('#slogan').addClass('slogan2');
             } else {
                 $.each(result.books, function (index, item) {
                     $(".productListWrap").append(
                         '<div class="productItem">\n' +
                         '<input type="hidden" value="' + item.id + '"/>' +
                         '                <div class="imgBox">\n' +
-                        '                    <a href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                    <a href="http://localhost:8088/book_detail.html?bid=' + item.id + '" target="_blank">\n' +
                         '                        <img src="' + item.image1 + '" alt="" style="height:188px;width: 188px;">\n' +
                         '                    </a>\n' +
                         '                </div>\n' +
@@ -211,7 +212,7 @@ function search(page) {
                         '                    </div>\n' +
                         '                    <div class="titleRow">\n' +
                         '                        <p>\n' +
-                        '                            <a class="productTitle" title="' + item.name + '" href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                            <a class="productTitle" title="' + item.name + '" href="http://localhost:8088/book_detail.html?bid=' + item.id + '" target="_blank">\n' +
                         '                                ' + item.name + '\n' +
                         '                            </a>\n' +
                         '                        </p>\n' +

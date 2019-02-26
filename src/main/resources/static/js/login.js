@@ -88,7 +88,12 @@ function login() {
                 sessionStorage.setItem('id', result.data.id);
                 sessionStorage.setItem('name', result.data.name);
                 sessionStorage.setItem('token', result.data.token);
-                window.location.href = result.data.referrerUrl;
+                if (result.data.referrerUrl == null || result.data.referrerUrl == 'null') {
+                    history.back(-1);
+                } else {
+                    window.location.href = result.data.referrerUrl;
+                }
+
             }
         }
     });

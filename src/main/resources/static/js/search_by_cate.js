@@ -334,7 +334,7 @@ function queryByParam(page) {
                         '<div class="productItem">\n' +
                         '<input type="hidden" value="' + item.id + '"/>' +
                         '                <div class="imgBox">\n' +
-                        '                    <a href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                    <a href="http://localhost:8088/book_detail.html?bid=' + item.id + '" target="_blank">\n' +
                         '                        <img src="' + item.image1 + '" alt="" style="height:188px;width: 188px;">\n' +
                         '                    </a>\n' +
                         '                </div>\n' +
@@ -355,7 +355,7 @@ function queryByParam(page) {
                         '                    </div>\n' +
                         '                    <div class="titleRow">\n' +
                         '                        <p>\n' +
-                        '                            <a class="productTitle" title="' + item.name + '" href="http://localhost:8088/book_detail?bid=' + item.id + '" target="_blank">\n' +
+                        '                            <a class="productTitle" title="' + item.name + '" href="http://localhost:8088/book_detail.html?bid=' + item.id + '" target="_blank">\n' +
                         '                                ' + item.name + '\n' +
                         '                            </a>\n' +
                         '                        </p>\n' +

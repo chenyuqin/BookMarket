@@ -1,5 +1,6 @@
 package com.book.mapper;
 
+import com.book.DTO.EveryRemarkDto;
 import com.book.entity.Remark;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -26,5 +27,11 @@ public interface RemarkMapper {
 
     List<Integer> getBookIdByUserId(@Param("user_id") Integer user_id);
 
+    Integer getCountByBookId(@Param("book_id") Integer book_id);
 
+    List<String> getAllStarByBookId(@Param("book_id") Integer book_id);
+
+    Integer getCountByBookIdAndStarRange(@Param("book_id") Integer book_id, @Param("slowStar") String slowStar, @Param("highStar") String highStar);
+
+    List<EveryRemarkDto> getRemarkByBookIdAndStarRange(@Param("book_id") Integer book_id, @Param("slowStar") String slowStar, @Param("highStar") String highStar);
 }

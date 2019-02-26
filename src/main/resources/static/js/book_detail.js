@@ -26,7 +26,7 @@ $(function () {
             "left": left
         });
         var src = $("#preview>img")[0].src;
-        src = src.replace(/_w_/g,"_u_");
+        src = src.replace(/_w_/g, "_u_");
 
         $("#big-preview").css({
             "display": "block",
@@ -43,11 +43,11 @@ $(function () {
     $.ajax({
         url: 'bookDetail/getBookById',
         type: 'Get',
-        data: {'id':getQueryString('bid')},
+        data: {'id': getQueryString('bid')},
         dataType: 'JSON',
-        success: function(result){
+        success: function (result) {
             //分类导航栏
-            var inner_html=
+            var inner_html =
                 "<a href=\"javascript:void(0);\">图书</a>\n" +
                 "        <span>&nbsp;&gt;&nbsp;</span>\n" +
                 "        <a href=\"javascript:void(0);\">" + result.category + "</a>\n" +
@@ -83,7 +83,7 @@ $(function () {
             if (result.image4 != '' && result.image4 != null) {
                 inner_html = inner_html +
                     "<li>\n" +
-                    "    <img src=\"" + result.image4+ "\" alt=\"\">\n" +
+                    "    <img src=\"" + result.image4 + "\" alt=\"\">\n" +
                     "</li>"
             }
             if (result.image5 != '' && result.image5 != null) {
@@ -162,7 +162,7 @@ $(function () {
             });
 
             //同类书籍推荐
-            $.each(result.sameCateBooks,function(index, item){
+            $.each(result.sameCateBooks, function (index, item) {
                 $("#same_cate_book").append(
                     '<li>\n' +
                     '                <a href="http://localhost:8088/book_detail.html?bid=' + item.id + '">\n' +
@@ -178,14 +178,14 @@ $(function () {
         }
     });
 
-    $("#add_num").bind('click',function () {
+    $("#add_num").bind('click', function () {
         var num = parseInt($("#J_IptAmount").val());
         $("#sub_num").removeClass('disable-reduce');
         $("#sub_num").removeAttr('disabled');
         $("#J_IptAmount").val(num + 1);
     });
 
-    $("#sub_num").bind('click',function () {
+    $("#sub_num").bind('click', function () {
         var num = parseInt($("#J_IptAmount").val());
         if (num == 1) {
             return;
@@ -226,8 +226,387 @@ $(function () {
         var timestamp = Date.parse(new Date());
         sessionStorage.setItem(timestamp, book_id);
         sessionStorage.setItem('count', count);
-        window.location.href="http://localhost:8088/balance.html?date="+timestamp;
+        window.location.href = "http://localhost:8088/balance.html?date=" + timestamp;
     });
+
+    //评论模块
+    $.ajax({
+        url: 'bookDetail/getRemark',
+        type: 'Get',
+        data: {'id': getQueryString('bid')},
+        dataType: 'JSON',
+        success: function (result) {
+            $("#allRemarkCount").text(" (" + result.remarkCount + ") ");
+            $("#favorableRate").text(result.favorableRate);
+            $("#allCount").text("全部（" + result.remarkCount + "）");
+            $("#goodCount").text("好评（" + result.goodRemarkByCateDto.remarkCount + "）");
+            $("#middleCount").text("中评（" + result.middleRemarkByCateDto.remarkCount + "）");
+            $("#badCount").text("差评（" + result.badRemarkByCateDto.remarkCount + "）");
+
+            //全部评论
+            if (result.remarkCount == 0) {
+                $("#allRemark").html("暂无评论！");
+                $("#allRemark").addClass("noRemark");
+            } else {
+                $.each(result.everyRemarkDtos, function (index, item) {
+                    if (item.status == 1) {
+                        $("#allRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                    <span class="iconfont icon-yigoumai icon_yg"></span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    } else {
+                        $("#allRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    }
+                })
+            }
+
+            //好评
+            if (result.goodRemarkByCateDto.remarkCount == 0) {
+                $("#goodRemark").html("暂无评论！");
+                $("#goodRemark").addClass("noRemark");
+            } else {
+                $.each(result.goodRemarkByCateDto.everyRemarkDtos, function (index, item) {
+                    if (item.status == 1) {
+                        $("#goodRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                    <span class="iconfont icon-yigoumai icon_yg"></span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    } else {
+                        $("#goodRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    }
+                })
+            }
+
+            //中评
+            if (result.middleRemarkByCateDto.remarkCount == 0) {
+                $("#middleRemark").html("暂无评论！");
+                $("#middleRemark").addClass("noRemark");
+            } else {
+                $.each(result.middleRemarkByCateDto.everyRemarkDtos, function (index, item) {
+                    if (item.status == 1) {
+                        $("#middleRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                    <span class="iconfont icon-yigoumai icon_yg"></span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    } else {
+                        $("#middleRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    }
+                })
+            }
+
+            //差评
+            if (result.badRemarkByCateDto.remarkCount == 0) {
+                $("#badRemark").html("暂无评论！");
+                $("#badRemark").addClass("noRemark");
+            } else {
+                $.each(result.badRemarkByCateDto.everyRemarkDtos, function (index, item) {
+                    if (item.status == 1) {
+                        $("#badRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                    <span class="iconfont icon-yigoumai icon_yg"></span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    } else {
+                        $("#badRemarkUl").append(
+                            '<li data-id="111" class="jieda-daan">\n' +
+                            '                                                <div class="detail-about detail-about-reply">\n' +
+                            '                                                    <a class="fly-avatar">\n' +
+                            '                                                        <img src="../static/img/touxiang.png">\n' +
+                            '                                                    </a>\n' +
+                            '                                                    <div class="fly-detail-user">\n' +
+                            '                                                        <a class="fly-link">\n' +
+                            '                                                            <cite>' + item.name + '</cite>\n' +
+                            '                                                        </a>\n' +
+                            '                                                    </div>\n' +
+                            '\n' +
+                            '                                                    <div class="detail-hits">\n' +
+                            '                                                        <span>' + item.remarkTime + '</span>\n' +
+                            '                                                    </div>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="detail-body jieda-body photos">\n' +
+                            '                                                    <p>' + item.remarkText + '</p>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="star4">\n' +
+                            '                                                    <span class="level">\n' +
+                            '                                                        <span style="width: ' + item.star + ';"></span>\n' +
+                            '                                                    </span>\n' +
+                            '                                                    <span style="color: orange">' + Math.round(parseFloat(item.star.replace(/%/g, "")) / 10) + '分</span>\n' +
+                            '                                                </div>\n' +
+                            '                                                <div class="jieda-reply">\n' +
+                            '                                                      <span class="jieda-zan zanok" type="zan">\n' +
+                            '                                                        <i class="iconfont icon-zan"></i>\n' +
+                            '                                                        <em>0</em>\n' +
+                            '                                                      </span>\n' +
+                            '                                                </div>\n' +
+                            '                                            </li>'
+                        );
+                    }
+                })
+            }
+        }
+    });
+
+    $('.btn_red').unbind('click').bind('click', function () {
+        var book_id = getQueryString('bid');
+        var token = sessionStorage.getItem('token');
+        $.ajax({
+            url: 'bookDetail/checkRemark',
+            type: 'Post',
+            data: {
+                'token': token, 'book_id': parseInt(book_id)
+            },
+            dataType: 'JSON',
+            success: function (result) {
+                if (result.state == 0 || result.state == 1) {
+                    alert(result.message);
+                    return;
+                } else {
+                    var top = ($(window).height() - $('.pj').height()) / 2;
+                    var left = ($(window).width() - $('.pj').width()) / 2;
+                    var scrollTop = $(document).scrollTop();
+                    var scrollLeft = $(document).scrollLeft();
+                    $('.pj').css({position: 'absolute', top: top + scrollTop, left: left + scrollLeft});
+                    $(".mask").show();
+                    $(".pj").show();
+                    $('.pj .level2').css('width', '100%');
+                    $('.pj .desc').text("10分 极力推荐！");
+                    $('#textareaid').val('');
+                    $("#appr_save").unbind('click').bind('click', function () {
+                        var star = ((parseInt($('.pj .level2').css('width').split("px")) / 129) * 100).toFixed(2) + "%";
+                        var remarkText = $('#textareaid').val();
+                        $.ajax({
+                            url: 'bookDetail/insertRemarkByBookDetail',
+                            type: 'Post',
+                            data: {
+                                'token': token, 'book_id': parseInt(book_id),
+                                'remarkText': remarkText, 'star': star
+                            },
+                            dataType: 'JSON',
+                            success: function (result) {
+                                alert("完成评价！");
+                                window.location.reload();
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    })
 });
 
 function getQueryString(name) {

@@ -47,6 +47,11 @@ $(function () {
                     });
                 }
                 $('.appr_btn').click(function () {
+                    var top = ($(window).height() - $('.pj').height())/2;
+                    var left = ($(window).width() - $('.pj').width())/2;
+                    var scrollTop = $(document).scrollTop();
+                    var scrollLeft = $(document).scrollLeft();
+                    $('.pj').css( { position : 'absolute', top : top + scrollTop, left : left + scrollLeft } );
                     $(".mask").show();
                     $(".pj").show();
                     $('.pj .level2').css('width', '100%');
@@ -109,6 +114,11 @@ $(function () {
                         )
                     });
                     $('.appr_look_btn').click(function () {
+                        var top = ($(window).height() - $('.chak').height())/2;
+                        var left = ($(window).width() - $('.chak').width())/2;
+                        var scrollTop = $(document).scrollTop();
+                        var scrollLeft = $(document).scrollLeft();
+                        $('.chak').css( { position : 'absolute', top : top + scrollTop, left : left + scrollLeft } );
                         $(".mask").show();
                         $(".chak").show();
                         var book_id = $(this).parent().siblings('dt').find('input').val();

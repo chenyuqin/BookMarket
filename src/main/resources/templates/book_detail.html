@@ -87,7 +87,7 @@
                                 <span class="level">
                                     <span style=""></span>
                                 </span>
-                                <a href="#" target="_blank" name="itemlist-review" id="jd-remark"></a>
+                                <a name="itemlist-review" id="jd-remark"></a>
                                 <span style="font-size: 12px;color: #000;">条评论</span>
                             </div>
                         </div>
@@ -127,7 +127,8 @@
                             <span class="stock" id="J_Stock">
                             <a href="#" hidefocus="" class="reduce J_Reduce iconfont disable-reduce" id="sub_num">-</a>
                             <input id="J_IptAmount" type="text" class="tb-text" value="1" maxlength="8"
-                                   title="请输入购买量"><a href="#" hidefocus="" class="tb-increase J_Increase tb-iconfont" id="add_num">+</a>件
+                                   title="请输入购买量"><a href="#" hidefocus="" class="tb-increase J_Increase tb-iconfont"
+                                                     id="add_num">+</a>件
                             </span>
                             <em>(库存<span id="J_SpanStock" class="count"></span>件)</em>
                         </dd>
@@ -198,9 +199,6 @@
         <div class="layui-tab layui-tab-card">
             <ul class="layui-tab-title">
                 <li class="layui-this">图书详情</li>
-                <!--<li>作者简介</li>-->
-                <!--<li>内容简介</li>-->
-                <!--<li>目录</li>-->
                 <li>图书评价</li>
             </ul>
             <div class="layui-tab-content" style="">
@@ -288,342 +286,59 @@
                 <div class="layui-tab-item">
                     <div>
                         <h3 class="tit">
-                            <a href="javascript:;" class="btn_red">去评价</a>
-                            全部评价<span> (3697) </span>
+                            <a class="btn_red">去评价</a>
+                            全部评价<span id="allRemarkCount"></span>
                         </h3>
                         <div class="comment_up">
                             <div class="comment_up_left fl">
-                                <p>99.6%</p>
-                                <p>好评率</p>
+                                <p id="favorableRate"></p>
+                                <p style="
+                                font-family: sans-serif;
+                                ">好评率</p>
                             </div>
                             <div class="comment_up_right fl">
                                 <p>买过的人觉得</p>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
-                                <span class="tag_posi fl">
-                                    <a href="javascript:">振奋人心（5）</a>
-                                </span>
+                                <!--<span class="tag_posi fl">-->
+                                    <!--<a href="javascript:">振奋人心</a>-->
+                                <!--</span>-->
                             </div>
                         </div>
                         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                             <ul class="layui-tab-title ltt">
-                                <li class="layui-this">全部（3597）</li>
-                                <li>好评（500）</li>
-                                <li>中评（335）</li>
-                                <li>差评（67）</li>
+                                <li class="layui-this" id="allCount"></li>
+                                <li id="goodCount"></li>
+                                <li id="middleCount"></li>
+                                <li id="badCount"></li>
                             </ul>
                             <div class="layui-tab-content">
-                                <div class="layui-tab-item layui-show">
-                                    <div class="fly-panel detail-box" id="flyReply">
-                                        <ul class="jieda" id="jieda">
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
+                                <div class="layui-tab-item layui-show" id="allRemark">
+                                    <div class="fly-panel detail-box">
+                                        <ul class="jieda" id="allRemarkUl">
 
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                    <span class="iconfont icon-yigoumai icon_yg"></span>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                    <span class="iconfont icon-yigoumai icon_yg"></span>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                    <span class="iconfont icon-yigoumai icon_yg"></span>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                    <span class="iconfont icon-yigoumai icon_yg"></span>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
-                                            <li data-id="111" class="jieda-daan">
-                                                <div class="detail-about detail-about-reply">
-                                                    <a class="fly-avatar" href="">
-                                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                                             alt=" ">
-                                                    </a>
-                                                    <div class="fly-detail-user">
-                                                        <a href="" class="fly-link">
-                                                            <cite>贤心</cite>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="detail-hits">
-                                                        <span>2017-11-30 12:00:01</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-body jieda-body photos">
-                                                    <p> 生活是自己的你可以对很多事都无能为力 但能不能无力自拔 旅行带给人不只是简单放松 也不于走多远 只想有人之年里看到另一个自己
-                                                        不是为了活着而活着</p>
-                                                </div>
-                                                <div class="star4">
-                                                    <span class="level">
-                                                        <span style="width: 65%;"></span>
-                                                    </span>
-                                                    <span style="color: orange">6分</span>
-                                                </div>
-                                                <div class="jieda-reply">
-                                                      <span class="jieda-zan zanok" type="zan">
-                                                        <i class="iconfont icon-zan"></i>
-                                                        <em>66</em>
-                                                      </span>
-                                                </div>
-                                            </li>
                                         </ul>
                                     </div>
-                                    <div style="text-align: center">
-                                        <div class="laypage-main">
-                                            <span class="laypage-curr">1</span>
-                                            <a href="#">2</a>
-                                            <a href="#">3</a>
-                                            <a href="#">4</a>
-                                            <a href="#">5</a>
-                                            <span>…</span>
-                                            <a href="#" class="laypage-last" title="尾页">尾页</a>
-                                            <a href="#" class="laypage-next">下一页</a>
-                                        </div>
+                                </div>
+                                <div class="layui-tab-item" id="goodRemark">
+                                    <div class="fly-panel detail-box">
+                                        <ul class="jieda" id="goodRemarkUl">
+
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="layui-tab-item">内容2</div>
-                                <div class="layui-tab-item">内容3</div>
-                                <div class="layui-tab-item">内容4</div>
+                                <div class="layui-tab-item" id="middleRemark">
+                                    <div class="fly-panel detail-box">
+                                        <ul class="jieda" id="middleRemarkUl">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item" id="badRemark">
+                                    <div class="fly-panel detail-box">
+                                        <ul class="jieda" id="badRemarkUl">
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -632,21 +347,48 @@
         </div>
     </div>
 </div>
+
+<!--遮罩-->
+<div class="mask"></div>
+<!--评价弹框-->
+<div class="pj">
+    <div class="clearfix">
+        <a href="javascript:void(0)" class="fr gb"><img src="../static/img/appraise/icon4.png"/></a>
+    </div>
+    <h3>&nbsp;图书评价</h3>
+    <form action="javascript:void(0)" method="get">
+        <div class="clearfix">
+            <p>我对本书的评分是：</p>
+            <p class="star3">
+                <span class="level3" onclick="fun()" id="level3">
+                    <span class="level2" style="width: 100%;"></span>
+                </span>
+                <span class="desc">10分 极力推荐</span>
+            </p>
+        </div>
+        <textarea cols="50" rows="5" id="textareaid"
+                  placeholder="这本书的内容、作者、文笔...给你留下了怎样的印象？是否值得推荐给其他书友？写下你的书评吧~"></textarea>
+        <div class="bc">
+            <input type="button" id="appr_save" value="保存"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
 <!--返回顶部-->
 <div class="gotop">
     <a href="#" class="toptop" style="display: none">
         <dl>
             <dt><span class="iconfont icon-jiantoushang" style="font-size: 20px;color: rgb(161,0,0);"></span></dt>
-            <dd>返回<br/>顶部</dd>
+            <dd>TOP</dd>
         </dl>
     </a>
 </div>
 <script src="../static/css/layui/layui.js"></script>
 <script src="../static/js/jquery-2.1.1.min.js"></script>
-<script src="../static/js/jquery.fly.min.js"></script>
 <script src="../static/js/book_detail.js"></script>
 <script src="../static/js/location.js"></script>
 <script src="../static/js/public.js"></script>
+<script src="../static/js/user.js"></script>
 <script>
     layui.use('carousel', function () {
         var carousel = layui.carousel;
@@ -676,6 +418,44 @@
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
     });
+</script>
+<script>
+    function fun() {
+        var level3 = document.getElementById('level3');
+
+        var off = level3.getBoundingClientRect().left;
+
+
+        var bindEvent = function (dom, eventName, listener) {
+            if (dom.attachEvent) {
+                dom.attachEvent('on' + eventName, listener);
+            } else {
+                dom.addEventListener(eventName, listener);
+            }
+        }
+
+        bindEvent(level3, 'click', function (e) {
+            var offsetX = e.clientX - level3.clientLeft;
+            var width = (offsetX - off) / 130 * 100 + "%";
+            $(".level2").css("width", width);
+            var width_int = Math.round((offsetX - off) / 130 * 10);
+            if(width_int == 0) {
+                $('.pj .desc').text(width_int + "分 双眼已瞎！");
+            } else if(width_int == 1) {
+                $('.pj .desc').text(width_int + "分 超烂啊！");
+            } else if(width_int == 2) {
+                $('.pj .desc').text(width_int + "分 不值一提！");
+            } else if(width_int == 3 || width_int == 4) {
+                $('.pj .desc').text(width_int + "分 水准之下！");
+            } else if(width_int == 5 || width_int == 6) {
+                $('.pj .desc').text(width_int + "分 聊胜于无！");
+            } else if(width_int == 7 || width_int == 8) {
+                $('.pj .desc').text(width_int + "分 值得一看！");
+            } else if(width_int == 9 || width_int == 10) {
+                $('.pj .desc').text(width_int + "分 极力推荐！");
+            }
+        });
+    }
 </script>
 </body>
 </html>
