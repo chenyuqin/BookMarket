@@ -183,7 +183,9 @@ $(document).ready(function () {
         var category = $('#sale_rank_cate .tab-active').index();
         window.open("http://localhost:8088/rank.html?category=" + category);
     })
+
 });
+
 
 (function ($) {
     //扩展方法获取url参数
@@ -198,4 +200,3 @@ $(document).ready(function () {
 function trim(str) { //删除左右两端的空格
     return str.replace(/(^\s*)|(\s*$)/g, "");
 }
-

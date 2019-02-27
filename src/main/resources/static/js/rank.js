@@ -120,17 +120,21 @@ function getRankBooks(category, type, page) {
             $('.add_to_cart').click(function () {
                 var book_id = $(this).closest('.item').children().eq(0).val();
                 var token = sessionStorage.getItem('token');
-                $.ajax({
-                    url: 'cart/add',
-                    type: 'Post',
-                    data: {'count': 1, 'book_id': book_id, 'token': token},
-                    dataType: 'JSON',
-                    async: false,
-                    success: function (result) {
-                        alert("加入购物车成功，请前往购物车查看！");
-                        document.getElementById("object").data = "header.html";
-                    }
-                });
+                if (token != null && token != "" && token != undefined) {
+                    $.ajax({
+                        url: 'cart/add',
+                        type: 'Post',
+                        data: {'count': 1, 'book_id': book_id, 'token': token},
+                        dataType: 'JSON',
+                        async: false,
+                        success: function (result) {
+                            alert("加入购物车成功，请前往购物车查看！");
+                            document.getElementById("object").data = "header.html";
+                        }
+                    });
+                } else {
+                    alert("请先登录！");
+                }
             });
         }
     });

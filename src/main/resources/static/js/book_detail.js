@@ -221,12 +221,17 @@ $(function () {
 
     //立即购买
     $(".J_LinkBuy").click(function () {
-        var count = parseInt($("#J_IptAmount").val());
-        var book_id = parseInt(getQueryString('bid'));
-        var timestamp = Date.parse(new Date());
-        sessionStorage.setItem(timestamp, book_id);
-        sessionStorage.setItem('count', count);
-        window.location.href = "http://localhost:8088/balance.html?date=" + timestamp;
+        var token = sessionStorage.getItem('token');
+        if (token != null && token != "" && token != undefined) {
+            var count = parseInt($("#J_IptAmount").val());
+            var book_id = parseInt(getQueryString('bid'));
+            var timestamp = Date.parse(new Date());
+            sessionStorage.setItem(timestamp, book_id);
+            sessionStorage.setItem('count', count);
+            window.location.href = "http://localhost:8088/balance.html?date=" + timestamp;
+        } else {
+            alert("请先登录！");
+        }
     });
 
     //评论模块
@@ -324,7 +329,7 @@ $(function () {
 
             //好评
             if (result.goodRemarkByCateDto.remarkCount == 0) {
-                $("#goodRemark").html("暂无评论！");
+                $("#goodRemark").html("暂无好评！");
                 $("#goodRemark").addClass("noRemark");
             } else {
                 $.each(result.goodRemarkByCateDto.everyRemarkDtos, function (index, item) {
@@ -403,7 +408,7 @@ $(function () {
 
             //中评
             if (result.middleRemarkByCateDto.remarkCount == 0) {
-                $("#middleRemark").html("暂无评论！");
+                $("#middleRemark").html("暂无中评！");
                 $("#middleRemark").addClass("noRemark");
             } else {
                 $.each(result.middleRemarkByCateDto.everyRemarkDtos, function (index, item) {
@@ -482,7 +487,7 @@ $(function () {
 
             //差评
             if (result.badRemarkByCateDto.remarkCount == 0) {
-                $("#badRemark").html("暂无评论！");
+                $("#badRemark").html("暂无差评！");
                 $("#badRemark").addClass("noRemark");
             } else {
                 $.each(result.badRemarkByCateDto.everyRemarkDtos, function (index, item) {

@@ -179,56 +179,61 @@
 </style>
 
 <body style="overflow:hidden;">
-    <div class="header">
-        <div class="topbar">
-            <div class="wrap">
-                <div class="topbar-left">
-                    <a href="index.html" target="_parent"><span class="iconfont icon-shouye"> 首页</span></a>
-                    <span style="margin:0 .5em;color:#424242;">|</span>
-                    <span style="color: #000;">您的定位：
+<div class="header">
+    <div class="topbar">
+        <div class="wrap">
+            <div class="topbar-left">
+                <a href="index.html" target="_parent"><span class="iconfont icon-shouye"> 首页</span></a>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <span style="color: #000;">您的定位：
                         <span class="iconfont icon-dingwei"></span>
                         <span class="glyphicon glyphicon-map-marker" id="location"></span>
                     </span>
-                </div>
-                <div class="topbar-right">
-                    <div style="float: left;" id="top_tools">
+            </div>
+            <div class="topbar-right">
+                <div style="float: left;" id="top_tools">
 
-                    </div>
-                    <a href="#" id="dd">
-                        <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
-                        <span class="layui-badge layui-bg-orange">0</span>
-                    </a>
-                    <div class="loading" id="load" style="display:none">暂无消息！</div>
-                    <span style="margin:0 .5em;color:#424242;">|</span>
-                    <a href="personal.html" id="gerenzhongxin" target="_parent">
-                        <span class="iconfont icon-app_icons--"> 个人中心</span></a>
                 </div>
-            </div>
-        </div>
-        <div class="wrap2">
-            <div class="logo">
-                <span class="iconfont icon-shuji" style="font-size: 28px;font-weight: 600">
-                        网上图书超市</span>
-            </div>
-            <div class="search">
-                <form>
-                    <input class="iconfont search-btn" type="button" id="search" value="&#xe778;">
-                    <input class="search-text" id="query_string" type="text" placeholder="搜索图书" autocomplete="off">
-                </form>
-            </div>
-            <!--购物车部分-->
-            <div class="cart">
-                <a href="cart.html" target="_parent">
-                    <span class="iconfont icon-gouwuche"> 购物车</span>
-                    <span class="cart_counts">0</span>
+                <a href="#" id="dd">
+                    <span class="iconfont icon-xiaoxitongzhi"> 消息通知</span>
+                    <span class="layui-badge layui-bg-orange">0</span>
                 </a>
-            </div>
-            <!--订单部分-->
-            <div class="order">
-                <a href="order.html" target="_parent">我的订单</a>
+                <div class="loading" id="load" style="display:none">暂无消息！</div>
+                <span style="margin:0 .5em;color:#424242;">|</span>
+                <a href="personal.html" id="gerenzhongxin" target="_parent">
+                    <span class="iconfont icon-app_icons--"> 个人中心</span></a>
             </div>
         </div>
     </div>
+    <div class="wrap2">
+        <div class="logo">
+            <img src="../static/img/shuji.png" style="
+    height: 32px;
+    /* line-height: 50px; */
+    margin-bottom: 10px;
+"/>
+            <span style="font-size: 28px;font-weight: 600">
+                        网上图书超市</span>
+        </div>
+        <div class="search">
+            <form>
+                <input class="iconfont search-btn" type="button" id="search" value="&#xe778;">
+                <input class="search-text" id="query_string" type="text" placeholder="搜索图书" autocomplete="off">
+            </form>
+        </div>
+        <!--购物车部分-->
+        <div class="cart">
+            <a href="cart.html" target="_parent">
+                <span class="iconfont icon-gouwuche"> 购物车</span>
+                <span class="cart_counts">0</span>
+            </a>
+        </div>
+        <!--订单部分-->
+        <div class="order">
+            <a href="order.html" target="_parent">我的订单</a>
+        </div>
+    </div>
+</div>
 </body>
 
 <script>
@@ -247,4 +252,38 @@
     function trim(str) { //删除左右两端的空格
         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
+</script>
+
+<!--跨标签页共享sessionStorage-->
+<script>
+    // Removed IE support in this demo for the sake of simplicity
+    (function () {
+
+        if (!sessionStorage.length) {
+            // Ask other tabs for session storage
+            localStorage.setItem('getSessionStorage', Date.now());
+        };
+
+        window.addEventListener('storage', function (event) {
+            //console.log('storage event', event);
+            if (event.key == 'getSessionStorage') {
+                // Some tab asked for the sessionStorage -> send it
+                localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+                localStorage.removeItem('sessionStorage');
+
+            } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+                // sessionStorage is empty -> fill it
+                var data = JSON.parse(event.newValue),
+                    value;
+
+                for (key in data) {
+                    sessionStorage.setItem(key, data[key]);
+                }
+            }
+        });
+        window.onbeforeunload = function () {
+            // sessionStorage.clear();
+        };
+    })();
+
 </script>

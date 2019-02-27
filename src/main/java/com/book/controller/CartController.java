@@ -109,6 +109,7 @@ public class CartController {
             BeanUtils.copyProperties(book, cartDto);
             cartDto.setBook_id(Integer.parseInt(ids));
             cartDto.setCount(count);
+            cartDto.setImage1(cartDto.getImage1().replace("_x_", "_b_"));
             cartDtos.add(cartDto);
             totalPrices = String.format("%.2f", (count * 1.0 * Double.parseDouble(book.getPrice())));
         } else {
