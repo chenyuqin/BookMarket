@@ -47,6 +47,7 @@ $(function () {
         sessionStorage.removeItem('id');
         sessionStorage.removeItem('name');
         sessionStorage.removeItem('token');
+        localStorage.setItem('removeSessionStorage', Date.now());
         $.ajax({
             url: 'login/logout',
             type: 'Post',

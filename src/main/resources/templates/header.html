@@ -271,6 +271,11 @@
                 localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
                 localStorage.removeItem('sessionStorage');
 
+            } else if (event.key == 'removeSessionStorage') {
+                // Some tab asked for the sessionStorage -> send it
+                sessionStorage.clear();
+                localStorage.removeItem('removeSessionStorage');
+
             } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
                 // sessionStorage is empty -> fill it
                 var data = JSON.parse(event.newValue),
