@@ -151,6 +151,11 @@ public class BookDetailController {
         Integer userID = (Integer) claims.get("userID");
         remark.setUser_id(userID);
         remark.setStatus(0);
+        if (remark.getStar().substring(0, 3).equals("100")) {
+            remark.setStar("100%");
+        } else if(remark.getStar().substring(0, 1).equals("0")) {
+            remark.setStar("0%");
+        }
         remarkService.insertSelective(remark);
         json = JSONSerializer.toJSON(new JsonResult<>(2, "评论成功！", null));
         return json.toString();

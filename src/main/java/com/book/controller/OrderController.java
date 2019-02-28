@@ -3,10 +3,7 @@ package com.book.controller;
 import com.book.DTO.*;
 import com.book.common.GetOrderIdByUUID;
 import com.book.common.JwtUtils;
-import com.book.entity.Address;
-import com.book.entity.Book;
-import com.book.entity.Order;
-import com.book.entity.Orderdetail;
+import com.book.entity.*;
 import com.book.service.*;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.BeanUtils;
@@ -44,6 +41,9 @@ public class OrderController {
 
     @Autowired
     BookDetailService bookDetailService;
+
+    @Autowired
+    RemarkService remarkService;
 
     @RequestMapping(value = "insertOrder", method = RequestMethod.POST)
     @ResponseBody
@@ -153,12 +153,27 @@ public class OrderController {
     @RequestMapping(value = "updateStatusTo4", method = RequestMethod.POST)
     @ResponseBody
     public Object updateStatusTo4(@RequestParam("token") String token, @RequestParam("order_id") String order_id) {
+
+        Claims claims = jwtUtils.parseJWT(token);
+        Integer userID = (Integer)claims.get("userID");
+
         Order order = new Order();
         order.setOrder_id(order_id);
         order.setStatus(4);
         orderService.updateByOrderIdSelective(order);
 
-        orderdetailService.updateIsRemark(0, order_id);
+        List<OrderBookDto> orderBookByOrderId = orderService.getOrderBookByOrderId(order_id);
+        for (OrderBookDto orderBookDto : orderBookByOrderId) {
+            if (remarkService.getByUserIdAndBookId(userID, orderBookDto.getId()) != null) {
+                orderdetailService.updateIsRemarkByUserId(1, userID, orderBookDto.getId());
+                Remark remark = remarkService.getByUserIdAndBookId(userID, orderBookDto.getId());
+                remark.setStatus(1);
+                remarkService.updateByPrimaryKeySelective(remark);
+            } else {
+                orderdetailService.updateIsRemarkByUserId(0, userID, orderBookDto.getId());
+            }
+        }
+
         return true;
     }
 }

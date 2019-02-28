@@ -93,6 +93,11 @@ public class AppraiseController {
         Claims claims = jwtUtils.parseJWT(token);
         Integer userID = (Integer) claims.get("userID");
 
+        if (remark.getStar().substring(0, 3).equals("100")) {
+            remark.setStar("100%");
+        } else if(remark.getStar().substring(0, 1).equals("0")) {
+            remark.setStar("0%");
+        }
         remark.setUser_id(userID);
         remark.setStatus(1);
         remarkService.insertSelective(remark);

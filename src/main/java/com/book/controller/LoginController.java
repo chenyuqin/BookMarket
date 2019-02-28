@@ -77,7 +77,6 @@ public class LoginController {
     public void logout(@RequestParam("token") String token, HttpServletRequest request) {
         //销毁session
         request.getSession().invalidate();
-        System.out.println("Ssss");
     }
 
 }
