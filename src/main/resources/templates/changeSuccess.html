@@ -137,7 +137,7 @@
         <div class="alert-concent">
             <p>正在为您跳转到登录界面...</p>
         </div>
-        <a id="js-alert-btn" class="alert-btn" href="http://localhost:8088/login.html">立即前往登录</a></div>
+        <a id="js-alert-btn" class="alert-btn" href="/login.html">立即前往登录</a></div>
     <div class="alert-footer clearfix">
         <div class="alert-footer-text">
             <span class="iconfont icon-shuji"> 网上图书超市</span>
@@ -153,7 +153,7 @@
         document.getElementById("js-sec-text").innerHTML = t,
             setInterval(function () {
                     if (0 == t) {
-                        location.href = "http://localhost:8088/login.html";
+                        location.href = "/login.html";
                     } else {
                         t -= 1,
                             document.getElementById("js-sec-text").innerHTML = t;

@@ -39,7 +39,7 @@ $(function () {
             return;
         }
         $("#query_string").val("");
-        window.open("http://localhost:8088/search.html?q=" + query_string);
+        window.open("/search.html?q=" + query_string);
     });
 
     $("#logout").click(function () {

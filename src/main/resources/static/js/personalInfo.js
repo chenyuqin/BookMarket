@@ -81,6 +81,7 @@ $(function () {
             success: function (result) {
                 alert("信息修改完毕！");
                 $(".bj").hide();
+                sessionStorage.setItem('name', name);
                 window.location.reload();
             }
         });

@@ -165,7 +165,7 @@ $(function () {
             $.each(result.sameCateBooks, function (index, item) {
                 $("#same_cate_book").append(
                     '<li>\n' +
-                    '                <a href="http://localhost:8088/book_detail.html?bid=' + item.id + '">\n' +
+                    '                <a href="/book_detail.html?bid=' + item.id + '">\n' +
                     // '                    <input type="hidden" value="' + item.id + '"/>\n' +
                     '                    <img src="' + item.image1 + '">\n' +
                     '                    <p class="title" title="' + item.name + '">' + item.name + '</p>\n' +
@@ -228,7 +228,7 @@ $(function () {
             var timestamp = Date.parse(new Date());
             sessionStorage.setItem(timestamp, book_id);
             sessionStorage.setItem('count', count);
-            window.location.href = "http://localhost:8088/balance.html?date=" + timestamp;
+            window.location.href = "/balance.html?date=" + timestamp;
         } else {
             alert("请先登录！");
         }

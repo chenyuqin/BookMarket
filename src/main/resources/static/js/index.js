@@ -2,7 +2,7 @@ $(document).ready(function () {
     //给每个分类设置href
     $('.main2').find('li').each(function () {
         if ($(this).find('h3 a').attr("href") == '' || $(this).find('h3 a').attr("href") == null) {
-            var href = "http://localhost:8088/search_by_cate.html?category=" + ($(this).find('h3').closest('.main2').parent().index() + 1) + "&c1=" + $(this).find('h3 a').text();
+            var href = "/search_by_cate.html?category=" + ($(this).find('h3').closest('.main2').parent().index() + 1) + "&c1=" + $(this).find('h3 a').text();
             $(this).find('h3 a').attr("href", href);
         }
         $(this).find('h3 a').attr("target", "_blank");
@@ -40,10 +40,10 @@ $(document).ready(function () {
         success: function (result) {
             $('#guessYouLike').append(
                 "<div class=\"book-png\">\n" +
-                "                    <a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" target=\"_blank\"><img src=\"" + result.image1 + "\"/></a>\n" +
+                "                    <a href=\"" + "/book_detail.html?bid=" + result.id + "\" target=\"_blank\"><img src=\"" + result.image1 + "\"/></a>\n" +
                 "                </div>\n" +
                 "                <div class=\"page-box\">\n" +
-                "                    <p><a href=\"" + "http://localhost:8088/book_detail.html?bid=" + result.id + "\" title=\"" + result.name + "\" target=\"_blank\">" + result.name + "</a></p>\n" +
+                "                    <p><a href=\"" + "/book_detail.html?bid=" + result.id + "\" title=\"" + result.name + "\" target=\"_blank\">" + result.name + "</a></p>\n" +
                 "                    <p title=\"" + result.author + "\" style=\"opacity:0.8;\">" + result.author + "</p>\n" +
                 "                </div>"
             );
@@ -75,7 +75,7 @@ $(document).ready(function () {
             });
             $('#ten_new_book').html(ten_book_html);
             $('#ten_new_book li').click(function () {
-                window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+                window.open('/book_detail.html?bid=' + $(this).find('input').val());
             });
         }
     });
@@ -121,7 +121,7 @@ $(document).ready(function () {
                 });
                 $('#ten_discount_book').html(ten_book_html);
                 $('#ten_discount_book li').click(function () {
-                    window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+                    window.open('/book_detail.html?bid=' + $(this).find('input').val());
                 });
             }
         });
@@ -172,7 +172,7 @@ $(document).ready(function () {
                 });
                 $('#ten_sale_rank_book').html(ten_book_html);
                 $('#ten_sale_rank_book li').click(function () {
-                    window.open('http://localhost:8088/book_detail.html?bid=' + $(this).find('input').val());
+                    window.open('/book_detail.html?bid=' + $(this).find('input').val());
                 });
             }
         });
@@ -181,7 +181,7 @@ $(document).ready(function () {
 
     $("#all_rank_book").click(function () {
         var category = $('#sale_rank_cate .tab-active').index();
-        window.open("http://localhost:8088/rank.html?category=" + category);
+        window.open("/rank.html?category=" + category);
     })
 
 });

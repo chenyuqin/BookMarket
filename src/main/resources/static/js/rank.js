@@ -83,12 +83,12 @@ function getRankBooks(category, type, page) {
                     '<input type="hidden" value="' + item.id + '"/>' +
                     inner_html +
                     '                <div class="img">\n' +
-                    '                    <a href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '">\n' +
+                    '                    <a href="' + "/book_detail.html?bid=" + item.id + '">\n' +
                     '                        <img src="' + item.image1 + '"/>\n' +
                     '                    </a>\n' +
                     '                </div>\n' +
                     '                <div class="desc">\n' +
-                    '                    <a class="book_name" target="_blank" title="' + item.name + '" href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '">' + item.name + '</a>\n' +
+                    '                    <a class="book_name" target="_blank" title="' + item.name + '" href="' + "/book_detail.html?bid=" + item.id + '">' + item.name + '</a>\n' +
                     '                    <p class="star">\n' +
                     '                                    <span class="level">\n' +
                     '                                        <span style="width: ' + item.star + ';"></span>\n' +

@@ -54,10 +54,10 @@ $(function () {
 
                             $.each(item.orderBookDtos, function (index, book) {
                                 inner_html += '  <div class="shohou_div">\n' +
-                                    '<a href="' + "http://localhost:8088/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
+                                    '<a href="' + "/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
                                     '       src="' + book.image1 + '"/></a>\n' +
                                     '      <p class="fl shohou_div_p">\n' +
-                                    '          <a title="' + book.name + '" href="' + "http://localhost:8088/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
+                                    '          <a title="' + book.name + '" href="' + "/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
                                     '            <a title="' + book.author + '" href="javascript:void(0);">' + book.author + '</a>\n' +
                                     '   <a style="font-size: 13px">¥' + book.price + '×' + book.count + '</a>\n' +
                                     '            </p>\n' +
@@ -94,10 +94,10 @@ $(function () {
 
                             $.each(item.orderBookDtos, function (index, book) {
                                 inner_html += '  <div class="shohou_div">\n' +
-                                    '<a href="' + "http://localhost:8088/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
+                                    '<a href="' + "/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
                                     '       src="' + book.image1 + '"/></a>\n' +
                                     '      <p class="fl shohou_div_p">\n' +
-                                    '          <a title="' + book.name + '" href="' + "http://localhost:8088/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
+                                    '          <a title="' + book.name + '" href="' + "/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
                                     '            <a title="' + book.author + '" href="javascript:void(0);">' + book.author + '</a>\n' +
                                     '   <a style="font-size: 13px">¥' + book.price + '×' + book.count + '</a>\n' +
                                     '            </p>\n' +
@@ -156,10 +156,10 @@ $(function () {
                                 '                        <div class="fl">\n';
                             $.each(item.orderBookDtos, function (index, book) {
                                 inner_html += '  <div class="shohou_div">\n' +
-                                    '<a href="' + "http://localhost:8088/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
+                                    '<a href="' + "/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
                                     '       src="' + book.image1 + '"/></a>\n' +
                                     '      <p class="fl shohou_div_p">\n' +
-                                    '          <a title="' + book.name + '" href="' + "http://localhost:8088/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
+                                    '          <a title="' + book.name + '" href="' + "/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
                                     '            <a title="' + book.author + '" href="javascript:void(0);">' + book.author + '</a>\n' +
                                     '   <a style="font-size: 13px">¥' + book.price + '×' + book.count + '</a>\n' +
                                     '            </p>\n' +
@@ -196,10 +196,10 @@ $(function () {
 
                             $.each(item.orderBookDtos, function (index, book) {
                                 inner_html += '  <div class="shohou_div">\n' +
-                                    '<a href="' + "http://localhost:8088/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
+                                    '<a href="' + "/book_detail.html?bid=" + book.id + '" class="fl"><img\n' +
                                     '       src="' + book.image1 + '"/></a>\n' +
                                     '      <p class="fl shohou_div_p">\n' +
-                                    '          <a title="' + book.name + '" href="' + "http://localhost:8088/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
+                                    '          <a title="' + book.name + '" href="' + "/book_detail?bid=" + book.id + '">' + book.name + '</a>\n' +
                                     '            <a title="' + book.author + '" href="javascript:void(0);">' + book.author + '</a>\n' +
                                     '   <a style="font-size: 13px">¥' + book.price + '×' + book.count + '</a>\n' +
                                     '            </p>\n' +
@@ -233,7 +233,7 @@ $(function () {
                         data: {'token': token, 'order_id': order_id},
                         dataType: 'JSON',
                         success: function (result) {
-                            window.location.href = "http://localhost:8088/pay_success.html";
+                            window.location.href = "/pay_success.html";
                         }
                     });
                 });

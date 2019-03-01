@@ -18,7 +18,7 @@ $(function () {
                         '                        <input type="checkbox"/>\n' +
                         '                        <span></span>\n' +
                         '                    </label>\n' +
-                        '                    <a class="fl" href="' + "http://localhost:8088/book_detail.html?bid=" + item.book_id + '" target="_blank">\n' +
+                        '                    <a class="fl" href="' + "/book_detail.html?bid=" + item.book_id + '" target="_blank">\n' +
                         '                        <dl class="clearfix">\n' +
                         '                            <dt class="fl">\n' +
                         '                                <input id="book_id" type="hidden" value="' + item.book_id + '"/>\n' +
@@ -214,7 +214,7 @@ $(function () {
         var timestamp = Date.parse(new Date());
         sessionStorage.setItem(timestamp, cart_ids);
         sessionStorage.removeItem('count');
-        window.location.href="http://localhost:8088/balance.html?date="+timestamp;
+        window.location.href="/balance.html?date="+timestamp;
     })
 });
 

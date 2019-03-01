@@ -33,12 +33,12 @@ $(function () {
                         $('.book_show').append(
                             '<dl class="fl">\n' +
                             '                        <dt>\n' +
-                            '                            <a href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '">\n' +
+                            '                            <a href="' + "/book_detail.html?bid=" + item.id + '">\n' +
                             '                                <input type="hidden" value="' + item.id + '"/>\n' +
                             '                                <img style="width: 120px;" src="' + item.image1 + '"/>\n' +
                             '                            </a>\n' +
                             '                        </dt>\n' +
-                            '                        <dd><a href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '" title="' + item.name + '">' + item.name + '</a></dd>\n' +
+                            '                        <dd><a href="' + "/book_detail.html?bid=" + item.id + '" title="' + item.name + '">' + item.name + '</a></dd>\n' +
                             '                        <dd title="' + item.author + '">' + item.author + '</dd>\n' +
                             '                        <dd>' + item.remark + '人评价</dd>\n' +
                             '                        <dd><a class="appr_btn" href="javascript:void(0)">评价</a></dd>\n' +
@@ -101,12 +101,12 @@ $(function () {
                         $('.book_show').append(
                             '<dl class="fl">\n' +
                             '                        <dt>\n' +
-                            '                            <a href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '">\n' +
+                            '                            <a href="' + "/book_detail.html?bid=" + item.id + '">\n' +
                             '                                <input type="hidden" value="' + item.id + '"/>\n' +
                             '                                <img style="width: 120px;" src="' + item.image1 + '"/>\n' +
                             '                            </a>\n' +
                             '                        </dt>\n' +
-                            '                        <dd><a href="' + "http://localhost:8088/book_detail.html?bid=" + item.id + '" title="' + item.name + '">' + item.name + '</a></dd>\n' +
+                            '                        <dd><a href="' + "/book_detail.html?bid=" + item.id + '" title="' + item.name + '">' + item.name + '</a></dd>\n' +
                             '                        <dd title="' + item.author + '">' + item.author + '</dd>\n' +
                             '                        <dd>' + item.remark + '人评价</dd>\n' +
                             '                        <dd><a class="appr_look_btn" href="javascript:void(0)">查看评价</a></dd>\n' +

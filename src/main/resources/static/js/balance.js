@@ -138,7 +138,7 @@ $(function () {
             });
 
             $('.msg ul').click(function () {
-                window.open("http://localhost:8088/book_detail.html?bid=" + $(this).find('#msg_book_id').val());
+                window.open("/book_detail.html?bid=" + $(this).find('#msg_book_id').val());
             });
 
             $(".totalPrice").text("￥" + result.totalPrice);
@@ -200,7 +200,7 @@ $(function () {
             data: {'token': token, 'address_id': parseInt(address_id), 'pay_way': parseInt(pay_way), 'ids': ids, 'count': count},
             dataType: 'JSON',
             success: function (result) {
-                window.location.href="http://localhost:8088/pay_success.html"
+                window.location.href="/pay_success.html"
             }
         });
     });
