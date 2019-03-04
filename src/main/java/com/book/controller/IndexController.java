@@ -8,6 +8,7 @@ import com.book.entity.Book;
 import com.book.entity.Notice;
 import com.book.entity.Slideshow;
 import com.book.service.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,14 @@ public class IndexController {
     public Object notice() {
         List<Notice> notices = noticeService.selectNew();
         return notices;
+    }
+
+    //获取某个动态
+    @RequestMapping(value = "getNoticeById", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getNoticeById(@RequestParam("id") Integer id) {
+        Notice notice = noticeService.selectByPrimaryKey(id);
+        return notice;
     }
 
     //猜你喜欢

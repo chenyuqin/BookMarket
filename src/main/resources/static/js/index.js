@@ -24,7 +24,7 @@ $(document).ready(function () {
             var inner_html = "";
             $.each(result, function (index, item) {
                 inner_html = inner_html +
-                    "<li><a href=\"" + item.url + "\" title=\"" + item.title + "\">" + item.title + "</a></li>"
+                    "<li><a target='_blank' href=notice.html?id=" + parseInt(item.id) + " title=\"" + item.title + "\">" + item.title + "</a></li>"
                 ;
             });
             $('#notice').html(inner_html);

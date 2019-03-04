@@ -29,6 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/register.html",
                         "/search.html",
                         "/search_by_cate.html",
+                        "/notice.html",
                         "/static/**",
                         "/to_login",
                         "/bookDetail/**",

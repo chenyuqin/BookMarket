@@ -18,4 +18,9 @@ public class NoticeServiceImpl implements NoticeService {
     public List<Notice> selectNew() {
         return noticeMapper.selectNew();
     }
+
+    @Override
+    public Notice selectByPrimaryKey(Integer id) {
+        return noticeMapper.selectByPrimaryKey(id);
+    }
 }
