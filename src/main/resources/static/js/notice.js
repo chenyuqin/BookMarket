@@ -5,6 +5,7 @@ $(function () {
         data: {'id': parseInt(getQueryString('id'))},
         dataType: 'JSON',
         success: function (result) {
+            $("#title").text(result.title);
             $("#content").html(result.url);
         }
     });
